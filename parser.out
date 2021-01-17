@@ -23,6 +23,7 @@ Unused terminals:
     MEN
     MSE7
     NAW3
+    QRA
     RED
     RJE3
     SEMICOLON
@@ -71,9 +72,9 @@ Rule 34    condition -> expression SUPEQUALS expression
 Rule 35    condition -> expression INFEQUALS expression
 Rule 36    condition -> expression
 Rule 37    expression -> expression PLUS expression
-Rule 38    expression -> expression MINUS expression
-Rule 39    expression -> expression TIMES expression
-Rule 40    expression -> expression DIVIDE expression
+Rule 38    expression -> expression_num MINUS expression_num
+Rule 39    expression -> expression_num TIMES expression_num
+Rule 40    expression -> expression_num DIVIDE expression_num
 Rule 41    expression -> LPAREN expression RPAREN
 Rule 42    expression -> ID
 Rule 43    expression -> INT
@@ -82,11 +83,13 @@ Rule 45    expression -> STRING
 Rule 46    expression -> KHATE2
 Rule 47    expression -> S7I7
 Rule 48    expression -> WALO
-Rule 49    printing -> KTEB LPAREN expression RPAREN
-Rule 50    printing -> KTEB LPAREN incrementation RPAREN
-Rule 51    printing -> KTEB LPAREN decrementation RPAREN
-Rule 52    printing -> KTEB LPAREN condition RPAREN
-Rule 53    empty -> <empty>
+Rule 49    expression_num -> INT
+Rule 50    expression_num -> FLOAT
+Rule 51    printing -> KTEB LPAREN expression RPAREN
+Rule 52    printing -> KTEB LPAREN incrementation RPAREN
+Rule 53    printing -> KTEB LPAREN decrementation RPAREN
+Rule 54    printing -> KTEB LPAREN condition RPAREN
+Rule 55    empty -> <empty>
 
 Terminals, with rules where they appear
 
@@ -101,7 +104,7 @@ DOUZ                 :
 EQUALS               : 11
 EQUALSCOMP           : 33
 FI                   : 
-FLOAT                : 44
+FLOAT                : 44 50
 FTARED               : 
 HUWA                 : 
 ID                   : 9 10 11 42
@@ -109,17 +112,17 @@ ILA                  : 12 13
 INCREMENTATION       : 9
 INF                  : 32
 INFEQUALS            : 35
-INT                  : 43
+INT                  : 43 49
 JEREB                : 
 JIB                  : 
 KHATE2               : 46
 KHREJ                : 
 KMEL                 : 
-KTEB                 : 49 50 51 52
+KTEB                 : 51 52 53 54
 LAMBDA               : 
 LBRACKET             : 12 13 13 14
 LKOLA                : 
-LPAREN               : 12 13 14 23 23 24 24 25 26 27 28 41 49 50 51 52
+LPAREN               : 12 13 14 23 23 24 24 25 26 27 28 41 51 52 53 54
 M3A                  : 
 MA7ED                : 14
 MACHIMA7ALI          : 
@@ -130,10 +133,11 @@ MINUS                : 38
 MSE7                 : 
 NAW3                 : 
 PLUS                 : 37
+QRA                  : 
 RBRACKET             : 12 13 13 14
 RED                  : 
 RJE3                 : 
-RPAREN               : 12 13 14 23 23 24 24 25 26 27 28 41 49 50 51 52
+RPAREN               : 12 13 14 23 23 24 24 25 26 27 28 41 51 52 53 54
 S7I7                 : 47
 SEMICOLON            : 
 STRING               : 45
@@ -152,13 +156,14 @@ machi                :
 Nonterminals, with rules where they appear
 
 block                : 12 13 13 14
-condition            : 12 13 14 23 23 24 24 25 25 26 26 27 27 28 28 29 29 30 30 52
+condition            : 12 13 14 23 23 24 24 25 25 26 26 27 27 28 28 29 29 30 30 54
 darija               : 0
-decrementation       : 4 18 51
+decrementation       : 4 18 53
 empty                : 8 22
-expression           : 5 11 19 31 31 32 32 33 33 34 34 35 35 36 37 37 38 38 39 39 40 40 41 49
+expression           : 5 11 19 31 31 32 32 33 33 34 34 35 35 36 37 37 41 51
+expression_num       : 38 38 39 39 40 40
 if                   : 6 20
-incrementation       : 3 17 50
+incrementation       : 3 17 52
 printing             : 2 16
 var_assign           : 1 15
 while                : 7 21
@@ -177,16 +182,16 @@ state 0
     (7) darija -> . while
     (8) darija -> . empty
     (11) var_assign -> . ID EQUALS expression
-    (49) printing -> . KTEB LPAREN expression RPAREN
-    (50) printing -> . KTEB LPAREN incrementation RPAREN
-    (51) printing -> . KTEB LPAREN decrementation RPAREN
-    (52) printing -> . KTEB LPAREN condition RPAREN
+    (51) printing -> . KTEB LPAREN expression RPAREN
+    (52) printing -> . KTEB LPAREN incrementation RPAREN
+    (53) printing -> . KTEB LPAREN decrementation RPAREN
+    (54) printing -> . KTEB LPAREN condition RPAREN
     (9) incrementation -> . ID INCREMENTATION
     (10) decrementation -> . ID DECREMENTATION
     (37) expression -> . expression PLUS expression
-    (38) expression -> . expression MINUS expression
-    (39) expression -> . expression TIMES expression
-    (40) expression -> . expression DIVIDE expression
+    (38) expression -> . expression_num MINUS expression_num
+    (39) expression -> . expression_num TIMES expression_num
+    (40) expression -> . expression_num DIVIDE expression_num
     (41) expression -> . LPAREN expression RPAREN
     (42) expression -> . ID
     (43) expression -> . INT
@@ -198,20 +203,22 @@ state 0
     (12) if -> . ILA LPAREN condition RPAREN LBRACKET block RBRACKET
     (13) if -> . ILA LPAREN condition RPAREN LBRACKET block RBRACKET WLA LBRACKET block RBRACKET
     (14) while -> . MA7ED LPAREN condition RPAREN LBRACKET block RBRACKET
-    (53) empty -> .
+    (55) empty -> .
+    (49) expression_num -> . INT
+    (50) expression_num -> . FLOAT
 
     ID              shift and go to state 10
     KTEB            shift and go to state 11
     LPAREN          shift and go to state 12
-    INT             shift and go to state 13
-    FLOAT           shift and go to state 14
-    STRING          shift and go to state 15
-    KHATE2          shift and go to state 16
-    S7I7            shift and go to state 17
-    WALO            shift and go to state 18
-    ILA             shift and go to state 19
-    MA7ED           shift and go to state 20
-    $end            reduce using rule 53 (empty -> .)
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    KHATE2          shift and go to state 17
+    S7I7            shift and go to state 18
+    WALO            shift and go to state 19
+    ILA             shift and go to state 20
+    MA7ED           shift and go to state 21
+    $end            reduce using rule 55 (empty -> .)
 
     darija                         shift and go to state 1
     var_assign                     shift and go to state 2
@@ -222,6 +229,7 @@ state 0
     if                             shift and go to state 7
     while                          shift and go to state 8
     empty                          shift and go to state 9
+    expression_num                 shift and go to state 13
 
 state 1
 
@@ -261,15 +269,9 @@ state 6
 
     (5) darija -> expression .
     (37) expression -> expression . PLUS expression
-    (38) expression -> expression . MINUS expression
-    (39) expression -> expression . TIMES expression
-    (40) expression -> expression . DIVIDE expression
 
     $end            reduce using rule 5 (darija -> expression .)
-    PLUS            shift and go to state 21
-    MINUS           shift and go to state 22
-    TIMES           shift and go to state 23
-    DIVIDE          shift and go to state 24
+    PLUS            shift and go to state 22
 
 
 state 7
@@ -300,34 +302,31 @@ state 10
     (10) decrementation -> ID . DECREMENTATION
     (42) expression -> ID .
 
-    EQUALS          shift and go to state 25
-    INCREMENTATION  shift and go to state 26
-    DECREMENTATION  shift and go to state 27
+    EQUALS          shift and go to state 23
+    INCREMENTATION  shift and go to state 24
+    DECREMENTATION  shift and go to state 25
     PLUS            reduce using rule 42 (expression -> ID .)
-    MINUS           reduce using rule 42 (expression -> ID .)
-    TIMES           reduce using rule 42 (expression -> ID .)
-    DIVIDE          reduce using rule 42 (expression -> ID .)
     $end            reduce using rule 42 (expression -> ID .)
     RBRACKET        reduce using rule 42 (expression -> ID .)
 
 
 state 11
 
-    (49) printing -> KTEB . LPAREN expression RPAREN
-    (50) printing -> KTEB . LPAREN incrementation RPAREN
-    (51) printing -> KTEB . LPAREN decrementation RPAREN
-    (52) printing -> KTEB . LPAREN condition RPAREN
+    (51) printing -> KTEB . LPAREN expression RPAREN
+    (52) printing -> KTEB . LPAREN incrementation RPAREN
+    (53) printing -> KTEB . LPAREN decrementation RPAREN
+    (54) printing -> KTEB . LPAREN condition RPAREN
 
-    LPAREN          shift and go to state 28
+    LPAREN          shift and go to state 26
 
 
 state 12
 
     (41) expression -> LPAREN . expression RPAREN
     (37) expression -> . expression PLUS expression
-    (38) expression -> . expression MINUS expression
-    (39) expression -> . expression TIMES expression
-    (40) expression -> . expression DIVIDE expression
+    (38) expression -> . expression_num MINUS expression_num
+    (39) expression -> . expression_num TIMES expression_num
+    (40) expression -> . expression_num DIVIDE expression_num
     (41) expression -> . LPAREN expression RPAREN
     (42) expression -> . ID
     (43) expression -> . INT
@@ -336,26 +335,38 @@ state 12
     (46) expression -> . KHATE2
     (47) expression -> . S7I7
     (48) expression -> . WALO
+    (49) expression_num -> . INT
+    (50) expression_num -> . FLOAT
 
     LPAREN          shift and go to state 12
-    ID              shift and go to state 30
-    INT             shift and go to state 13
-    FLOAT           shift and go to state 14
-    STRING          shift and go to state 15
-    KHATE2          shift and go to state 16
-    S7I7            shift and go to state 17
-    WALO            shift and go to state 18
+    ID              shift and go to state 28
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    KHATE2          shift and go to state 17
+    S7I7            shift and go to state 18
+    WALO            shift and go to state 19
 
-    expression                     shift and go to state 29
+    expression                     shift and go to state 27
+    expression_num                 shift and go to state 13
 
 state 13
 
+    (38) expression -> expression_num . MINUS expression_num
+    (39) expression -> expression_num . TIMES expression_num
+    (40) expression -> expression_num . DIVIDE expression_num
+
+    MINUS           shift and go to state 29
+    TIMES           shift and go to state 30
+    DIVIDE          shift and go to state 31
+
+
+state 14
+
     (43) expression -> INT .
+    (49) expression_num -> INT .
 
     PLUS            reduce using rule 43 (expression -> INT .)
-    MINUS           reduce using rule 43 (expression -> INT .)
-    TIMES           reduce using rule 43 (expression -> INT .)
-    DIVIDE          reduce using rule 43 (expression -> INT .)
     $end            reduce using rule 43 (expression -> INT .)
     RPAREN          reduce using rule 43 (expression -> INT .)
     RBRACKET        reduce using rule 43 (expression -> INT .)
@@ -366,16 +377,17 @@ state 13
     INFEQUALS       reduce using rule 43 (expression -> INT .)
     WA              reduce using rule 43 (expression -> INT .)
     AW              reduce using rule 43 (expression -> INT .)
+    MINUS           reduce using rule 49 (expression_num -> INT .)
+    TIMES           reduce using rule 49 (expression_num -> INT .)
+    DIVIDE          reduce using rule 49 (expression_num -> INT .)
 
 
-state 14
+state 15
 
     (44) expression -> FLOAT .
+    (50) expression_num -> FLOAT .
 
     PLUS            reduce using rule 44 (expression -> FLOAT .)
-    MINUS           reduce using rule 44 (expression -> FLOAT .)
-    TIMES           reduce using rule 44 (expression -> FLOAT .)
-    DIVIDE          reduce using rule 44 (expression -> FLOAT .)
     $end            reduce using rule 44 (expression -> FLOAT .)
     RPAREN          reduce using rule 44 (expression -> FLOAT .)
     RBRACKET        reduce using rule 44 (expression -> FLOAT .)
@@ -386,16 +398,16 @@ state 14
     INFEQUALS       reduce using rule 44 (expression -> FLOAT .)
     WA              reduce using rule 44 (expression -> FLOAT .)
     AW              reduce using rule 44 (expression -> FLOAT .)
+    MINUS           reduce using rule 50 (expression_num -> FLOAT .)
+    TIMES           reduce using rule 50 (expression_num -> FLOAT .)
+    DIVIDE          reduce using rule 50 (expression_num -> FLOAT .)
 
 
-state 15
+state 16
 
     (45) expression -> STRING .
 
     PLUS            reduce using rule 45 (expression -> STRING .)
-    MINUS           reduce using rule 45 (expression -> STRING .)
-    TIMES           reduce using rule 45 (expression -> STRING .)
-    DIVIDE          reduce using rule 45 (expression -> STRING .)
     $end            reduce using rule 45 (expression -> STRING .)
     RPAREN          reduce using rule 45 (expression -> STRING .)
     RBRACKET        reduce using rule 45 (expression -> STRING .)
@@ -408,14 +420,11 @@ state 15
     AW              reduce using rule 45 (expression -> STRING .)
 
 
-state 16
+state 17
 
     (46) expression -> KHATE2 .
 
     PLUS            reduce using rule 46 (expression -> KHATE2 .)
-    MINUS           reduce using rule 46 (expression -> KHATE2 .)
-    TIMES           reduce using rule 46 (expression -> KHATE2 .)
-    DIVIDE          reduce using rule 46 (expression -> KHATE2 .)
     $end            reduce using rule 46 (expression -> KHATE2 .)
     RPAREN          reduce using rule 46 (expression -> KHATE2 .)
     RBRACKET        reduce using rule 46 (expression -> KHATE2 .)
@@ -428,14 +437,11 @@ state 16
     AW              reduce using rule 46 (expression -> KHATE2 .)
 
 
-state 17
+state 18
 
     (47) expression -> S7I7 .
 
     PLUS            reduce using rule 47 (expression -> S7I7 .)
-    MINUS           reduce using rule 47 (expression -> S7I7 .)
-    TIMES           reduce using rule 47 (expression -> S7I7 .)
-    DIVIDE          reduce using rule 47 (expression -> S7I7 .)
     $end            reduce using rule 47 (expression -> S7I7 .)
     RPAREN          reduce using rule 47 (expression -> S7I7 .)
     RBRACKET        reduce using rule 47 (expression -> S7I7 .)
@@ -448,14 +454,11 @@ state 17
     AW              reduce using rule 47 (expression -> S7I7 .)
 
 
-state 18
+state 19
 
     (48) expression -> WALO .
 
     PLUS            reduce using rule 48 (expression -> WALO .)
-    MINUS           reduce using rule 48 (expression -> WALO .)
-    TIMES           reduce using rule 48 (expression -> WALO .)
-    DIVIDE          reduce using rule 48 (expression -> WALO .)
     $end            reduce using rule 48 (expression -> WALO .)
     RPAREN          reduce using rule 48 (expression -> WALO .)
     RBRACKET        reduce using rule 48 (expression -> WALO .)
@@ -468,55 +471,28 @@ state 18
     AW              reduce using rule 48 (expression -> WALO .)
 
 
-state 19
+state 20
 
     (12) if -> ILA . LPAREN condition RPAREN LBRACKET block RBRACKET
     (13) if -> ILA . LPAREN condition RPAREN LBRACKET block RBRACKET WLA LBRACKET block RBRACKET
-
-    LPAREN          shift and go to state 31
-
-
-state 20
-
-    (14) while -> MA7ED . LPAREN condition RPAREN LBRACKET block RBRACKET
 
     LPAREN          shift and go to state 32
 
 
 state 21
 
-    (37) expression -> expression PLUS . expression
-    (37) expression -> . expression PLUS expression
-    (38) expression -> . expression MINUS expression
-    (39) expression -> . expression TIMES expression
-    (40) expression -> . expression DIVIDE expression
-    (41) expression -> . LPAREN expression RPAREN
-    (42) expression -> . ID
-    (43) expression -> . INT
-    (44) expression -> . FLOAT
-    (45) expression -> . STRING
-    (46) expression -> . KHATE2
-    (47) expression -> . S7I7
-    (48) expression -> . WALO
+    (14) while -> MA7ED . LPAREN condition RPAREN LBRACKET block RBRACKET
 
-    LPAREN          shift and go to state 12
-    ID              shift and go to state 30
-    INT             shift and go to state 13
-    FLOAT           shift and go to state 14
-    STRING          shift and go to state 15
-    KHATE2          shift and go to state 16
-    S7I7            shift and go to state 17
-    WALO            shift and go to state 18
+    LPAREN          shift and go to state 33
 
-    expression                     shift and go to state 33
 
 state 22
 
-    (38) expression -> expression MINUS . expression
+    (37) expression -> expression PLUS . expression
     (37) expression -> . expression PLUS expression
-    (38) expression -> . expression MINUS expression
-    (39) expression -> . expression TIMES expression
-    (40) expression -> . expression DIVIDE expression
+    (38) expression -> . expression_num MINUS expression_num
+    (39) expression -> . expression_num TIMES expression_num
+    (40) expression -> . expression_num DIVIDE expression_num
     (41) expression -> . LPAREN expression RPAREN
     (42) expression -> . ID
     (43) expression -> . INT
@@ -525,79 +501,28 @@ state 22
     (46) expression -> . KHATE2
     (47) expression -> . S7I7
     (48) expression -> . WALO
+    (49) expression_num -> . INT
+    (50) expression_num -> . FLOAT
 
     LPAREN          shift and go to state 12
-    ID              shift and go to state 30
-    INT             shift and go to state 13
-    FLOAT           shift and go to state 14
-    STRING          shift and go to state 15
-    KHATE2          shift and go to state 16
-    S7I7            shift and go to state 17
-    WALO            shift and go to state 18
+    ID              shift and go to state 28
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    KHATE2          shift and go to state 17
+    S7I7            shift and go to state 18
+    WALO            shift and go to state 19
 
     expression                     shift and go to state 34
+    expression_num                 shift and go to state 13
 
 state 23
 
-    (39) expression -> expression TIMES . expression
-    (37) expression -> . expression PLUS expression
-    (38) expression -> . expression MINUS expression
-    (39) expression -> . expression TIMES expression
-    (40) expression -> . expression DIVIDE expression
-    (41) expression -> . LPAREN expression RPAREN
-    (42) expression -> . ID
-    (43) expression -> . INT
-    (44) expression -> . FLOAT
-    (45) expression -> . STRING
-    (46) expression -> . KHATE2
-    (47) expression -> . S7I7
-    (48) expression -> . WALO
-
-    LPAREN          shift and go to state 12
-    ID              shift and go to state 30
-    INT             shift and go to state 13
-    FLOAT           shift and go to state 14
-    STRING          shift and go to state 15
-    KHATE2          shift and go to state 16
-    S7I7            shift and go to state 17
-    WALO            shift and go to state 18
-
-    expression                     shift and go to state 35
-
-state 24
-
-    (40) expression -> expression DIVIDE . expression
-    (37) expression -> . expression PLUS expression
-    (38) expression -> . expression MINUS expression
-    (39) expression -> . expression TIMES expression
-    (40) expression -> . expression DIVIDE expression
-    (41) expression -> . LPAREN expression RPAREN
-    (42) expression -> . ID
-    (43) expression -> . INT
-    (44) expression -> . FLOAT
-    (45) expression -> . STRING
-    (46) expression -> . KHATE2
-    (47) expression -> . S7I7
-    (48) expression -> . WALO
-
-    LPAREN          shift and go to state 12
-    ID              shift and go to state 30
-    INT             shift and go to state 13
-    FLOAT           shift and go to state 14
-    STRING          shift and go to state 15
-    KHATE2          shift and go to state 16
-    S7I7            shift and go to state 17
-    WALO            shift and go to state 18
-
-    expression                     shift and go to state 36
-
-state 25
-
     (11) var_assign -> ID EQUALS . expression
     (37) expression -> . expression PLUS expression
-    (38) expression -> . expression MINUS expression
-    (39) expression -> . expression TIMES expression
-    (40) expression -> . expression DIVIDE expression
+    (38) expression -> . expression_num MINUS expression_num
+    (39) expression -> . expression_num TIMES expression_num
+    (40) expression -> . expression_num DIVIDE expression_num
     (41) expression -> . LPAREN expression RPAREN
     (42) expression -> . ID
     (43) expression -> . INT
@@ -606,19 +531,22 @@ state 25
     (46) expression -> . KHATE2
     (47) expression -> . S7I7
     (48) expression -> . WALO
+    (49) expression_num -> . INT
+    (50) expression_num -> . FLOAT
 
     LPAREN          shift and go to state 12
-    ID              shift and go to state 30
-    INT             shift and go to state 13
-    FLOAT           shift and go to state 14
-    STRING          shift and go to state 15
-    KHATE2          shift and go to state 16
-    S7I7            shift and go to state 17
-    WALO            shift and go to state 18
+    ID              shift and go to state 28
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    KHATE2          shift and go to state 17
+    S7I7            shift and go to state 18
+    WALO            shift and go to state 19
 
-    expression                     shift and go to state 37
+    expression                     shift and go to state 35
+    expression_num                 shift and go to state 13
 
-state 26
+state 24
 
     (9) incrementation -> ID INCREMENTATION .
 
@@ -627,7 +555,7 @@ state 26
     RBRACKET        reduce using rule 9 (incrementation -> ID INCREMENTATION .)
 
 
-state 27
+state 25
 
     (10) decrementation -> ID DECREMENTATION .
 
@@ -636,16 +564,16 @@ state 27
     RBRACKET        reduce using rule 10 (decrementation -> ID DECREMENTATION .)
 
 
-state 28
+state 26
 
-    (49) printing -> KTEB LPAREN . expression RPAREN
-    (50) printing -> KTEB LPAREN . incrementation RPAREN
-    (51) printing -> KTEB LPAREN . decrementation RPAREN
-    (52) printing -> KTEB LPAREN . condition RPAREN
+    (51) printing -> KTEB LPAREN . expression RPAREN
+    (52) printing -> KTEB LPAREN . incrementation RPAREN
+    (53) printing -> KTEB LPAREN . decrementation RPAREN
+    (54) printing -> KTEB LPAREN . condition RPAREN
     (37) expression -> . expression PLUS expression
-    (38) expression -> . expression MINUS expression
-    (39) expression -> . expression TIMES expression
-    (40) expression -> . expression DIVIDE expression
+    (38) expression -> . expression_num MINUS expression_num
+    (39) expression -> . expression_num TIMES expression_num
+    (40) expression -> . expression_num DIVIDE expression_num
     (41) expression -> . LPAREN expression RPAREN
     (42) expression -> . ID
     (43) expression -> . INT
@@ -670,45 +598,39 @@ state 28
     (34) condition -> . expression SUPEQUALS expression
     (35) condition -> . expression INFEQUALS expression
     (36) condition -> . expression
+    (49) expression_num -> . INT
+    (50) expression_num -> . FLOAT
 
-    LPAREN          shift and go to state 38
-    ID              shift and go to state 43
-    INT             shift and go to state 13
-    FLOAT           shift and go to state 14
-    STRING          shift and go to state 15
-    KHATE2          shift and go to state 16
-    S7I7            shift and go to state 17
-    WALO            shift and go to state 18
+    LPAREN          shift and go to state 36
+    ID              shift and go to state 41
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    KHATE2          shift and go to state 17
+    S7I7            shift and go to state 18
+    WALO            shift and go to state 19
 
-    expression                     shift and go to state 39
-    incrementation                 shift and go to state 40
-    decrementation                 shift and go to state 41
-    condition                      shift and go to state 42
+    expression                     shift and go to state 37
+    incrementation                 shift and go to state 38
+    decrementation                 shift and go to state 39
+    condition                      shift and go to state 40
+    expression_num                 shift and go to state 13
 
-state 29
+state 27
 
     (41) expression -> LPAREN expression . RPAREN
     (37) expression -> expression . PLUS expression
-    (38) expression -> expression . MINUS expression
-    (39) expression -> expression . TIMES expression
-    (40) expression -> expression . DIVIDE expression
 
-    RPAREN          shift and go to state 44
-    PLUS            shift and go to state 21
-    MINUS           shift and go to state 22
-    TIMES           shift and go to state 23
-    DIVIDE          shift and go to state 24
+    RPAREN          shift and go to state 42
+    PLUS            shift and go to state 22
 
 
-state 30
+state 28
 
     (42) expression -> ID .
 
     RPAREN          reduce using rule 42 (expression -> ID .)
     PLUS            reduce using rule 42 (expression -> ID .)
-    MINUS           reduce using rule 42 (expression -> ID .)
-    TIMES           reduce using rule 42 (expression -> ID .)
-    DIVIDE          reduce using rule 42 (expression -> ID .)
     $end            reduce using rule 42 (expression -> ID .)
     RBRACKET        reduce using rule 42 (expression -> ID .)
     SUP             reduce using rule 42 (expression -> ID .)
@@ -720,7 +642,40 @@ state 30
     AW              reduce using rule 42 (expression -> ID .)
 
 
+state 29
+
+    (38) expression -> expression_num MINUS . expression_num
+    (49) expression_num -> . INT
+    (50) expression_num -> . FLOAT
+
+    INT             shift and go to state 44
+    FLOAT           shift and go to state 45
+
+    expression_num                 shift and go to state 43
+
+state 30
+
+    (39) expression -> expression_num TIMES . expression_num
+    (49) expression_num -> . INT
+    (50) expression_num -> . FLOAT
+
+    INT             shift and go to state 44
+    FLOAT           shift and go to state 45
+
+    expression_num                 shift and go to state 46
+
 state 31
+
+    (40) expression -> expression_num DIVIDE . expression_num
+    (49) expression_num -> . INT
+    (50) expression_num -> . FLOAT
+
+    INT             shift and go to state 44
+    FLOAT           shift and go to state 45
+
+    expression_num                 shift and go to state 47
+
+state 32
 
     (12) if -> ILA LPAREN . condition RPAREN LBRACKET block RBRACKET
     (13) if -> ILA LPAREN . condition RPAREN LBRACKET block RBRACKET WLA LBRACKET block RBRACKET
@@ -739,9 +694,9 @@ state 31
     (35) condition -> . expression INFEQUALS expression
     (36) condition -> . expression
     (37) expression -> . expression PLUS expression
-    (38) expression -> . expression MINUS expression
-    (39) expression -> . expression TIMES expression
-    (40) expression -> . expression DIVIDE expression
+    (38) expression -> . expression_num MINUS expression_num
+    (39) expression -> . expression_num TIMES expression_num
+    (40) expression -> . expression_num DIVIDE expression_num
     (41) expression -> . LPAREN expression RPAREN
     (42) expression -> . ID
     (43) expression -> . INT
@@ -750,20 +705,23 @@ state 31
     (46) expression -> . KHATE2
     (47) expression -> . S7I7
     (48) expression -> . WALO
+    (49) expression_num -> . INT
+    (50) expression_num -> . FLOAT
 
-    LPAREN          shift and go to state 45
-    ID              shift and go to state 30
-    INT             shift and go to state 13
-    FLOAT           shift and go to state 14
-    STRING          shift and go to state 15
-    KHATE2          shift and go to state 16
-    S7I7            shift and go to state 17
-    WALO            shift and go to state 18
+    LPAREN          shift and go to state 48
+    ID              shift and go to state 28
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    KHATE2          shift and go to state 17
+    S7I7            shift and go to state 18
+    WALO            shift and go to state 19
 
-    condition                      shift and go to state 46
-    expression                     shift and go to state 47
+    condition                      shift and go to state 49
+    expression                     shift and go to state 50
+    expression_num                 shift and go to state 13
 
-state 32
+state 33
 
     (14) while -> MA7ED LPAREN . condition RPAREN LBRACKET block RBRACKET
     (23) condition -> . LPAREN condition RPAREN AW LPAREN condition RPAREN
@@ -781,9 +739,9 @@ state 32
     (35) condition -> . expression INFEQUALS expression
     (36) condition -> . expression
     (37) expression -> . expression PLUS expression
-    (38) expression -> . expression MINUS expression
-    (39) expression -> . expression TIMES expression
-    (40) expression -> . expression DIVIDE expression
+    (38) expression -> . expression_num MINUS expression_num
+    (39) expression -> . expression_num TIMES expression_num
+    (40) expression -> . expression_num DIVIDE expression_num
     (41) expression -> . LPAREN expression RPAREN
     (42) expression -> . ID
     (43) expression -> . INT
@@ -792,29 +750,28 @@ state 32
     (46) expression -> . KHATE2
     (47) expression -> . S7I7
     (48) expression -> . WALO
+    (49) expression_num -> . INT
+    (50) expression_num -> . FLOAT
 
-    LPAREN          shift and go to state 45
-    ID              shift and go to state 30
-    INT             shift and go to state 13
-    FLOAT           shift and go to state 14
-    STRING          shift and go to state 15
-    KHATE2          shift and go to state 16
-    S7I7            shift and go to state 17
-    WALO            shift and go to state 18
+    LPAREN          shift and go to state 48
+    ID              shift and go to state 28
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    KHATE2          shift and go to state 17
+    S7I7            shift and go to state 18
+    WALO            shift and go to state 19
 
-    condition                      shift and go to state 48
-    expression                     shift and go to state 47
+    condition                      shift and go to state 51
+    expression                     shift and go to state 50
+    expression_num                 shift and go to state 13
 
-state 33
+state 34
 
     (37) expression -> expression PLUS expression .
     (37) expression -> expression . PLUS expression
-    (38) expression -> expression . MINUS expression
-    (39) expression -> expression . TIMES expression
-    (40) expression -> expression . DIVIDE expression
 
     PLUS            reduce using rule 37 (expression -> expression PLUS expression .)
-    MINUS           reduce using rule 37 (expression -> expression PLUS expression .)
     $end            reduce using rule 37 (expression -> expression PLUS expression .)
     RPAREN          reduce using rule 37 (expression -> expression PLUS expression .)
     RBRACKET        reduce using rule 37 (expression -> expression PLUS expression .)
@@ -825,119 +782,21 @@ state 33
     INFEQUALS       reduce using rule 37 (expression -> expression PLUS expression .)
     WA              reduce using rule 37 (expression -> expression PLUS expression .)
     AW              reduce using rule 37 (expression -> expression PLUS expression .)
-    TIMES           shift and go to state 23
-    DIVIDE          shift and go to state 24
 
-  ! TIMES           [ reduce using rule 37 (expression -> expression PLUS expression .) ]
-  ! DIVIDE          [ reduce using rule 37 (expression -> expression PLUS expression .) ]
-  ! PLUS            [ shift and go to state 21 ]
-  ! MINUS           [ shift and go to state 22 ]
-
-
-state 34
-
-    (38) expression -> expression MINUS expression .
-    (37) expression -> expression . PLUS expression
-    (38) expression -> expression . MINUS expression
-    (39) expression -> expression . TIMES expression
-    (40) expression -> expression . DIVIDE expression
-
-    PLUS            reduce using rule 38 (expression -> expression MINUS expression .)
-    MINUS           reduce using rule 38 (expression -> expression MINUS expression .)
-    $end            reduce using rule 38 (expression -> expression MINUS expression .)
-    RPAREN          reduce using rule 38 (expression -> expression MINUS expression .)
-    RBRACKET        reduce using rule 38 (expression -> expression MINUS expression .)
-    SUP             reduce using rule 38 (expression -> expression MINUS expression .)
-    INF             reduce using rule 38 (expression -> expression MINUS expression .)
-    EQUALSCOMP      reduce using rule 38 (expression -> expression MINUS expression .)
-    SUPEQUALS       reduce using rule 38 (expression -> expression MINUS expression .)
-    INFEQUALS       reduce using rule 38 (expression -> expression MINUS expression .)
-    WA              reduce using rule 38 (expression -> expression MINUS expression .)
-    AW              reduce using rule 38 (expression -> expression MINUS expression .)
-    TIMES           shift and go to state 23
-    DIVIDE          shift and go to state 24
-
-  ! TIMES           [ reduce using rule 38 (expression -> expression MINUS expression .) ]
-  ! DIVIDE          [ reduce using rule 38 (expression -> expression MINUS expression .) ]
-  ! PLUS            [ shift and go to state 21 ]
-  ! MINUS           [ shift and go to state 22 ]
+  ! PLUS            [ shift and go to state 22 ]
 
 
 state 35
 
-    (39) expression -> expression TIMES expression .
-    (37) expression -> expression . PLUS expression
-    (38) expression -> expression . MINUS expression
-    (39) expression -> expression . TIMES expression
-    (40) expression -> expression . DIVIDE expression
-
-    PLUS            reduce using rule 39 (expression -> expression TIMES expression .)
-    MINUS           reduce using rule 39 (expression -> expression TIMES expression .)
-    TIMES           reduce using rule 39 (expression -> expression TIMES expression .)
-    DIVIDE          reduce using rule 39 (expression -> expression TIMES expression .)
-    $end            reduce using rule 39 (expression -> expression TIMES expression .)
-    RPAREN          reduce using rule 39 (expression -> expression TIMES expression .)
-    RBRACKET        reduce using rule 39 (expression -> expression TIMES expression .)
-    SUP             reduce using rule 39 (expression -> expression TIMES expression .)
-    INF             reduce using rule 39 (expression -> expression TIMES expression .)
-    EQUALSCOMP      reduce using rule 39 (expression -> expression TIMES expression .)
-    SUPEQUALS       reduce using rule 39 (expression -> expression TIMES expression .)
-    INFEQUALS       reduce using rule 39 (expression -> expression TIMES expression .)
-    WA              reduce using rule 39 (expression -> expression TIMES expression .)
-    AW              reduce using rule 39 (expression -> expression TIMES expression .)
-
-  ! PLUS            [ shift and go to state 21 ]
-  ! MINUS           [ shift and go to state 22 ]
-  ! TIMES           [ shift and go to state 23 ]
-  ! DIVIDE          [ shift and go to state 24 ]
-
-
-state 36
-
-    (40) expression -> expression DIVIDE expression .
-    (37) expression -> expression . PLUS expression
-    (38) expression -> expression . MINUS expression
-    (39) expression -> expression . TIMES expression
-    (40) expression -> expression . DIVIDE expression
-
-    PLUS            reduce using rule 40 (expression -> expression DIVIDE expression .)
-    MINUS           reduce using rule 40 (expression -> expression DIVIDE expression .)
-    TIMES           reduce using rule 40 (expression -> expression DIVIDE expression .)
-    DIVIDE          reduce using rule 40 (expression -> expression DIVIDE expression .)
-    $end            reduce using rule 40 (expression -> expression DIVIDE expression .)
-    RPAREN          reduce using rule 40 (expression -> expression DIVIDE expression .)
-    RBRACKET        reduce using rule 40 (expression -> expression DIVIDE expression .)
-    SUP             reduce using rule 40 (expression -> expression DIVIDE expression .)
-    INF             reduce using rule 40 (expression -> expression DIVIDE expression .)
-    EQUALSCOMP      reduce using rule 40 (expression -> expression DIVIDE expression .)
-    SUPEQUALS       reduce using rule 40 (expression -> expression DIVIDE expression .)
-    INFEQUALS       reduce using rule 40 (expression -> expression DIVIDE expression .)
-    WA              reduce using rule 40 (expression -> expression DIVIDE expression .)
-    AW              reduce using rule 40 (expression -> expression DIVIDE expression .)
-
-  ! PLUS            [ shift and go to state 21 ]
-  ! MINUS           [ shift and go to state 22 ]
-  ! TIMES           [ shift and go to state 23 ]
-  ! DIVIDE          [ shift and go to state 24 ]
-
-
-state 37
-
     (11) var_assign -> ID EQUALS expression .
     (37) expression -> expression . PLUS expression
-    (38) expression -> expression . MINUS expression
-    (39) expression -> expression . TIMES expression
-    (40) expression -> expression . DIVIDE expression
 
     $end            reduce using rule 11 (var_assign -> ID EQUALS expression .)
     RBRACKET        reduce using rule 11 (var_assign -> ID EQUALS expression .)
-    PLUS            shift and go to state 21
-    MINUS           shift and go to state 22
-    TIMES           shift and go to state 23
-    DIVIDE          shift and go to state 24
+    PLUS            shift and go to state 22
 
 
-state 38
+state 36
 
     (41) expression -> LPAREN . expression RPAREN
     (23) condition -> LPAREN . condition RPAREN AW LPAREN condition RPAREN
@@ -945,9 +804,9 @@ state 38
     (27) condition -> LPAREN . condition RPAREN WA condition
     (28) condition -> LPAREN . condition RPAREN AW condition
     (37) expression -> . expression PLUS expression
-    (38) expression -> . expression MINUS expression
-    (39) expression -> . expression TIMES expression
-    (40) expression -> . expression DIVIDE expression
+    (38) expression -> . expression_num MINUS expression_num
+    (39) expression -> . expression_num TIMES expression_num
+    (40) expression -> . expression_num DIVIDE expression_num
     (41) expression -> . LPAREN expression RPAREN
     (42) expression -> . ID
     (43) expression -> . INT
@@ -970,26 +829,26 @@ state 38
     (34) condition -> . expression SUPEQUALS expression
     (35) condition -> . expression INFEQUALS expression
     (36) condition -> . expression
+    (49) expression_num -> . INT
+    (50) expression_num -> . FLOAT
 
-    LPAREN          shift and go to state 38
-    ID              shift and go to state 30
-    INT             shift and go to state 13
-    FLOAT           shift and go to state 14
-    STRING          shift and go to state 15
-    KHATE2          shift and go to state 16
-    S7I7            shift and go to state 17
-    WALO            shift and go to state 18
+    LPAREN          shift and go to state 36
+    ID              shift and go to state 28
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    KHATE2          shift and go to state 17
+    S7I7            shift and go to state 18
+    WALO            shift and go to state 19
 
-    expression                     shift and go to state 49
-    condition                      shift and go to state 50
+    expression                     shift and go to state 52
+    condition                      shift and go to state 53
+    expression_num                 shift and go to state 13
 
-state 39
+state 37
 
-    (49) printing -> KTEB LPAREN expression . RPAREN
+    (51) printing -> KTEB LPAREN expression . RPAREN
     (37) expression -> expression . PLUS expression
-    (38) expression -> expression . MINUS expression
-    (39) expression -> expression . TIMES expression
-    (40) expression -> expression . DIVIDE expression
     (31) condition -> expression . SUP expression
     (32) condition -> expression . INF expression
     (33) condition -> expression . EQUALSCOMP expression
@@ -998,50 +857,47 @@ state 39
     (36) condition -> expression .
 
   ! shift/reduce conflict for RPAREN resolved as shift
-    RPAREN          shift and go to state 51
-    PLUS            shift and go to state 21
-    MINUS           shift and go to state 22
-    TIMES           shift and go to state 23
-    DIVIDE          shift and go to state 24
-    SUP             shift and go to state 52
-    INF             shift and go to state 53
-    EQUALSCOMP      shift and go to state 54
-    SUPEQUALS       shift and go to state 55
-    INFEQUALS       shift and go to state 56
+    RPAREN          shift and go to state 54
+    PLUS            shift and go to state 22
+    SUP             shift and go to state 55
+    INF             shift and go to state 56
+    EQUALSCOMP      shift and go to state 57
+    SUPEQUALS       shift and go to state 58
+    INFEQUALS       shift and go to state 59
     WA              reduce using rule 36 (condition -> expression .)
     AW              reduce using rule 36 (condition -> expression .)
 
   ! RPAREN          [ reduce using rule 36 (condition -> expression .) ]
 
 
+state 38
+
+    (52) printing -> KTEB LPAREN incrementation . RPAREN
+
+    RPAREN          shift and go to state 60
+
+
+state 39
+
+    (53) printing -> KTEB LPAREN decrementation . RPAREN
+
+    RPAREN          shift and go to state 61
+
+
 state 40
 
-    (50) printing -> KTEB LPAREN incrementation . RPAREN
-
-    RPAREN          shift and go to state 57
-
-
-state 41
-
-    (51) printing -> KTEB LPAREN decrementation . RPAREN
-
-    RPAREN          shift and go to state 58
-
-
-state 42
-
-    (52) printing -> KTEB LPAREN condition . RPAREN
+    (54) printing -> KTEB LPAREN condition . RPAREN
     (25) condition -> condition . WA LPAREN condition RPAREN
     (26) condition -> condition . AW LPAREN condition RPAREN
     (29) condition -> condition . WA condition
     (30) condition -> condition . AW condition
 
-    RPAREN          shift and go to state 59
-    WA              shift and go to state 60
-    AW              shift and go to state 61
+    RPAREN          shift and go to state 62
+    WA              shift and go to state 63
+    AW              shift and go to state 64
 
 
-state 43
+state 41
 
     (42) expression -> ID .
     (9) incrementation -> ID . INCREMENTATION
@@ -1049,9 +905,6 @@ state 43
 
     RPAREN          reduce using rule 42 (expression -> ID .)
     PLUS            reduce using rule 42 (expression -> ID .)
-    MINUS           reduce using rule 42 (expression -> ID .)
-    TIMES           reduce using rule 42 (expression -> ID .)
-    DIVIDE          reduce using rule 42 (expression -> ID .)
     SUP             reduce using rule 42 (expression -> ID .)
     INF             reduce using rule 42 (expression -> ID .)
     EQUALSCOMP      reduce using rule 42 (expression -> ID .)
@@ -1059,18 +912,15 @@ state 43
     INFEQUALS       reduce using rule 42 (expression -> ID .)
     WA              reduce using rule 42 (expression -> ID .)
     AW              reduce using rule 42 (expression -> ID .)
-    INCREMENTATION  shift and go to state 26
-    DECREMENTATION  shift and go to state 27
+    INCREMENTATION  shift and go to state 24
+    DECREMENTATION  shift and go to state 25
 
 
-state 44
+state 42
 
     (41) expression -> LPAREN expression RPAREN .
 
     PLUS            reduce using rule 41 (expression -> LPAREN expression RPAREN .)
-    MINUS           reduce using rule 41 (expression -> LPAREN expression RPAREN .)
-    TIMES           reduce using rule 41 (expression -> LPAREN expression RPAREN .)
-    DIVIDE          reduce using rule 41 (expression -> LPAREN expression RPAREN .)
     $end            reduce using rule 41 (expression -> LPAREN expression RPAREN .)
     RPAREN          reduce using rule 41 (expression -> LPAREN expression RPAREN .)
     RBRACKET        reduce using rule 41 (expression -> LPAREN expression RPAREN .)
@@ -1083,7 +933,92 @@ state 44
     AW              reduce using rule 41 (expression -> LPAREN expression RPAREN .)
 
 
+state 43
+
+    (38) expression -> expression_num MINUS expression_num .
+
+    PLUS            reduce using rule 38 (expression -> expression_num MINUS expression_num .)
+    $end            reduce using rule 38 (expression -> expression_num MINUS expression_num .)
+    RPAREN          reduce using rule 38 (expression -> expression_num MINUS expression_num .)
+    RBRACKET        reduce using rule 38 (expression -> expression_num MINUS expression_num .)
+    SUP             reduce using rule 38 (expression -> expression_num MINUS expression_num .)
+    INF             reduce using rule 38 (expression -> expression_num MINUS expression_num .)
+    EQUALSCOMP      reduce using rule 38 (expression -> expression_num MINUS expression_num .)
+    SUPEQUALS       reduce using rule 38 (expression -> expression_num MINUS expression_num .)
+    INFEQUALS       reduce using rule 38 (expression -> expression_num MINUS expression_num .)
+    WA              reduce using rule 38 (expression -> expression_num MINUS expression_num .)
+    AW              reduce using rule 38 (expression -> expression_num MINUS expression_num .)
+
+
+state 44
+
+    (49) expression_num -> INT .
+
+    PLUS            reduce using rule 49 (expression_num -> INT .)
+    $end            reduce using rule 49 (expression_num -> INT .)
+    RPAREN          reduce using rule 49 (expression_num -> INT .)
+    RBRACKET        reduce using rule 49 (expression_num -> INT .)
+    SUP             reduce using rule 49 (expression_num -> INT .)
+    INF             reduce using rule 49 (expression_num -> INT .)
+    EQUALSCOMP      reduce using rule 49 (expression_num -> INT .)
+    SUPEQUALS       reduce using rule 49 (expression_num -> INT .)
+    INFEQUALS       reduce using rule 49 (expression_num -> INT .)
+    WA              reduce using rule 49 (expression_num -> INT .)
+    AW              reduce using rule 49 (expression_num -> INT .)
+
+
 state 45
+
+    (50) expression_num -> FLOAT .
+
+    PLUS            reduce using rule 50 (expression_num -> FLOAT .)
+    $end            reduce using rule 50 (expression_num -> FLOAT .)
+    RPAREN          reduce using rule 50 (expression_num -> FLOAT .)
+    RBRACKET        reduce using rule 50 (expression_num -> FLOAT .)
+    SUP             reduce using rule 50 (expression_num -> FLOAT .)
+    INF             reduce using rule 50 (expression_num -> FLOAT .)
+    EQUALSCOMP      reduce using rule 50 (expression_num -> FLOAT .)
+    SUPEQUALS       reduce using rule 50 (expression_num -> FLOAT .)
+    INFEQUALS       reduce using rule 50 (expression_num -> FLOAT .)
+    WA              reduce using rule 50 (expression_num -> FLOAT .)
+    AW              reduce using rule 50 (expression_num -> FLOAT .)
+
+
+state 46
+
+    (39) expression -> expression_num TIMES expression_num .
+
+    PLUS            reduce using rule 39 (expression -> expression_num TIMES expression_num .)
+    $end            reduce using rule 39 (expression -> expression_num TIMES expression_num .)
+    RPAREN          reduce using rule 39 (expression -> expression_num TIMES expression_num .)
+    RBRACKET        reduce using rule 39 (expression -> expression_num TIMES expression_num .)
+    SUP             reduce using rule 39 (expression -> expression_num TIMES expression_num .)
+    INF             reduce using rule 39 (expression -> expression_num TIMES expression_num .)
+    EQUALSCOMP      reduce using rule 39 (expression -> expression_num TIMES expression_num .)
+    SUPEQUALS       reduce using rule 39 (expression -> expression_num TIMES expression_num .)
+    INFEQUALS       reduce using rule 39 (expression -> expression_num TIMES expression_num .)
+    WA              reduce using rule 39 (expression -> expression_num TIMES expression_num .)
+    AW              reduce using rule 39 (expression -> expression_num TIMES expression_num .)
+
+
+state 47
+
+    (40) expression -> expression_num DIVIDE expression_num .
+
+    PLUS            reduce using rule 40 (expression -> expression_num DIVIDE expression_num .)
+    $end            reduce using rule 40 (expression -> expression_num DIVIDE expression_num .)
+    RPAREN          reduce using rule 40 (expression -> expression_num DIVIDE expression_num .)
+    RBRACKET        reduce using rule 40 (expression -> expression_num DIVIDE expression_num .)
+    SUP             reduce using rule 40 (expression -> expression_num DIVIDE expression_num .)
+    INF             reduce using rule 40 (expression -> expression_num DIVIDE expression_num .)
+    EQUALSCOMP      reduce using rule 40 (expression -> expression_num DIVIDE expression_num .)
+    SUPEQUALS       reduce using rule 40 (expression -> expression_num DIVIDE expression_num .)
+    INFEQUALS       reduce using rule 40 (expression -> expression_num DIVIDE expression_num .)
+    WA              reduce using rule 40 (expression -> expression_num DIVIDE expression_num .)
+    AW              reduce using rule 40 (expression -> expression_num DIVIDE expression_num .)
+
+
+state 48
 
     (23) condition -> LPAREN . condition RPAREN AW LPAREN condition RPAREN
     (24) condition -> LPAREN . condition RPAREN WA LPAREN condition RPAREN
@@ -1105,9 +1040,9 @@ state 45
     (35) condition -> . expression INFEQUALS expression
     (36) condition -> . expression
     (37) expression -> . expression PLUS expression
-    (38) expression -> . expression MINUS expression
-    (39) expression -> . expression TIMES expression
-    (40) expression -> . expression DIVIDE expression
+    (38) expression -> . expression_num MINUS expression_num
+    (39) expression -> . expression_num TIMES expression_num
+    (40) expression -> . expression_num DIVIDE expression_num
     (41) expression -> . LPAREN expression RPAREN
     (42) expression -> . ID
     (43) expression -> . INT
@@ -1116,20 +1051,23 @@ state 45
     (46) expression -> . KHATE2
     (47) expression -> . S7I7
     (48) expression -> . WALO
+    (49) expression_num -> . INT
+    (50) expression_num -> . FLOAT
 
-    LPAREN          shift and go to state 45
-    ID              shift and go to state 30
-    INT             shift and go to state 13
-    FLOAT           shift and go to state 14
-    STRING          shift and go to state 15
-    KHATE2          shift and go to state 16
-    S7I7            shift and go to state 17
-    WALO            shift and go to state 18
+    LPAREN          shift and go to state 48
+    ID              shift and go to state 28
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    KHATE2          shift and go to state 17
+    S7I7            shift and go to state 18
+    WALO            shift and go to state 19
 
-    condition                      shift and go to state 50
-    expression                     shift and go to state 62
+    condition                      shift and go to state 53
+    expression                     shift and go to state 65
+    expression_num                 shift and go to state 13
 
-state 46
+state 49
 
     (12) if -> ILA LPAREN condition . RPAREN LBRACKET block RBRACKET
     (13) if -> ILA LPAREN condition . RPAREN LBRACKET block RBRACKET WLA LBRACKET block RBRACKET
@@ -1138,12 +1076,12 @@ state 46
     (29) condition -> condition . WA condition
     (30) condition -> condition . AW condition
 
-    RPAREN          shift and go to state 63
-    WA              shift and go to state 60
-    AW              shift and go to state 61
+    RPAREN          shift and go to state 66
+    WA              shift and go to state 63
+    AW              shift and go to state 64
 
 
-state 47
+state 50
 
     (31) condition -> expression . SUP expression
     (32) condition -> expression . INF expression
@@ -1152,25 +1090,19 @@ state 47
     (35) condition -> expression . INFEQUALS expression
     (36) condition -> expression .
     (37) expression -> expression . PLUS expression
-    (38) expression -> expression . MINUS expression
-    (39) expression -> expression . TIMES expression
-    (40) expression -> expression . DIVIDE expression
 
-    SUP             shift and go to state 52
-    INF             shift and go to state 53
-    EQUALSCOMP      shift and go to state 54
-    SUPEQUALS       shift and go to state 55
-    INFEQUALS       shift and go to state 56
+    SUP             shift and go to state 55
+    INF             shift and go to state 56
+    EQUALSCOMP      shift and go to state 57
+    SUPEQUALS       shift and go to state 58
+    INFEQUALS       shift and go to state 59
     RPAREN          reduce using rule 36 (condition -> expression .)
     WA              reduce using rule 36 (condition -> expression .)
     AW              reduce using rule 36 (condition -> expression .)
-    PLUS            shift and go to state 21
-    MINUS           shift and go to state 22
-    TIMES           shift and go to state 23
-    DIVIDE          shift and go to state 24
+    PLUS            shift and go to state 22
 
 
-state 48
+state 51
 
     (14) while -> MA7ED LPAREN condition . RPAREN LBRACKET block RBRACKET
     (25) condition -> condition . WA LPAREN condition RPAREN
@@ -1178,18 +1110,15 @@ state 48
     (29) condition -> condition . WA condition
     (30) condition -> condition . AW condition
 
-    RPAREN          shift and go to state 64
-    WA              shift and go to state 60
-    AW              shift and go to state 61
+    RPAREN          shift and go to state 67
+    WA              shift and go to state 63
+    AW              shift and go to state 64
 
 
-state 49
+state 52
 
     (41) expression -> LPAREN expression . RPAREN
     (37) expression -> expression . PLUS expression
-    (38) expression -> expression . MINUS expression
-    (39) expression -> expression . TIMES expression
-    (40) expression -> expression . DIVIDE expression
     (31) condition -> expression . SUP expression
     (32) condition -> expression . INF expression
     (33) condition -> expression . EQUALSCOMP expression
@@ -1198,23 +1127,20 @@ state 49
     (36) condition -> expression .
 
   ! shift/reduce conflict for RPAREN resolved as shift
-    RPAREN          shift and go to state 44
-    PLUS            shift and go to state 21
-    MINUS           shift and go to state 22
-    TIMES           shift and go to state 23
-    DIVIDE          shift and go to state 24
-    SUP             shift and go to state 52
-    INF             shift and go to state 53
-    EQUALSCOMP      shift and go to state 54
-    SUPEQUALS       shift and go to state 55
-    INFEQUALS       shift and go to state 56
+    RPAREN          shift and go to state 42
+    PLUS            shift and go to state 22
+    SUP             shift and go to state 55
+    INF             shift and go to state 56
+    EQUALSCOMP      shift and go to state 57
+    SUPEQUALS       shift and go to state 58
+    INFEQUALS       shift and go to state 59
     WA              reduce using rule 36 (condition -> expression .)
     AW              reduce using rule 36 (condition -> expression .)
 
   ! RPAREN          [ reduce using rule 36 (condition -> expression .) ]
 
 
-state 50
+state 53
 
     (23) condition -> LPAREN condition . RPAREN AW LPAREN condition RPAREN
     (24) condition -> LPAREN condition . RPAREN WA LPAREN condition RPAREN
@@ -1225,107 +1151,26 @@ state 50
     (29) condition -> condition . WA condition
     (30) condition -> condition . AW condition
 
-    RPAREN          shift and go to state 65
-    WA              shift and go to state 60
-    AW              shift and go to state 61
+    RPAREN          shift and go to state 68
+    WA              shift and go to state 63
+    AW              shift and go to state 64
 
-
-state 51
-
-    (49) printing -> KTEB LPAREN expression RPAREN .
-
-    $end            reduce using rule 49 (printing -> KTEB LPAREN expression RPAREN .)
-    RBRACKET        reduce using rule 49 (printing -> KTEB LPAREN expression RPAREN .)
-
-
-state 52
-
-    (31) condition -> expression SUP . expression
-    (37) expression -> . expression PLUS expression
-    (38) expression -> . expression MINUS expression
-    (39) expression -> . expression TIMES expression
-    (40) expression -> . expression DIVIDE expression
-    (41) expression -> . LPAREN expression RPAREN
-    (42) expression -> . ID
-    (43) expression -> . INT
-    (44) expression -> . FLOAT
-    (45) expression -> . STRING
-    (46) expression -> . KHATE2
-    (47) expression -> . S7I7
-    (48) expression -> . WALO
-
-    LPAREN          shift and go to state 12
-    ID              shift and go to state 30
-    INT             shift and go to state 13
-    FLOAT           shift and go to state 14
-    STRING          shift and go to state 15
-    KHATE2          shift and go to state 16
-    S7I7            shift and go to state 17
-    WALO            shift and go to state 18
-
-    expression                     shift and go to state 66
-
-state 53
-
-    (32) condition -> expression INF . expression
-    (37) expression -> . expression PLUS expression
-    (38) expression -> . expression MINUS expression
-    (39) expression -> . expression TIMES expression
-    (40) expression -> . expression DIVIDE expression
-    (41) expression -> . LPAREN expression RPAREN
-    (42) expression -> . ID
-    (43) expression -> . INT
-    (44) expression -> . FLOAT
-    (45) expression -> . STRING
-    (46) expression -> . KHATE2
-    (47) expression -> . S7I7
-    (48) expression -> . WALO
-
-    LPAREN          shift and go to state 12
-    ID              shift and go to state 30
-    INT             shift and go to state 13
-    FLOAT           shift and go to state 14
-    STRING          shift and go to state 15
-    KHATE2          shift and go to state 16
-    S7I7            shift and go to state 17
-    WALO            shift and go to state 18
-
-    expression                     shift and go to state 67
 
 state 54
 
-    (33) condition -> expression EQUALSCOMP . expression
-    (37) expression -> . expression PLUS expression
-    (38) expression -> . expression MINUS expression
-    (39) expression -> . expression TIMES expression
-    (40) expression -> . expression DIVIDE expression
-    (41) expression -> . LPAREN expression RPAREN
-    (42) expression -> . ID
-    (43) expression -> . INT
-    (44) expression -> . FLOAT
-    (45) expression -> . STRING
-    (46) expression -> . KHATE2
-    (47) expression -> . S7I7
-    (48) expression -> . WALO
+    (51) printing -> KTEB LPAREN expression RPAREN .
 
-    LPAREN          shift and go to state 12
-    ID              shift and go to state 30
-    INT             shift and go to state 13
-    FLOAT           shift and go to state 14
-    STRING          shift and go to state 15
-    KHATE2          shift and go to state 16
-    S7I7            shift and go to state 17
-    WALO            shift and go to state 18
+    $end            reduce using rule 51 (printing -> KTEB LPAREN expression RPAREN .)
+    RBRACKET        reduce using rule 51 (printing -> KTEB LPAREN expression RPAREN .)
 
-    expression                     shift and go to state 68
 
 state 55
 
-    (34) condition -> expression SUPEQUALS . expression
+    (31) condition -> expression SUP . expression
     (37) expression -> . expression PLUS expression
-    (38) expression -> . expression MINUS expression
-    (39) expression -> . expression TIMES expression
-    (40) expression -> . expression DIVIDE expression
+    (38) expression -> . expression_num MINUS expression_num
+    (39) expression -> . expression_num TIMES expression_num
+    (40) expression -> . expression_num DIVIDE expression_num
     (41) expression -> . LPAREN expression RPAREN
     (42) expression -> . ID
     (43) expression -> . INT
@@ -1334,25 +1179,28 @@ state 55
     (46) expression -> . KHATE2
     (47) expression -> . S7I7
     (48) expression -> . WALO
+    (49) expression_num -> . INT
+    (50) expression_num -> . FLOAT
 
     LPAREN          shift and go to state 12
-    ID              shift and go to state 30
-    INT             shift and go to state 13
-    FLOAT           shift and go to state 14
-    STRING          shift and go to state 15
-    KHATE2          shift and go to state 16
-    S7I7            shift and go to state 17
-    WALO            shift and go to state 18
+    ID              shift and go to state 28
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    KHATE2          shift and go to state 17
+    S7I7            shift and go to state 18
+    WALO            shift and go to state 19
 
     expression                     shift and go to state 69
+    expression_num                 shift and go to state 13
 
 state 56
 
-    (35) condition -> expression INFEQUALS . expression
+    (32) condition -> expression INF . expression
     (37) expression -> . expression PLUS expression
-    (38) expression -> . expression MINUS expression
-    (39) expression -> . expression TIMES expression
-    (40) expression -> . expression DIVIDE expression
+    (38) expression -> . expression_num MINUS expression_num
+    (39) expression -> . expression_num TIMES expression_num
+    (40) expression -> . expression_num DIVIDE expression_num
     (41) expression -> . LPAREN expression RPAREN
     (42) expression -> . ID
     (43) expression -> . INT
@@ -1361,43 +1209,136 @@ state 56
     (46) expression -> . KHATE2
     (47) expression -> . S7I7
     (48) expression -> . WALO
+    (49) expression_num -> . INT
+    (50) expression_num -> . FLOAT
 
     LPAREN          shift and go to state 12
-    ID              shift and go to state 30
-    INT             shift and go to state 13
-    FLOAT           shift and go to state 14
-    STRING          shift and go to state 15
-    KHATE2          shift and go to state 16
-    S7I7            shift and go to state 17
-    WALO            shift and go to state 18
+    ID              shift and go to state 28
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    KHATE2          shift and go to state 17
+    S7I7            shift and go to state 18
+    WALO            shift and go to state 19
 
     expression                     shift and go to state 70
+    expression_num                 shift and go to state 13
 
 state 57
 
-    (50) printing -> KTEB LPAREN incrementation RPAREN .
+    (33) condition -> expression EQUALSCOMP . expression
+    (37) expression -> . expression PLUS expression
+    (38) expression -> . expression_num MINUS expression_num
+    (39) expression -> . expression_num TIMES expression_num
+    (40) expression -> . expression_num DIVIDE expression_num
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . ID
+    (43) expression -> . INT
+    (44) expression -> . FLOAT
+    (45) expression -> . STRING
+    (46) expression -> . KHATE2
+    (47) expression -> . S7I7
+    (48) expression -> . WALO
+    (49) expression_num -> . INT
+    (50) expression_num -> . FLOAT
 
-    $end            reduce using rule 50 (printing -> KTEB LPAREN incrementation RPAREN .)
-    RBRACKET        reduce using rule 50 (printing -> KTEB LPAREN incrementation RPAREN .)
+    LPAREN          shift and go to state 12
+    ID              shift and go to state 28
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    KHATE2          shift and go to state 17
+    S7I7            shift and go to state 18
+    WALO            shift and go to state 19
 
+    expression                     shift and go to state 71
+    expression_num                 shift and go to state 13
 
 state 58
 
-    (51) printing -> KTEB LPAREN decrementation RPAREN .
+    (34) condition -> expression SUPEQUALS . expression
+    (37) expression -> . expression PLUS expression
+    (38) expression -> . expression_num MINUS expression_num
+    (39) expression -> . expression_num TIMES expression_num
+    (40) expression -> . expression_num DIVIDE expression_num
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . ID
+    (43) expression -> . INT
+    (44) expression -> . FLOAT
+    (45) expression -> . STRING
+    (46) expression -> . KHATE2
+    (47) expression -> . S7I7
+    (48) expression -> . WALO
+    (49) expression_num -> . INT
+    (50) expression_num -> . FLOAT
 
-    $end            reduce using rule 51 (printing -> KTEB LPAREN decrementation RPAREN .)
-    RBRACKET        reduce using rule 51 (printing -> KTEB LPAREN decrementation RPAREN .)
+    LPAREN          shift and go to state 12
+    ID              shift and go to state 28
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    KHATE2          shift and go to state 17
+    S7I7            shift and go to state 18
+    WALO            shift and go to state 19
 
+    expression                     shift and go to state 72
+    expression_num                 shift and go to state 13
 
 state 59
 
-    (52) printing -> KTEB LPAREN condition RPAREN .
+    (35) condition -> expression INFEQUALS . expression
+    (37) expression -> . expression PLUS expression
+    (38) expression -> . expression_num MINUS expression_num
+    (39) expression -> . expression_num TIMES expression_num
+    (40) expression -> . expression_num DIVIDE expression_num
+    (41) expression -> . LPAREN expression RPAREN
+    (42) expression -> . ID
+    (43) expression -> . INT
+    (44) expression -> . FLOAT
+    (45) expression -> . STRING
+    (46) expression -> . KHATE2
+    (47) expression -> . S7I7
+    (48) expression -> . WALO
+    (49) expression_num -> . INT
+    (50) expression_num -> . FLOAT
 
-    $end            reduce using rule 52 (printing -> KTEB LPAREN condition RPAREN .)
-    RBRACKET        reduce using rule 52 (printing -> KTEB LPAREN condition RPAREN .)
+    LPAREN          shift and go to state 12
+    ID              shift and go to state 28
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    KHATE2          shift and go to state 17
+    S7I7            shift and go to state 18
+    WALO            shift and go to state 19
 
+    expression                     shift and go to state 73
+    expression_num                 shift and go to state 13
 
 state 60
+
+    (52) printing -> KTEB LPAREN incrementation RPAREN .
+
+    $end            reduce using rule 52 (printing -> KTEB LPAREN incrementation RPAREN .)
+    RBRACKET        reduce using rule 52 (printing -> KTEB LPAREN incrementation RPAREN .)
+
+
+state 61
+
+    (53) printing -> KTEB LPAREN decrementation RPAREN .
+
+    $end            reduce using rule 53 (printing -> KTEB LPAREN decrementation RPAREN .)
+    RBRACKET        reduce using rule 53 (printing -> KTEB LPAREN decrementation RPAREN .)
+
+
+state 62
+
+    (54) printing -> KTEB LPAREN condition RPAREN .
+
+    $end            reduce using rule 54 (printing -> KTEB LPAREN condition RPAREN .)
+    RBRACKET        reduce using rule 54 (printing -> KTEB LPAREN condition RPAREN .)
+
+
+state 63
 
     (25) condition -> condition WA . LPAREN condition RPAREN
     (29) condition -> condition WA . condition
@@ -1416,9 +1357,9 @@ state 60
     (35) condition -> . expression INFEQUALS expression
     (36) condition -> . expression
     (37) expression -> . expression PLUS expression
-    (38) expression -> . expression MINUS expression
-    (39) expression -> . expression TIMES expression
-    (40) expression -> . expression DIVIDE expression
+    (38) expression -> . expression_num MINUS expression_num
+    (39) expression -> . expression_num TIMES expression_num
+    (40) expression -> . expression_num DIVIDE expression_num
     (41) expression -> . LPAREN expression RPAREN
     (42) expression -> . ID
     (43) expression -> . INT
@@ -1427,20 +1368,23 @@ state 60
     (46) expression -> . KHATE2
     (47) expression -> . S7I7
     (48) expression -> . WALO
+    (49) expression_num -> . INT
+    (50) expression_num -> . FLOAT
 
-    LPAREN          shift and go to state 72
-    ID              shift and go to state 30
-    INT             shift and go to state 13
-    FLOAT           shift and go to state 14
-    STRING          shift and go to state 15
-    KHATE2          shift and go to state 16
-    S7I7            shift and go to state 17
-    WALO            shift and go to state 18
+    LPAREN          shift and go to state 75
+    ID              shift and go to state 28
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    KHATE2          shift and go to state 17
+    S7I7            shift and go to state 18
+    WALO            shift and go to state 19
 
-    condition                      shift and go to state 71
-    expression                     shift and go to state 47
+    condition                      shift and go to state 74
+    expression                     shift and go to state 50
+    expression_num                 shift and go to state 13
 
-state 61
+state 64
 
     (26) condition -> condition AW . LPAREN condition RPAREN
     (30) condition -> condition AW . condition
@@ -1459,9 +1403,9 @@ state 61
     (35) condition -> . expression INFEQUALS expression
     (36) condition -> . expression
     (37) expression -> . expression PLUS expression
-    (38) expression -> . expression MINUS expression
-    (39) expression -> . expression TIMES expression
-    (40) expression -> . expression DIVIDE expression
+    (38) expression -> . expression_num MINUS expression_num
+    (39) expression -> . expression_num TIMES expression_num
+    (40) expression -> . expression_num DIVIDE expression_num
     (41) expression -> . LPAREN expression RPAREN
     (42) expression -> . ID
     (43) expression -> . INT
@@ -1470,20 +1414,23 @@ state 61
     (46) expression -> . KHATE2
     (47) expression -> . S7I7
     (48) expression -> . WALO
+    (49) expression_num -> . INT
+    (50) expression_num -> . FLOAT
 
-    LPAREN          shift and go to state 74
-    ID              shift and go to state 30
-    INT             shift and go to state 13
-    FLOAT           shift and go to state 14
-    STRING          shift and go to state 15
-    KHATE2          shift and go to state 16
-    S7I7            shift and go to state 17
-    WALO            shift and go to state 18
+    LPAREN          shift and go to state 77
+    ID              shift and go to state 28
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    KHATE2          shift and go to state 17
+    S7I7            shift and go to state 18
+    WALO            shift and go to state 19
 
-    condition                      shift and go to state 73
-    expression                     shift and go to state 47
+    condition                      shift and go to state 76
+    expression                     shift and go to state 50
+    expression_num                 shift and go to state 13
 
-state 62
+state 65
 
     (41) expression -> LPAREN expression . RPAREN
     (31) condition -> expression . SUP expression
@@ -1493,139 +1440,103 @@ state 62
     (35) condition -> expression . INFEQUALS expression
     (36) condition -> expression .
     (37) expression -> expression . PLUS expression
-    (38) expression -> expression . MINUS expression
-    (39) expression -> expression . TIMES expression
-    (40) expression -> expression . DIVIDE expression
 
   ! shift/reduce conflict for RPAREN resolved as shift
-    RPAREN          shift and go to state 44
-    SUP             shift and go to state 52
-    INF             shift and go to state 53
-    EQUALSCOMP      shift and go to state 54
-    SUPEQUALS       shift and go to state 55
-    INFEQUALS       shift and go to state 56
+    RPAREN          shift and go to state 42
+    SUP             shift and go to state 55
+    INF             shift and go to state 56
+    EQUALSCOMP      shift and go to state 57
+    SUPEQUALS       shift and go to state 58
+    INFEQUALS       shift and go to state 59
     WA              reduce using rule 36 (condition -> expression .)
     AW              reduce using rule 36 (condition -> expression .)
-    PLUS            shift and go to state 21
-    MINUS           shift and go to state 22
-    TIMES           shift and go to state 23
-    DIVIDE          shift and go to state 24
+    PLUS            shift and go to state 22
 
   ! RPAREN          [ reduce using rule 36 (condition -> expression .) ]
 
 
-state 63
+state 66
 
     (12) if -> ILA LPAREN condition RPAREN . LBRACKET block RBRACKET
     (13) if -> ILA LPAREN condition RPAREN . LBRACKET block RBRACKET WLA LBRACKET block RBRACKET
 
-    LBRACKET        shift and go to state 75
+    LBRACKET        shift and go to state 78
 
 
-state 64
+state 67
 
     (14) while -> MA7ED LPAREN condition RPAREN . LBRACKET block RBRACKET
 
-    LBRACKET        shift and go to state 76
+    LBRACKET        shift and go to state 79
 
 
-state 65
+state 68
 
     (23) condition -> LPAREN condition RPAREN . AW LPAREN condition RPAREN
     (24) condition -> LPAREN condition RPAREN . WA LPAREN condition RPAREN
     (27) condition -> LPAREN condition RPAREN . WA condition
     (28) condition -> LPAREN condition RPAREN . AW condition
 
-    AW              shift and go to state 77
-    WA              shift and go to state 78
-
-
-state 66
-
-    (31) condition -> expression SUP expression .
-    (37) expression -> expression . PLUS expression
-    (38) expression -> expression . MINUS expression
-    (39) expression -> expression . TIMES expression
-    (40) expression -> expression . DIVIDE expression
-
-    RPAREN          reduce using rule 31 (condition -> expression SUP expression .)
-    WA              reduce using rule 31 (condition -> expression SUP expression .)
-    AW              reduce using rule 31 (condition -> expression SUP expression .)
-    PLUS            shift and go to state 21
-    MINUS           shift and go to state 22
-    TIMES           shift and go to state 23
-    DIVIDE          shift and go to state 24
-
-
-state 67
-
-    (32) condition -> expression INF expression .
-    (37) expression -> expression . PLUS expression
-    (38) expression -> expression . MINUS expression
-    (39) expression -> expression . TIMES expression
-    (40) expression -> expression . DIVIDE expression
-
-    RPAREN          reduce using rule 32 (condition -> expression INF expression .)
-    WA              reduce using rule 32 (condition -> expression INF expression .)
-    AW              reduce using rule 32 (condition -> expression INF expression .)
-    PLUS            shift and go to state 21
-    MINUS           shift and go to state 22
-    TIMES           shift and go to state 23
-    DIVIDE          shift and go to state 24
-
-
-state 68
-
-    (33) condition -> expression EQUALSCOMP expression .
-    (37) expression -> expression . PLUS expression
-    (38) expression -> expression . MINUS expression
-    (39) expression -> expression . TIMES expression
-    (40) expression -> expression . DIVIDE expression
-
-    RPAREN          reduce using rule 33 (condition -> expression EQUALSCOMP expression .)
-    WA              reduce using rule 33 (condition -> expression EQUALSCOMP expression .)
-    AW              reduce using rule 33 (condition -> expression EQUALSCOMP expression .)
-    PLUS            shift and go to state 21
-    MINUS           shift and go to state 22
-    TIMES           shift and go to state 23
-    DIVIDE          shift and go to state 24
+    AW              shift and go to state 80
+    WA              shift and go to state 81
 
 
 state 69
 
-    (34) condition -> expression SUPEQUALS expression .
+    (31) condition -> expression SUP expression .
     (37) expression -> expression . PLUS expression
-    (38) expression -> expression . MINUS expression
-    (39) expression -> expression . TIMES expression
-    (40) expression -> expression . DIVIDE expression
 
-    RPAREN          reduce using rule 34 (condition -> expression SUPEQUALS expression .)
-    WA              reduce using rule 34 (condition -> expression SUPEQUALS expression .)
-    AW              reduce using rule 34 (condition -> expression SUPEQUALS expression .)
-    PLUS            shift and go to state 21
-    MINUS           shift and go to state 22
-    TIMES           shift and go to state 23
-    DIVIDE          shift and go to state 24
+    RPAREN          reduce using rule 31 (condition -> expression SUP expression .)
+    WA              reduce using rule 31 (condition -> expression SUP expression .)
+    AW              reduce using rule 31 (condition -> expression SUP expression .)
+    PLUS            shift and go to state 22
 
 
 state 70
 
+    (32) condition -> expression INF expression .
+    (37) expression -> expression . PLUS expression
+
+    RPAREN          reduce using rule 32 (condition -> expression INF expression .)
+    WA              reduce using rule 32 (condition -> expression INF expression .)
+    AW              reduce using rule 32 (condition -> expression INF expression .)
+    PLUS            shift and go to state 22
+
+
+state 71
+
+    (33) condition -> expression EQUALSCOMP expression .
+    (37) expression -> expression . PLUS expression
+
+    RPAREN          reduce using rule 33 (condition -> expression EQUALSCOMP expression .)
+    WA              reduce using rule 33 (condition -> expression EQUALSCOMP expression .)
+    AW              reduce using rule 33 (condition -> expression EQUALSCOMP expression .)
+    PLUS            shift and go to state 22
+
+
+state 72
+
+    (34) condition -> expression SUPEQUALS expression .
+    (37) expression -> expression . PLUS expression
+
+    RPAREN          reduce using rule 34 (condition -> expression SUPEQUALS expression .)
+    WA              reduce using rule 34 (condition -> expression SUPEQUALS expression .)
+    AW              reduce using rule 34 (condition -> expression SUPEQUALS expression .)
+    PLUS            shift and go to state 22
+
+
+state 73
+
     (35) condition -> expression INFEQUALS expression .
     (37) expression -> expression . PLUS expression
-    (38) expression -> expression . MINUS expression
-    (39) expression -> expression . TIMES expression
-    (40) expression -> expression . DIVIDE expression
 
     RPAREN          reduce using rule 35 (condition -> expression INFEQUALS expression .)
     WA              reduce using rule 35 (condition -> expression INFEQUALS expression .)
     AW              reduce using rule 35 (condition -> expression INFEQUALS expression .)
-    PLUS            shift and go to state 21
-    MINUS           shift and go to state 22
-    TIMES           shift and go to state 23
-    DIVIDE          shift and go to state 24
+    PLUS            shift and go to state 22
 
 
-state 71
+state 74
 
     (29) condition -> condition WA condition .
     (25) condition -> condition . WA LPAREN condition RPAREN
@@ -1637,11 +1548,11 @@ state 71
     WA              reduce using rule 29 (condition -> condition WA condition .)
     AW              reduce using rule 29 (condition -> condition WA condition .)
 
-  ! WA              [ shift and go to state 60 ]
-  ! AW              [ shift and go to state 61 ]
+  ! WA              [ shift and go to state 63 ]
+  ! AW              [ shift and go to state 64 ]
 
 
-state 72
+state 75
 
     (25) condition -> condition WA LPAREN . condition RPAREN
     (23) condition -> LPAREN . condition RPAREN AW LPAREN condition RPAREN
@@ -1664,9 +1575,9 @@ state 72
     (35) condition -> . expression INFEQUALS expression
     (36) condition -> . expression
     (37) expression -> . expression PLUS expression
-    (38) expression -> . expression MINUS expression
-    (39) expression -> . expression TIMES expression
-    (40) expression -> . expression DIVIDE expression
+    (38) expression -> . expression_num MINUS expression_num
+    (39) expression -> . expression_num TIMES expression_num
+    (40) expression -> . expression_num DIVIDE expression_num
     (41) expression -> . LPAREN expression RPAREN
     (42) expression -> . ID
     (43) expression -> . INT
@@ -1675,20 +1586,23 @@ state 72
     (46) expression -> . KHATE2
     (47) expression -> . S7I7
     (48) expression -> . WALO
+    (49) expression_num -> . INT
+    (50) expression_num -> . FLOAT
 
-    LPAREN          shift and go to state 45
-    ID              shift and go to state 30
-    INT             shift and go to state 13
-    FLOAT           shift and go to state 14
-    STRING          shift and go to state 15
-    KHATE2          shift and go to state 16
-    S7I7            shift and go to state 17
-    WALO            shift and go to state 18
+    LPAREN          shift and go to state 48
+    ID              shift and go to state 28
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    KHATE2          shift and go to state 17
+    S7I7            shift and go to state 18
+    WALO            shift and go to state 19
 
-    condition                      shift and go to state 79
-    expression                     shift and go to state 62
+    condition                      shift and go to state 82
+    expression                     shift and go to state 65
+    expression_num                 shift and go to state 13
 
-state 73
+state 76
 
     (30) condition -> condition AW condition .
     (25) condition -> condition . WA LPAREN condition RPAREN
@@ -1700,11 +1614,11 @@ state 73
     WA              reduce using rule 30 (condition -> condition AW condition .)
     AW              reduce using rule 30 (condition -> condition AW condition .)
 
-  ! WA              [ shift and go to state 60 ]
-  ! AW              [ shift and go to state 61 ]
+  ! WA              [ shift and go to state 63 ]
+  ! AW              [ shift and go to state 64 ]
 
 
-state 74
+state 77
 
     (26) condition -> condition AW LPAREN . condition RPAREN
     (23) condition -> LPAREN . condition RPAREN AW LPAREN condition RPAREN
@@ -1727,9 +1641,9 @@ state 74
     (35) condition -> . expression INFEQUALS expression
     (36) condition -> . expression
     (37) expression -> . expression PLUS expression
-    (38) expression -> . expression MINUS expression
-    (39) expression -> . expression TIMES expression
-    (40) expression -> . expression DIVIDE expression
+    (38) expression -> . expression_num MINUS expression_num
+    (39) expression -> . expression_num TIMES expression_num
+    (40) expression -> . expression_num DIVIDE expression_num
     (41) expression -> . LPAREN expression RPAREN
     (42) expression -> . ID
     (43) expression -> . INT
@@ -1738,20 +1652,23 @@ state 74
     (46) expression -> . KHATE2
     (47) expression -> . S7I7
     (48) expression -> . WALO
+    (49) expression_num -> . INT
+    (50) expression_num -> . FLOAT
 
-    LPAREN          shift and go to state 45
-    ID              shift and go to state 30
-    INT             shift and go to state 13
-    FLOAT           shift and go to state 14
-    STRING          shift and go to state 15
-    KHATE2          shift and go to state 16
-    S7I7            shift and go to state 17
-    WALO            shift and go to state 18
+    LPAREN          shift and go to state 48
+    ID              shift and go to state 28
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    KHATE2          shift and go to state 17
+    S7I7            shift and go to state 18
+    WALO            shift and go to state 19
 
-    condition                      shift and go to state 80
-    expression                     shift and go to state 62
+    condition                      shift and go to state 83
+    expression                     shift and go to state 65
+    expression_num                 shift and go to state 13
 
-state 75
+state 78
 
     (12) if -> ILA LPAREN condition RPAREN LBRACKET . block RBRACKET
     (13) if -> ILA LPAREN condition RPAREN LBRACKET . block RBRACKET WLA LBRACKET block RBRACKET
@@ -1764,16 +1681,16 @@ state 75
     (21) block -> . while
     (22) block -> . empty
     (11) var_assign -> . ID EQUALS expression
-    (49) printing -> . KTEB LPAREN expression RPAREN
-    (50) printing -> . KTEB LPAREN incrementation RPAREN
-    (51) printing -> . KTEB LPAREN decrementation RPAREN
-    (52) printing -> . KTEB LPAREN condition RPAREN
+    (51) printing -> . KTEB LPAREN expression RPAREN
+    (52) printing -> . KTEB LPAREN incrementation RPAREN
+    (53) printing -> . KTEB LPAREN decrementation RPAREN
+    (54) printing -> . KTEB LPAREN condition RPAREN
     (9) incrementation -> . ID INCREMENTATION
     (10) decrementation -> . ID DECREMENTATION
     (37) expression -> . expression PLUS expression
-    (38) expression -> . expression MINUS expression
-    (39) expression -> . expression TIMES expression
-    (40) expression -> . expression DIVIDE expression
+    (38) expression -> . expression_num MINUS expression_num
+    (39) expression -> . expression_num TIMES expression_num
+    (40) expression -> . expression_num DIVIDE expression_num
     (41) expression -> . LPAREN expression RPAREN
     (42) expression -> . ID
     (43) expression -> . INT
@@ -1785,32 +1702,35 @@ state 75
     (12) if -> . ILA LPAREN condition RPAREN LBRACKET block RBRACKET
     (13) if -> . ILA LPAREN condition RPAREN LBRACKET block RBRACKET WLA LBRACKET block RBRACKET
     (14) while -> . MA7ED LPAREN condition RPAREN LBRACKET block RBRACKET
-    (53) empty -> .
+    (55) empty -> .
+    (49) expression_num -> . INT
+    (50) expression_num -> . FLOAT
 
     ID              shift and go to state 10
     KTEB            shift and go to state 11
     LPAREN          shift and go to state 12
-    INT             shift and go to state 13
-    FLOAT           shift and go to state 14
-    STRING          shift and go to state 15
-    KHATE2          shift and go to state 16
-    S7I7            shift and go to state 17
-    WALO            shift and go to state 18
-    ILA             shift and go to state 19
-    MA7ED           shift and go to state 20
-    RBRACKET        reduce using rule 53 (empty -> .)
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    KHATE2          shift and go to state 17
+    S7I7            shift and go to state 18
+    WALO            shift and go to state 19
+    ILA             shift and go to state 20
+    MA7ED           shift and go to state 21
+    RBRACKET        reduce using rule 55 (empty -> .)
 
-    block                          shift and go to state 81
-    var_assign                     shift and go to state 82
-    printing                       shift and go to state 83
-    incrementation                 shift and go to state 84
-    decrementation                 shift and go to state 85
-    expression                     shift and go to state 86
-    if                             shift and go to state 87
-    while                          shift and go to state 88
-    empty                          shift and go to state 89
+    block                          shift and go to state 84
+    var_assign                     shift and go to state 85
+    printing                       shift and go to state 86
+    incrementation                 shift and go to state 87
+    decrementation                 shift and go to state 88
+    expression                     shift and go to state 89
+    if                             shift and go to state 90
+    while                          shift and go to state 91
+    empty                          shift and go to state 92
+    expression_num                 shift and go to state 13
 
-state 76
+state 79
 
     (14) while -> MA7ED LPAREN condition RPAREN LBRACKET . block RBRACKET
     (15) block -> . var_assign
@@ -1822,16 +1742,16 @@ state 76
     (21) block -> . while
     (22) block -> . empty
     (11) var_assign -> . ID EQUALS expression
-    (49) printing -> . KTEB LPAREN expression RPAREN
-    (50) printing -> . KTEB LPAREN incrementation RPAREN
-    (51) printing -> . KTEB LPAREN decrementation RPAREN
-    (52) printing -> . KTEB LPAREN condition RPAREN
+    (51) printing -> . KTEB LPAREN expression RPAREN
+    (52) printing -> . KTEB LPAREN incrementation RPAREN
+    (53) printing -> . KTEB LPAREN decrementation RPAREN
+    (54) printing -> . KTEB LPAREN condition RPAREN
     (9) incrementation -> . ID INCREMENTATION
     (10) decrementation -> . ID DECREMENTATION
     (37) expression -> . expression PLUS expression
-    (38) expression -> . expression MINUS expression
-    (39) expression -> . expression TIMES expression
-    (40) expression -> . expression DIVIDE expression
+    (38) expression -> . expression_num MINUS expression_num
+    (39) expression -> . expression_num TIMES expression_num
+    (40) expression -> . expression_num DIVIDE expression_num
     (41) expression -> . LPAREN expression RPAREN
     (42) expression -> . ID
     (43) expression -> . INT
@@ -1843,32 +1763,35 @@ state 76
     (12) if -> . ILA LPAREN condition RPAREN LBRACKET block RBRACKET
     (13) if -> . ILA LPAREN condition RPAREN LBRACKET block RBRACKET WLA LBRACKET block RBRACKET
     (14) while -> . MA7ED LPAREN condition RPAREN LBRACKET block RBRACKET
-    (53) empty -> .
+    (55) empty -> .
+    (49) expression_num -> . INT
+    (50) expression_num -> . FLOAT
 
     ID              shift and go to state 10
     KTEB            shift and go to state 11
     LPAREN          shift and go to state 12
-    INT             shift and go to state 13
-    FLOAT           shift and go to state 14
-    STRING          shift and go to state 15
-    KHATE2          shift and go to state 16
-    S7I7            shift and go to state 17
-    WALO            shift and go to state 18
-    ILA             shift and go to state 19
-    MA7ED           shift and go to state 20
-    RBRACKET        reduce using rule 53 (empty -> .)
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    KHATE2          shift and go to state 17
+    S7I7            shift and go to state 18
+    WALO            shift and go to state 19
+    ILA             shift and go to state 20
+    MA7ED           shift and go to state 21
+    RBRACKET        reduce using rule 55 (empty -> .)
 
-    block                          shift and go to state 90
-    var_assign                     shift and go to state 82
-    printing                       shift and go to state 83
-    incrementation                 shift and go to state 84
-    decrementation                 shift and go to state 85
-    expression                     shift and go to state 86
-    if                             shift and go to state 87
-    while                          shift and go to state 88
-    empty                          shift and go to state 89
+    block                          shift and go to state 93
+    var_assign                     shift and go to state 85
+    printing                       shift and go to state 86
+    incrementation                 shift and go to state 87
+    decrementation                 shift and go to state 88
+    expression                     shift and go to state 89
+    if                             shift and go to state 90
+    while                          shift and go to state 91
+    empty                          shift and go to state 92
+    expression_num                 shift and go to state 13
 
-state 77
+state 80
 
     (23) condition -> LPAREN condition RPAREN AW . LPAREN condition RPAREN
     (28) condition -> LPAREN condition RPAREN AW . condition
@@ -1887,9 +1810,9 @@ state 77
     (35) condition -> . expression INFEQUALS expression
     (36) condition -> . expression
     (37) expression -> . expression PLUS expression
-    (38) expression -> . expression MINUS expression
-    (39) expression -> . expression TIMES expression
-    (40) expression -> . expression DIVIDE expression
+    (38) expression -> . expression_num MINUS expression_num
+    (39) expression -> . expression_num TIMES expression_num
+    (40) expression -> . expression_num DIVIDE expression_num
     (41) expression -> . LPAREN expression RPAREN
     (42) expression -> . ID
     (43) expression -> . INT
@@ -1898,20 +1821,23 @@ state 77
     (46) expression -> . KHATE2
     (47) expression -> . S7I7
     (48) expression -> . WALO
+    (49) expression_num -> . INT
+    (50) expression_num -> . FLOAT
 
-    LPAREN          shift and go to state 91
-    ID              shift and go to state 30
-    INT             shift and go to state 13
-    FLOAT           shift and go to state 14
-    STRING          shift and go to state 15
-    KHATE2          shift and go to state 16
-    S7I7            shift and go to state 17
-    WALO            shift and go to state 18
+    LPAREN          shift and go to state 94
+    ID              shift and go to state 28
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    KHATE2          shift and go to state 17
+    S7I7            shift and go to state 18
+    WALO            shift and go to state 19
 
-    condition                      shift and go to state 92
-    expression                     shift and go to state 47
+    condition                      shift and go to state 95
+    expression                     shift and go to state 50
+    expression_num                 shift and go to state 13
 
-state 78
+state 81
 
     (24) condition -> LPAREN condition RPAREN WA . LPAREN condition RPAREN
     (27) condition -> LPAREN condition RPAREN WA . condition
@@ -1930,9 +1856,9 @@ state 78
     (35) condition -> . expression INFEQUALS expression
     (36) condition -> . expression
     (37) expression -> . expression PLUS expression
-    (38) expression -> . expression MINUS expression
-    (39) expression -> . expression TIMES expression
-    (40) expression -> . expression DIVIDE expression
+    (38) expression -> . expression_num MINUS expression_num
+    (39) expression -> . expression_num TIMES expression_num
+    (40) expression -> . expression_num DIVIDE expression_num
     (41) expression -> . LPAREN expression RPAREN
     (42) expression -> . ID
     (43) expression -> . INT
@@ -1941,20 +1867,23 @@ state 78
     (46) expression -> . KHATE2
     (47) expression -> . S7I7
     (48) expression -> . WALO
+    (49) expression_num -> . INT
+    (50) expression_num -> . FLOAT
 
-    LPAREN          shift and go to state 93
-    ID              shift and go to state 30
-    INT             shift and go to state 13
-    FLOAT           shift and go to state 14
-    STRING          shift and go to state 15
-    KHATE2          shift and go to state 16
-    S7I7            shift and go to state 17
-    WALO            shift and go to state 18
+    LPAREN          shift and go to state 96
+    ID              shift and go to state 28
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    KHATE2          shift and go to state 17
+    S7I7            shift and go to state 18
+    WALO            shift and go to state 19
 
-    condition                      shift and go to state 94
-    expression                     shift and go to state 47
+    condition                      shift and go to state 97
+    expression                     shift and go to state 50
+    expression_num                 shift and go to state 13
 
-state 79
+state 82
 
     (25) condition -> condition WA LPAREN condition . RPAREN
     (23) condition -> LPAREN condition . RPAREN AW LPAREN condition RPAREN
@@ -1966,12 +1895,12 @@ state 79
     (29) condition -> condition . WA condition
     (30) condition -> condition . AW condition
 
-    RPAREN          shift and go to state 95
-    WA              shift and go to state 60
-    AW              shift and go to state 61
+    RPAREN          shift and go to state 98
+    WA              shift and go to state 63
+    AW              shift and go to state 64
 
 
-state 80
+state 83
 
     (26) condition -> condition AW LPAREN condition . RPAREN
     (23) condition -> LPAREN condition . RPAREN AW LPAREN condition RPAREN
@@ -1983,91 +1912,85 @@ state 80
     (29) condition -> condition . WA condition
     (30) condition -> condition . AW condition
 
-    RPAREN          shift and go to state 96
-    WA              shift and go to state 60
-    AW              shift and go to state 61
+    RPAREN          shift and go to state 99
+    WA              shift and go to state 63
+    AW              shift and go to state 64
 
 
-state 81
+state 84
 
     (12) if -> ILA LPAREN condition RPAREN LBRACKET block . RBRACKET
     (13) if -> ILA LPAREN condition RPAREN LBRACKET block . RBRACKET WLA LBRACKET block RBRACKET
 
-    RBRACKET        shift and go to state 97
+    RBRACKET        shift and go to state 100
 
 
-state 82
+state 85
 
     (15) block -> var_assign .
 
     RBRACKET        reduce using rule 15 (block -> var_assign .)
 
 
-state 83
+state 86
 
     (16) block -> printing .
 
     RBRACKET        reduce using rule 16 (block -> printing .)
 
 
-state 84
+state 87
 
     (17) block -> incrementation .
 
     RBRACKET        reduce using rule 17 (block -> incrementation .)
 
 
-state 85
+state 88
 
     (18) block -> decrementation .
 
     RBRACKET        reduce using rule 18 (block -> decrementation .)
 
 
-state 86
+state 89
 
     (19) block -> expression .
     (37) expression -> expression . PLUS expression
-    (38) expression -> expression . MINUS expression
-    (39) expression -> expression . TIMES expression
-    (40) expression -> expression . DIVIDE expression
 
     RBRACKET        reduce using rule 19 (block -> expression .)
-    PLUS            shift and go to state 21
-    MINUS           shift and go to state 22
-    TIMES           shift and go to state 23
-    DIVIDE          shift and go to state 24
+    PLUS            shift and go to state 22
 
 
-state 87
+state 90
 
     (20) block -> if .
 
     RBRACKET        reduce using rule 20 (block -> if .)
 
 
-state 88
+state 91
 
     (21) block -> while .
 
     RBRACKET        reduce using rule 21 (block -> while .)
 
 
-state 89
+state 92
 
     (22) block -> empty .
 
     RBRACKET        reduce using rule 22 (block -> empty .)
 
 
-state 90
+state 93
 
     (14) while -> MA7ED LPAREN condition RPAREN LBRACKET block . RBRACKET
 
-    RBRACKET        shift and go to state 98
+    RBRACKET        shift and go to state 101
 
 
-state 91
+state 94
 
     (23) condition -> LPAREN condition RPAREN AW LPAREN . condition RPAREN
     (23) condition -> LPAREN . condition RPAREN AW LPAREN condition RPAREN
@@ -2090,9 +2013,9 @@ state 91
     (35) condition -> . expression INFEQUALS expression
     (36) condition -> . expression
     (37) expression -> . expression PLUS expression
-    (38) expression -> . expression MINUS expression
-    (39) expression -> . expression TIMES expression
-    (40) expression -> . expression DIVIDE expression
+    (38) expression -> . expression_num MINUS expression_num
+    (39) expression -> . expression_num TIMES expression_num
+    (40) expression -> . expression_num DIVIDE expression_num
     (41) expression -> . LPAREN expression RPAREN
     (42) expression -> . ID
     (43) expression -> . INT
@@ -2101,20 +2024,23 @@ state 91
     (46) expression -> . KHATE2
     (47) expression -> . S7I7
     (48) expression -> . WALO
+    (49) expression_num -> . INT
+    (50) expression_num -> . FLOAT
 
-    LPAREN          shift and go to state 45
-    ID              shift and go to state 30
-    INT             shift and go to state 13
-    FLOAT           shift and go to state 14
-    STRING          shift and go to state 15
-    KHATE2          shift and go to state 16
-    S7I7            shift and go to state 17
-    WALO            shift and go to state 18
+    LPAREN          shift and go to state 48
+    ID              shift and go to state 28
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    KHATE2          shift and go to state 17
+    S7I7            shift and go to state 18
+    WALO            shift and go to state 19
 
-    condition                      shift and go to state 99
-    expression                     shift and go to state 62
+    condition                      shift and go to state 102
+    expression                     shift and go to state 65
+    expression_num                 shift and go to state 13
 
-state 92
+state 95
 
     (28) condition -> LPAREN condition RPAREN AW condition .
     (25) condition -> condition . WA LPAREN condition RPAREN
@@ -2126,11 +2052,11 @@ state 92
     WA              reduce using rule 28 (condition -> LPAREN condition RPAREN AW condition .)
     AW              reduce using rule 28 (condition -> LPAREN condition RPAREN AW condition .)
 
-  ! WA              [ shift and go to state 60 ]
-  ! AW              [ shift and go to state 61 ]
+  ! WA              [ shift and go to state 63 ]
+  ! AW              [ shift and go to state 64 ]
 
 
-state 93
+state 96
 
     (24) condition -> LPAREN condition RPAREN WA LPAREN . condition RPAREN
     (23) condition -> LPAREN . condition RPAREN AW LPAREN condition RPAREN
@@ -2153,9 +2079,9 @@ state 93
     (35) condition -> . expression INFEQUALS expression
     (36) condition -> . expression
     (37) expression -> . expression PLUS expression
-    (38) expression -> . expression MINUS expression
-    (39) expression -> . expression TIMES expression
-    (40) expression -> . expression DIVIDE expression
+    (38) expression -> . expression_num MINUS expression_num
+    (39) expression -> . expression_num TIMES expression_num
+    (40) expression -> . expression_num DIVIDE expression_num
     (41) expression -> . LPAREN expression RPAREN
     (42) expression -> . ID
     (43) expression -> . INT
@@ -2164,20 +2090,23 @@ state 93
     (46) expression -> . KHATE2
     (47) expression -> . S7I7
     (48) expression -> . WALO
+    (49) expression_num -> . INT
+    (50) expression_num -> . FLOAT
 
-    LPAREN          shift and go to state 45
-    ID              shift and go to state 30
-    INT             shift and go to state 13
-    FLOAT           shift and go to state 14
-    STRING          shift and go to state 15
-    KHATE2          shift and go to state 16
-    S7I7            shift and go to state 17
-    WALO            shift and go to state 18
+    LPAREN          shift and go to state 48
+    ID              shift and go to state 28
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    KHATE2          shift and go to state 17
+    S7I7            shift and go to state 18
+    WALO            shift and go to state 19
 
-    condition                      shift and go to state 100
-    expression                     shift and go to state 62
+    condition                      shift and go to state 103
+    expression                     shift and go to state 65
+    expression_num                 shift and go to state 13
 
-state 94
+state 97
 
     (27) condition -> LPAREN condition RPAREN WA condition .
     (25) condition -> condition . WA LPAREN condition RPAREN
@@ -2189,11 +2118,11 @@ state 94
     WA              reduce using rule 27 (condition -> LPAREN condition RPAREN WA condition .)
     AW              reduce using rule 27 (condition -> LPAREN condition RPAREN WA condition .)
 
-  ! WA              [ shift and go to state 60 ]
-  ! AW              [ shift and go to state 61 ]
+  ! WA              [ shift and go to state 63 ]
+  ! AW              [ shift and go to state 64 ]
 
 
-state 95
+state 98
 
     (25) condition -> condition WA LPAREN condition RPAREN .
     (23) condition -> LPAREN condition RPAREN . AW LPAREN condition RPAREN
@@ -2205,11 +2134,11 @@ state 95
     WA              reduce using rule 25 (condition -> condition WA LPAREN condition RPAREN .)
     AW              reduce using rule 25 (condition -> condition WA LPAREN condition RPAREN .)
 
-  ! AW              [ shift and go to state 77 ]
-  ! WA              [ shift and go to state 78 ]
+  ! AW              [ shift and go to state 80 ]
+  ! WA              [ shift and go to state 81 ]
 
 
-state 96
+state 99
 
     (26) condition -> condition AW LPAREN condition RPAREN .
     (23) condition -> LPAREN condition RPAREN . AW LPAREN condition RPAREN
@@ -2221,21 +2150,21 @@ state 96
     WA              reduce using rule 26 (condition -> condition AW LPAREN condition RPAREN .)
     AW              reduce using rule 26 (condition -> condition AW LPAREN condition RPAREN .)
 
-  ! AW              [ shift and go to state 77 ]
-  ! WA              [ shift and go to state 78 ]
+  ! AW              [ shift and go to state 80 ]
+  ! WA              [ shift and go to state 81 ]
 
 
-state 97
+state 100
 
     (12) if -> ILA LPAREN condition RPAREN LBRACKET block RBRACKET .
     (13) if -> ILA LPAREN condition RPAREN LBRACKET block RBRACKET . WLA LBRACKET block RBRACKET
 
     $end            reduce using rule 12 (if -> ILA LPAREN condition RPAREN LBRACKET block RBRACKET .)
     RBRACKET        reduce using rule 12 (if -> ILA LPAREN condition RPAREN LBRACKET block RBRACKET .)
-    WLA             shift and go to state 101
+    WLA             shift and go to state 104
 
 
-state 98
+state 101
 
     (14) while -> MA7ED LPAREN condition RPAREN LBRACKET block RBRACKET .
 
@@ -2243,7 +2172,7 @@ state 98
     RBRACKET        reduce using rule 14 (while -> MA7ED LPAREN condition RPAREN LBRACKET block RBRACKET .)
 
 
-state 99
+state 102
 
     (23) condition -> LPAREN condition RPAREN AW LPAREN condition . RPAREN
     (23) condition -> LPAREN condition . RPAREN AW LPAREN condition RPAREN
@@ -2255,12 +2184,12 @@ state 99
     (29) condition -> condition . WA condition
     (30) condition -> condition . AW condition
 
-    RPAREN          shift and go to state 102
-    WA              shift and go to state 60
-    AW              shift and go to state 61
+    RPAREN          shift and go to state 105
+    WA              shift and go to state 63
+    AW              shift and go to state 64
 
 
-state 100
+state 103
 
     (24) condition -> LPAREN condition RPAREN WA LPAREN condition . RPAREN
     (23) condition -> LPAREN condition . RPAREN AW LPAREN condition RPAREN
@@ -2272,19 +2201,19 @@ state 100
     (29) condition -> condition . WA condition
     (30) condition -> condition . AW condition
 
-    RPAREN          shift and go to state 103
-    WA              shift and go to state 60
-    AW              shift and go to state 61
+    RPAREN          shift and go to state 106
+    WA              shift and go to state 63
+    AW              shift and go to state 64
 
 
-state 101
+state 104
 
     (13) if -> ILA LPAREN condition RPAREN LBRACKET block RBRACKET WLA . LBRACKET block RBRACKET
 
-    LBRACKET        shift and go to state 104
+    LBRACKET        shift and go to state 107
 
 
-state 102
+state 105
 
     (23) condition -> LPAREN condition RPAREN AW LPAREN condition RPAREN .
     (23) condition -> LPAREN condition RPAREN . AW LPAREN condition RPAREN
@@ -2296,11 +2225,11 @@ state 102
     WA              reduce using rule 23 (condition -> LPAREN condition RPAREN AW LPAREN condition RPAREN .)
     AW              reduce using rule 23 (condition -> LPAREN condition RPAREN AW LPAREN condition RPAREN .)
 
-  ! AW              [ shift and go to state 77 ]
-  ! WA              [ shift and go to state 78 ]
+  ! AW              [ shift and go to state 80 ]
+  ! WA              [ shift and go to state 81 ]
 
 
-state 103
+state 106
 
     (24) condition -> LPAREN condition RPAREN WA LPAREN condition RPAREN .
     (23) condition -> LPAREN condition RPAREN . AW LPAREN condition RPAREN
@@ -2312,11 +2241,11 @@ state 103
     WA              reduce using rule 24 (condition -> LPAREN condition RPAREN WA LPAREN condition RPAREN .)
     AW              reduce using rule 24 (condition -> LPAREN condition RPAREN WA LPAREN condition RPAREN .)
 
-  ! AW              [ shift and go to state 77 ]
-  ! WA              [ shift and go to state 78 ]
+  ! AW              [ shift and go to state 80 ]
+  ! WA              [ shift and go to state 81 ]
 
 
-state 104
+state 107
 
     (13) if -> ILA LPAREN condition RPAREN LBRACKET block RBRACKET WLA LBRACKET . block RBRACKET
     (15) block -> . var_assign
@@ -2328,16 +2257,16 @@ state 104
     (21) block -> . while
     (22) block -> . empty
     (11) var_assign -> . ID EQUALS expression
-    (49) printing -> . KTEB LPAREN expression RPAREN
-    (50) printing -> . KTEB LPAREN incrementation RPAREN
-    (51) printing -> . KTEB LPAREN decrementation RPAREN
-    (52) printing -> . KTEB LPAREN condition RPAREN
+    (51) printing -> . KTEB LPAREN expression RPAREN
+    (52) printing -> . KTEB LPAREN incrementation RPAREN
+    (53) printing -> . KTEB LPAREN decrementation RPAREN
+    (54) printing -> . KTEB LPAREN condition RPAREN
     (9) incrementation -> . ID INCREMENTATION
     (10) decrementation -> . ID DECREMENTATION
     (37) expression -> . expression PLUS expression
-    (38) expression -> . expression MINUS expression
-    (39) expression -> . expression TIMES expression
-    (40) expression -> . expression DIVIDE expression
+    (38) expression -> . expression_num MINUS expression_num
+    (39) expression -> . expression_num TIMES expression_num
+    (40) expression -> . expression_num DIVIDE expression_num
     (41) expression -> . LPAREN expression RPAREN
     (42) expression -> . ID
     (43) expression -> . INT
@@ -2349,39 +2278,42 @@ state 104
     (12) if -> . ILA LPAREN condition RPAREN LBRACKET block RBRACKET
     (13) if -> . ILA LPAREN condition RPAREN LBRACKET block RBRACKET WLA LBRACKET block RBRACKET
     (14) while -> . MA7ED LPAREN condition RPAREN LBRACKET block RBRACKET
-    (53) empty -> .
+    (55) empty -> .
+    (49) expression_num -> . INT
+    (50) expression_num -> . FLOAT
 
     ID              shift and go to state 10
     KTEB            shift and go to state 11
     LPAREN          shift and go to state 12
-    INT             shift and go to state 13
-    FLOAT           shift and go to state 14
-    STRING          shift and go to state 15
-    KHATE2          shift and go to state 16
-    S7I7            shift and go to state 17
-    WALO            shift and go to state 18
-    ILA             shift and go to state 19
-    MA7ED           shift and go to state 20
-    RBRACKET        reduce using rule 53 (empty -> .)
+    INT             shift and go to state 14
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    KHATE2          shift and go to state 17
+    S7I7            shift and go to state 18
+    WALO            shift and go to state 19
+    ILA             shift and go to state 20
+    MA7ED           shift and go to state 21
+    RBRACKET        reduce using rule 55 (empty -> .)
 
-    block                          shift and go to state 105
-    var_assign                     shift and go to state 82
-    printing                       shift and go to state 83
-    incrementation                 shift and go to state 84
-    decrementation                 shift and go to state 85
-    expression                     shift and go to state 86
-    if                             shift and go to state 87
-    while                          shift and go to state 88
-    empty                          shift and go to state 89
+    block                          shift and go to state 108
+    var_assign                     shift and go to state 85
+    printing                       shift and go to state 86
+    incrementation                 shift and go to state 87
+    decrementation                 shift and go to state 88
+    expression                     shift and go to state 89
+    if                             shift and go to state 90
+    while                          shift and go to state 91
+    empty                          shift and go to state 92
+    expression_num                 shift and go to state 13
 
-state 105
+state 108
 
     (13) if -> ILA LPAREN condition RPAREN LBRACKET block RBRACKET WLA LBRACKET block . RBRACKET
 
-    RBRACKET        shift and go to state 106
+    RBRACKET        shift and go to state 109
 
 
-state 106
+state 109
 
     (13) if -> ILA LPAREN condition RPAREN LBRACKET block RBRACKET WLA LBRACKET block RBRACKET .
 
@@ -2391,6 +2323,6 @@ state 106
 WARNING: 
 WARNING: Conflicts:
 WARNING: 
-WARNING: shift/reduce conflict for RPAREN in state 39 resolved as shift
-WARNING: shift/reduce conflict for RPAREN in state 49 resolved as shift
-WARNING: shift/reduce conflict for RPAREN in state 62 resolved as shift
+WARNING: shift/reduce conflict for RPAREN in state 37 resolved as shift
+WARNING: shift/reduce conflict for RPAREN in state 52 resolved as shift
+WARNING: shift/reduce conflict for RPAREN in state 65 resolved as shift

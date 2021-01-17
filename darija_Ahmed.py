@@ -35,42 +35,44 @@ tokens = [
 ]
 
 reserved = {
-    'kteb': 'KTEB',
+    'kteb': 'KTEB',  # print
+    'wla': 'WLA',  # else
+    'ma7ed': 'MA7ED',  # while
+    'khate2': 'KHATE2',  # false
+    'ila': 'ILA',  # if
     'wa': 'WA',  # and
-    'b7al': 'B7AL',  # as
-    'ftared': 'FTARED',  # assert
-    'mamtzamench': 'MAMTZAMENCH',  # async
-    'tsna': 'TSNA',  # await
+    'aw': 'AW',  # or
+    's7i7': 'S7I7',  # true
     'khrej': 'KHREJ',  # break
     'naw3': 'NAW3',  # class
     'kmel': 'KMEL',  # continue
     '3aref': '3AREF',  # def
-    'mse7': 'MSE7',  # del
     'wlaila': 'WLAILA',  # elif
-    'wla': 'WLA',  # else
     'masd9ch': 'MASD9CH',  # except
-    'khate2': 'KHATE2',  # false
     'akhiran': 'AKHIRAN',  # finally
     'lkola': 'LKOLA',  # for
-    'men': 'MEN',  # from
     '3amm': '3AMM',  # global
-    'ila': 'ILA',  # if
-    'jib': 'JIB',  # import
-    'fi': 'FI',  # in
     'huwa': 'HUWA',  # is
-    'lambda': 'LAMBDA',  # lambda
     'Walo': 'WALO',  # None
-    'machima7ali': 'MACHIMA7ALI',  # nonlocal
     'machi': 'machi',  # not
-    'aw': 'AW',  # or
     'douz': 'DOUZ',  # pass
     'tele3': 'TELE3',  # raise
     'red': 'RED',  # return
-    's7i7': 'S7I7',  # true
     'jereb': 'JEREB',  # try
-    'ma7ed': 'MA7ED',  # while
-    'm3a': 'M3A',  # with
+    'qra': 'QRA',  # input
+
     'rje3': 'RJE3',  # yield
+    'men': 'MEN',  # from
+    'tsna': 'TSNA',  # await
+    'mamtzamench': 'MAMTZAMENCH',  # async
+    'ftared': 'FTARED',  # assert
+    'b7al': 'B7AL',  # as
+    'mse7': 'MSE7',  # del
+    'jib': 'JIB',  # import
+    'fi': 'FI',  # in
+    'lambda': 'LAMBDA',  # lambda
+    'machima7ali': 'MACHIMA7ALI',  # nonlocal
+    'm3a': 'M3A',  # with
 
 }
 
@@ -155,6 +157,7 @@ def t_ID(t):
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
+
 
     # A string containing ignored characters (spaces and tabs)
 t_ignore = ' \t'
@@ -297,7 +300,7 @@ def p_condition_comp(p):
     '''
     condition : expression SUP expression
               | expression INF expression
-              | expression EQUALSCOMP expression
+              | expression EQUALSCOMP expression 
               | expression SUPEQUALS expression
               | expression INFEQUALS expression
     '''
@@ -314,9 +317,9 @@ def p_condition_exp(p):
 def p_expression(p):
     '''
     expression : expression PLUS expression
-               | expression MINUS expression
-               | expression TIMES expression
-               | expression DIVIDE expression
+               | expression_num MINUS expression_num
+               | expression_num TIMES expression_num
+               | expression_num DIVIDE expression_num
                | LPAREN expression RPAREN
     '''
     if p[1] != '(':
@@ -340,6 +343,14 @@ def p_expression_terminals(p):
                | KHATE2
                | S7I7
                | WALO
+    '''
+    p[0] = p[1]
+
+
+def p_expression_numerique(p):
+    '''
+    expression_num : INT
+                | FLOAT
     '''
     p[0] = p[1]
 
@@ -374,7 +385,10 @@ def run(p):
         if p[0] == '+':
             return run(p[1]) + run(p[2])
         elif p[0] == '-':
-            return run(p[1]) - run(p[2])
+            try:
+                return run(p[1]) - run(p[2])
+            except TypeError:
+                print("Action impossible")
         elif p[0] == '*':
             return run(p[1]) * run(p[2])
         elif p[0] == '/':
@@ -424,6 +438,7 @@ parser = yacc.yacc()
 while True:
     try:
         i = input('>> ')
+
     except EOFError:
         break
     parser.parse(i)
