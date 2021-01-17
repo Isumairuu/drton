@@ -156,7 +156,6 @@ def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
 
-
     # A string containing ignored characters (spaces and tabs)
 t_ignore = ' \t'
 
@@ -221,14 +220,6 @@ def p_var_assign(p):
 
     '''
     p[0] = ('=', p[1], p[3])
-
-
-# def p_ifElse(p):
-#     '''
-#     if_else : ILA LPAREN condition RPAREN LBRACKET block RBRACKET WLA LBRACKET block RBRACKET
-
-#     '''
-#     p[0] = (p[1], p[3], p[6])
 
 
 def p_if(p):
@@ -326,8 +317,12 @@ def p_expression(p):
                | expression MINUS expression
                | expression TIMES expression
                | expression DIVIDE expression
+               | LPAREN expression RPAREN
     '''
-    p[0] = (p[2], p[1], p[3])
+    if p[1] != '(':
+        p[0] = (p[2], p[1], p[3])
+    else:
+        p[0] = p[2]
 
 
 def p_expression_id(p):
