@@ -91,8 +91,12 @@ def t_COMMENT(t):
 
 
 def t_STRING(t):
-    r'(".*")|(\'.*\')'
-    t.value = t.value[1:-1]
+    # [^"] : means any character except ", this way "hello" + "there" wont be considered a "String" but "string" + "string"
+    r'("[^"]*")|(\'[^\']\')'
+    if t.value[0] == '"':
+        t.value = t.value[1:-1]
+    elif t.value[0] == "'":
+        t.value = t.value[1:-1]
     return t
 
 
@@ -119,6 +123,7 @@ def t_ID(t):
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
+
 
     # A string containing ignored characters (spaces and tabs)
 t_ignore = ' \t'
@@ -173,15 +178,6 @@ def p_decrementation(p):
     p[0] = ('--', p[1])
 
 
-def p_printing(p):
-    '''
-    printing : KTEB LPAREN expression RPAREN
-            | KTEB LPAREN incrementation RPAREN
-            | KTEB LPAREN decrementation RPAREN
-    '''
-    print(run(p[3]))
-
-
 def p_var_assign(p):
     '''
     var_assign : ID EQUALS expression
@@ -220,6 +216,15 @@ def p_expression_int_float_string(p):
                | STRING
     '''
     p[0] = p[1]
+
+
+def p_printing(p):
+    '''
+    printing : KTEB LPAREN expression RPAREN
+            | KTEB LPAREN incrementation RPAREN
+            | KTEB LPAREN decrementation RPAREN
+    '''
+    print(run(p[3]))
 
 
 def p_empty(p):
