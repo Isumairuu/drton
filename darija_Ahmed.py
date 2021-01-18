@@ -108,7 +108,7 @@ def t_COMMENT(t):
 
 def t_STRING(t):
     # [^"] : means any character except ", this way "hello" + "there" wont be considered a "String" but "string" + "string"
-    r'("[^"]*")|(\'[^\']\')'
+    r'("[^"]*")|(\'[^\']*\')'
     if t.value[0] == '"':
         t.value = t.value[1:-1]
     elif t.value[0] == "'":
@@ -227,8 +227,8 @@ def p_var_assign(p):
 
 def p_if(p):
     '''
-    if : ILA LPAREN condition RPAREN LBRACKET block RBRACKET 
-        | ILA LPAREN condition RPAREN LBRACKET block RBRACKET WLA LBRACKET block RBRACKET
+    if : ILA LPAREN condition RPAREN LBRACKET instruction_list RBRACKET
+        | ILA LPAREN condition RPAREN LBRACKET instruction_list RBRACKET WLA LBRACKET instruction_list RBRACKET
 
     '''
     if len(p) == 8:
@@ -239,16 +239,15 @@ def p_if(p):
 
 def p_while(p):
     '''
-    while : MA7ED LPAREN condition RPAREN LBRACKET block RBRACKET
+    while : MA7ED LPAREN condition RPAREN LBRACKET instruction_list RBRACKET
 
     '''
     p[0] = (p[1], p[3], p[6])
 
 
-def p_block(p):  # block to be executed when condition is satisfied,
-    # didnt do "darija" function because darija initiates run function, thus it will execute even if condition is not satisfied
+def p_instruction(p):
     '''
-    block : var_assign
+    instruction : var_assign
            | printing
            | incrementation
            | decrementation
@@ -258,6 +257,26 @@ def p_block(p):  # block to be executed when condition is satisfied,
            | empty
     '''
     p[0] = p[1]
+
+
+def p_instruction_list(p):
+    '''
+        instruction_list : instruction
+                        |  instruction_list instruction
+    '''
+    # when there is more than one instruction in an instruction list, each time we enter here, an instruction is reduced,
+    #  and added in a table, we see if table is created, if not then it is the first entry,
+    #  we creat table that will contain the instruction we will reduce.
+    #  and so on until all instruction are inside table and then in then when executing we will run each element of that table
+
+    if len(p) == 2:
+        p[0] = [p[1]]
+    else:
+        if(not isinstance(p[1], list)):
+            p[1] = [p[2]]
+        else:
+            p[1].append(p[2])
+        p[0] = p[1]
 
 
 def p_condition_big(p):
@@ -300,7 +319,7 @@ def p_condition_comp(p):
     '''
     condition : expression SUP expression
               | expression INF expression
-              | expression EQUALSCOMP expression 
+              | expression EQUALSCOMP expression
               | expression SUPEQUALS expression
               | expression INFEQUALS expression
     '''
@@ -341,6 +360,13 @@ def p_expression_id(p):
     p[0] = ('id', p[1])
 
 
+# def p_input(p):
+#     '''
+#     input : QRA LPAREN expression RPAREN
+#     '''
+#     p[0] = (p[1], p[3])
+
+
 def p_expression_terminals(p):
     '''
     expression : INT
@@ -355,10 +381,9 @@ def p_expression_terminals(p):
 
 def p_printing(p):
     '''
-    printing : KTEB LPAREN expression RPAREN
+    printing : KTEB LPAREN condition RPAREN
             | KTEB LPAREN incrementation RPAREN
             | KTEB LPAREN decrementation RPAREN
-            | KTEB LPAREN condition RPAREN
     '''
     p[0] = (p[1], p[3])
 
@@ -424,14 +449,19 @@ def run(p):
             return run(p[1]) < run(p[2])
         elif p[0] == "ila":
             if run(p[1]):
-                run(p[2])
+                for i in p[2]:
+                    run(i)
             else:
                 if len(p) > 3:
-                    run(p[3])
+                    for i in p[3]:
+                        run(i)
 
         elif p[0] == "ma7ed":
             while run(p[1]):
-                run(p[2])
+                for i in p[2]:
+                    run(i)
+        # elif p[0] == 'qra':
+        #     input(run(p[1]))
     else:
         return p
 
@@ -441,6 +471,14 @@ parser = yacc.yacc()
 while True:
     try:
         i = input('>> ')
+        # i = '''
+        #     ila(s7i7){
+        #     kteb("heelo")
+        #     kteb("work please")
+        # }
+        # wla{kteb("nope")}
+        # '''
+        # i = '''kteb("hello")'''
 
     except EOFError:
         break
