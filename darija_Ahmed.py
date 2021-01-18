@@ -158,7 +158,6 @@ def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
 
-
     # A string containing ignored characters (spaces and tabs)
 t_ignore = ' \t'
 
@@ -267,7 +266,7 @@ def p_instruction_list(p):
     # when there is more than one instruction in an instruction list, each time we enter here, an instruction is reduced,
     #  and added in a table, we see if table is created, if not then it is the first entry,
     #  we creat table that will contain the instruction we will reduce.
-    #  and so on until all instruction are inside table and then in then when executing we will run each element of that table
+    #  and so on until all instruction are inside table and then when executing we will run each element of that table
 
     if len(p) == 2:
         p[0] = [p[1]]
@@ -471,14 +470,26 @@ parser = yacc.yacc()
 while True:
     try:
         i = input('>> ')
+
         # i = '''
-        #     ila(s7i7){
-        #     kteb("heelo")
-        #     kteb("work please")
+        # ila(1>0){
+        #     kteb("ok")
+        #     ila(5==5){
+        #         kteb("yes")
+        #         ila(2<1){
+        #             kteb("ah")
+        #             }
+        #         wla{
+        #             kteb("no")
+        #             a = 0
+        #             ma7ed(a<10){
+        #                 kteb(a)
+        #                 a++
+        #             }
+        #         }
+        #     }
         # }
-        # wla{kteb("nope")}
         # '''
-        # i = '''kteb("hello")'''
 
     except EOFError:
         break
