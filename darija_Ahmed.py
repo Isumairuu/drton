@@ -182,8 +182,8 @@ precedence = (
     ('left', 'PLUS', 'MINUS'),
     ('left', 'TIMES', 'DIVIDE'),
     ('left', 'WA', 'AW'),
+    ('nonassoc', 'LPAREN', 'RPAREN'),
     ('nonassoc', 'SUP', 'INF', 'SUPEQUALS', 'INFEQUALS', 'EQUALSCOMP'),
-    ('nonassoc', 'LPAREN', 'RPAREN')
 
 )
 
@@ -317,15 +317,21 @@ def p_condition_exp(p):
 def p_expression(p):
     '''
     expression : expression PLUS expression
-               | expression_num MINUS expression_num
-               | expression_num TIMES expression_num
-               | expression_num DIVIDE expression_num
+               | expression MINUS expression
+               | expression TIMES expression
+               | expression DIVIDE expression
                | LPAREN expression RPAREN
+               | MINUS expression
+               | PLUS expression
     '''
-    if p[1] != '(':
-        p[0] = (p[2], p[1], p[3])
-    else:
+    if p[1] == '+':
         p[0] = p[2]
+    elif p[1] == '(':
+        p[0] = p[2]
+    elif p[1] == '-':
+        p[0] = ('neg', p[2])
+    else:
+        p[0] = (p[2], p[1], p[3])
 
 
 def p_expression_id(p):
@@ -343,14 +349,6 @@ def p_expression_terminals(p):
                | KHATE2
                | S7I7
                | WALO
-    '''
-    p[0] = p[1]
-
-
-def p_expression_numerique(p):
-    '''
-    expression_num : INT
-                | FLOAT
     '''
     p[0] = p[1]
 
@@ -383,7 +381,10 @@ def run(p):
     global ids
     if type(p) == tuple:
         if p[0] == '+':
-            return run(p[1]) + run(p[2])
+            try:
+                return run(p[1]) + run(p[2])
+            except TypeError:
+                print("Action impossible")
         elif p[0] == '-':
             try:
                 return run(p[1]) - run(p[2])
@@ -399,6 +400,8 @@ def run(p):
         elif p[0] == '--':
             ids[p[1]] = ids[p[1]] - 1
             return ids[p[1]]
+        elif p[0] == 'neg':
+            return -run(p[1])
         elif p[0] == '=':
             ids[p[1]] = run(p[2])
         elif p[0] == 'id':
