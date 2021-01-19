@@ -458,21 +458,35 @@ def run(p):
         elif p[0] == "ila":
             if run(p[1]):
                 for i in p[2]:
-                    if i == 'khrej':
+                    if didBreak == True:  # case where a block inside this block triggered break, we shouldnt keep executing the current if block
+                        break
+                    elif i == 'khrej':
                         # dans les instruction de if, si on trouve "khrej" c'est qu'on doit sortir du while,
                         # donc j'ai defini cette variable global, qu'on va verifier dans while pour voir si on a break ou non,
                         # si elle appartient au instructions qui se trouve dans if, je donne true a la variable global,
                         #  et je ne termine pas les autre, instruction
                         didBreak = True
                         break
+                    elif didContinue == True:
+                        break
                     elif i == 'kmel':
                         # meme principe que break
                         didContinue = True
-                        continue
+                        break
                     run(i)
             else:
                 if len(p) > 3:
                     for i in p[3]:
+                        if didBreak == True:
+                            break
+                        elif i == 'khrej':
+                            didBreak = True
+                            break
+                        elif didContinue == True:
+                            break
+                        elif i == 'kmel':
+                            didContinue = True
+                            break
                         run(i)
         elif p[0] == "ma7ed":
             # on donne a ces variables false au cas ou elle sont devenu true suite a autre boucle
@@ -487,13 +501,16 @@ def run(p):
                     elif didBreak == True:
                         # je verifie sinon si un if qui s'est executé dans ce block contient un break('khrej'),
                         #  si oui il aura changé didBreak en TRUE, et du coups on va sortir de ce while,
+                        didBreak = False
                         break
                     elif didContinue == True:
-
-                        continue
+                        break
                     else:
                         run(i)
                 else:
+                    continue
+                if(didContinue == True):  # in the case of continue, we dont want to exit the loop
+                    didContinue = False
                     continue
                 break
         # elif p[0] == 'qra':
