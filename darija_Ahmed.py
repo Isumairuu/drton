@@ -158,6 +158,7 @@ def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
 
+
     # A string containing ignored characters (spaces and tabs)
 t_ignore = ' \t'
 
@@ -252,6 +253,8 @@ def p_instruction(p):
            | decrementation
            | expression
            | if
+           | KHREJ
+           | KMEL
            | while
            | empty
     '''
@@ -399,16 +402,22 @@ def p_error(p):
 
 
 ids = {}
+didBreak = False
+didContinue = False
 
 
 def run(p):
-    global ids
+    global ids, didBreak, didContinue
     if type(p) == tuple:
         if p[0] == '+':
             try:
                 return run(p[1]) + run(p[2])
             except TypeError:
-                print("Action impossible")
+                try:
+                    # number and string concatenation
+                    return str(run(p[1])) + str(run(p[2]))
+                except TypeError:
+                    print("action impossible")
         elif p[0] == '-':
             try:
                 return run(p[1]) - run(p[2])
@@ -449,16 +458,44 @@ def run(p):
         elif p[0] == "ila":
             if run(p[1]):
                 for i in p[2]:
+                    if i == 'khrej':
+                        # dans les instruction de if, si on trouve "khrej" c'est qu'on doit sortir du while,
+                        # donc j'ai defini cette variable global, qu'on va verifier dans while pour voir si on a break ou non,
+                        # si elle appartient au instructions qui se trouve dans if, je donne true a la variable global,
+                        #  et je ne termine pas les autre, instruction
+                        didBreak = True
+                        break
+                    elif i == 'kmel':
+                        # meme principe que break
+                        didContinue = True
+                        continue
                     run(i)
             else:
                 if len(p) > 3:
                     for i in p[3]:
                         run(i)
-
         elif p[0] == "ma7ed":
+            # on donne a ces variables false au cas ou elle sont devenu true suite a autre boucle
+            didBreak = False
+            didContinue = False
             while run(p[1]):
                 for i in p[2]:
-                    run(i)
+                    # si parmis les instructions qui se trouve directement dans le block de while, je sort de la boucle for,
+                    # et du coups en entre pas dans else donc on sort de while(see for/else dans python)
+                    if i == 'khrej':
+                        break
+                    elif didBreak == True:
+                        # je verifie sinon si un if qui s'est executé dans ce block contient un break('khrej'),
+                        #  si oui il aura changé didBreak en TRUE, et du coups on va sortir de ce while,
+                        break
+                    elif didContinue == True:
+
+                        continue
+                    else:
+                        run(i)
+                else:
+                    continue
+                break
         # elif p[0] == 'qra':
         #     input(run(p[1]))
     else:
@@ -485,6 +522,19 @@ while True:
         #             ma7ed(a<10){
         #                 kteb(a)
         #                 a++
+        #                 ila(a==5){
+        #                 kteb("by")
+        #                 b = 0
+        #                 ma7ed(b<10){
+        #                     b++
+        #                     kteb("b= " + b)
+        #                     ila(b==5){
+        #                         kteb("by2")
+        #                         khrej
+        #                     }
+        #                 }
+        #                 khrej
+        #                 }
         #             }
         #         }
         #     }
@@ -494,3 +544,4 @@ while True:
     except EOFError:
         break
     parser.parse(i)
+    # break
