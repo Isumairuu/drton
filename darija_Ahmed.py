@@ -10,27 +10,14 @@ import ply.yacc as yacc
 
 
 tokens = [
-    'INT',
-    'FLOAT',
-    'PLUS',
-    'MINUS',
-    'TIMES',
-    'DIVIDE',
-    'LPAREN',
-    'RPAREN',
-    'LBRACKET',
-    'RBRACKET',
+    'INT','FLOAT', # Numbers
+    'PLUS','MINUS','TIMES','DIVIDE', # operations
+    'LPAREN','RPAREN','LBRACKET','RBRACKET', # Parentheses and brackets
     'ID',
     'STRING',
-    'EQUALS',
-    'INCREMENTATION',
-    'DECREMENTATION',
-    'SEMICOLON',
-    'SUP',
-    'INF',
-    'EQUALSCOMP',
-    'INFEQUALS',
-    'SUPEQUALS',
+    'EQUALS', 'SEMICOLON',
+    'INCREMENTATION','DECREMENTATION',
+    'SUP', 'INF','EQUALSCOMP','INFEQUALS','SUPEQUALS', #comparison ops
 
 ]
 
@@ -44,35 +31,35 @@ reserved = {
     'aw': 'AW',  # or
     's7i7': 'S7I7',  # true
     'khrej': 'KHREJ',  # break
-    'naw3': 'NAW3',  # class
-    'kmel': 'KMEL',  # continue
-    '3aref': '3AREF',  # def
-    'wlaila': 'WLAILA',  # elif
-    'masd9ch': 'MASD9CH',  # except
-    'akhiran': 'AKHIRAN',  # finally
-    'lkola': 'LKOLA',  # for
-    '3amm': '3AMM',  # global
-    'huwa': 'HUWA',  # is
     'Walo': 'WALO',  # None
-    'machi': 'machi',  # not
-    'douz': 'DOUZ',  # pass
-    'tele3': 'TELE3',  # raise
-    'red': 'RED',  # return
-    'jereb': 'JEREB',  # try
     'qra': 'QRA',  # input
+    'kmel': 'KMEL',  # continue
+    'naw3': 'NAW3',  # class TODO
+    '3aref': '3AREF',  # def TODO
+    'wlaila': 'WLAILA',  # elif TODO
+    'masd9ch': 'MASD9CH',  # except TODO
+    'akhiran': 'AKHIRAN',  # finally TODO
+    'lkola': 'LKOLA',  # for TODO
+    '3amm': '3AMM',  # global TODO
+    'huwa': 'HUWA',  # is TODO
+    'machi': 'machi',  # not TODO
+    'douz': 'DOUZ',  # pass TODO
+    'tele3': 'TELE3',  # raise TODO
+    'red': 'RED',  # return TODO
+    'jereb': 'JEREB',  # try TODO
 
-    'rje3': 'RJE3',  # yield
-    'men': 'MEN',  # from
-    'tsna': 'TSNA',  # await
-    'mamtzamench': 'MAMTZAMENCH',  # async
-    'ftared': 'FTARED',  # assert
-    'b7al': 'B7AL',  # as
-    'mse7': 'MSE7',  # del
-    'jib': 'JIB',  # import
-    'fi': 'FI',  # in
-    'lambda': 'LAMBDA',  # lambda
-    'machima7ali': 'MACHIMA7ALI',  # nonlocal
-    'm3a': 'M3A',  # with
+    # 'rje3': 'RJE3',  # yield
+    # 'men': 'MEN',  # from
+    # 'tsna': 'TSNA',  # await
+    # 'mamtzamench': 'MAMTZAMENCH',  # async
+    # 'ftared': 'FTARED',  # assert
+    # 'b7al': 'B7AL',  # as
+    # 'mse7': 'MSE7',  # del
+    # 'jib': 'JIB',  # import
+    # 'fi': 'FI',  # in
+    # 'lambda': 'LAMBDA',  # lambda
+    # 'machima7ali': 'MACHIMA7ALI',  # nonlocal
+    # 'm3a': 'M3A',  # with
 
 }
 
@@ -220,7 +207,7 @@ def p_decrementation(p):
 def p_var_assign(p):
     '''
     var_assign : ID EQUALS expression
-
+               | ID EQUALS input
     '''
     p[0] = ('=', p[1], p[3])
 
@@ -362,11 +349,11 @@ def p_expression_id(p):
     p[0] = ('id', p[1])
 
 
-# def p_input(p):
-#     '''
-#     input : QRA LPAREN expression RPAREN
-#     '''
-#     p[0] = (p[1], p[3])
+def p_input(p):
+    '''
+    input : QRA LPAREN expression RPAREN
+    '''
+    p[0] = (p[1], p[3])
 
 
 def p_expression_terminals(p):
@@ -513,8 +500,8 @@ def run(p):
                     didContinue = False
                     continue
                 break
-        # elif p[0] == 'qra':
-        #     input(run(p[1]))
+        elif p[0] == 'qra':
+            return(input(run(p[1])+'\n'))
     else:
         return p
 
