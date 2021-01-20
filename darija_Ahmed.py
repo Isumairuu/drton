@@ -15,19 +15,9 @@ tokens = [
     'LPAREN', 'RPAREN', 'LBRACKET', 'RBRACKET',  # Parentheses and brackets
     'ID',
     'STRING',
-    'EQUALS',
-    'INCREMENTATION',
-    'DECREMENTATION',
-    'SEMICOLON',
-    'SUP',
-    'INF',
-    'EQUALSCOMP',
-    'INFEQUALS',
-    'SUPEQUALS',
-    'DIFFERENT',
     'EQUALS', 'SEMICOLON',
     'INCREMENTATION', 'DECREMENTATION',
-    'SUP', 'INF', 'EQUALSCOMP', 'INFEQUALS', 'SUPEQUALS',  # comparison ops
+    'SUP', 'INF', 'EQUALSCOMP', 'INFEQUALS', 'SUPEQUALS', 'DIFFERENT',  # comparison ops
 
 ]
 
@@ -195,6 +185,7 @@ def p_darija(p):
            | decrementation
            | expression
            | if
+           | input
            | while
            | doWhile
            | empty
@@ -264,7 +255,9 @@ def p_instruction(p):
            | KMEL
            | while
            | doWhile
+           | input
            | empty
+
 
     '''
     p[0] = p[1]
@@ -375,6 +368,7 @@ def p_expression_id(p):
 def p_input(p):
     '''
     input : QRA LPAREN expression RPAREN
+          | QRA LPAREN RPAREN
     '''
     p[0] = (p[1], p[3])
 
@@ -554,7 +548,10 @@ def run(p):
                         continue
                 break
         elif p[0] == 'qra':
-            return(input(run(p[1])+'\n'))
+            if p[1] == ')':
+                return(input())
+            else:
+                return(input(run(p[1])+'\n'))
     else:
         return p
 
