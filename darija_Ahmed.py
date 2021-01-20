@@ -31,6 +31,7 @@ tokens = [
     'EQUALSCOMP',
     'INFEQUALS',
     'SUPEQUALS',
+    'DIFFERENT'
 
 ]
 
@@ -60,6 +61,7 @@ reserved = {
     'red': 'RED',  # return
     'jereb': 'JEREB',  # try
     'qra': 'QRA',  # input
+    'dir': 'DIR',  # do
 
     'rje3': 'RJE3',  # yield
     'men': 'MEN',  # from
@@ -80,6 +82,7 @@ tokens = tokens + list(reserved.values())
 
 # Regular expression rules for simple tokens
 t_EQUALSCOMP = r'\=\='
+t_DIFFERENT = r'\!\='
 t_SUP = r'\>'
 t_INF = r'\<'
 t_INFEQUALS = r'\<\='
@@ -197,6 +200,7 @@ def p_darija(p):
            | expression
            | if
            | while
+           | doWhile
            | empty
     '''
     run(p[1])
@@ -220,6 +224,7 @@ def p_decrementation(p):
 def p_var_assign(p):
     '''
     var_assign : ID EQUALS expression
+              |  ID EQUALS input
 
     '''
     p[0] = ('=', p[1], p[3])
@@ -245,6 +250,13 @@ def p_while(p):
     p[0] = (p[1], p[3], p[6])
 
 
+def p_doWhile(p):
+    '''
+    doWhile :  DIR LBRACKET instruction_list RBRACKET MA7ED LPAREN condition RPAREN
+    '''
+    p[0] = (p[1], p[3], p[7])
+
+
 def p_instruction(p):
     '''
     instruction : var_assign
@@ -256,7 +268,9 @@ def p_instruction(p):
            | KHREJ
            | KMEL
            | while
+           | doWhile
            | empty
+
     '''
     p[0] = p[1]
 
@@ -324,6 +338,7 @@ def p_condition_comp(p):
               | expression EQUALSCOMP expression
               | expression SUPEQUALS expression
               | expression INFEQUALS expression
+              | expression DIFFERENT expression
     '''
     p[0] = (p[2], p[1], p[3])
 
@@ -447,6 +462,8 @@ def run(p):
             return run(p[1]) or run(p[2])
         elif p[0] == '==':
             return run(p[1]) == run(p[2])
+        elif p[0] == '!=':
+            return run(p[1]) != run(p[2])
         elif p[0] == '>=':
             return run(p[1]) >= run(p[2])
         elif p[0] == '<=':
@@ -498,6 +515,9 @@ def run(p):
                     # et du coups en entre pas dans else donc on sort de while(see for/else dans python)
                     if i == 'khrej':
                         break
+                    if i == 'kmel':
+                        didContinue = True
+                        break
                     elif didBreak == True:
                         # je verifie sinon si un if qui s'est executé dans ce block contient un break('khrej'),
                         #  si oui il aura changé didBreak en TRUE, et du coups on va sortir de ce while,
@@ -513,8 +533,34 @@ def run(p):
                     didContinue = False
                     continue
                 break
+        elif p[0] == 'dir':
+            didBreak = False
+            didContinue = False
+            while(True):
+                for i in p[1]:
+                    if i == 'khrej':
+                        break
+                    if i == 'kmel':
+                        didContinue = True
+                        break
+                    elif didBreak == True:
+                        didBreak = False
+                        break
+                    elif didContinue == True:
+                        break
+                    else:
+                        run(i)
+                else:
+                    if(run(p[2])):
+                        continue
+                if(didContinue == True):  # in the case of continue, we dont want to exit the loop
+                    didContinue = False
+                    if(run(p[2])):
+                        continue
+                break
+
         # elif p[0] == 'qra':
-        #     input(run(p[1]))
+        #     return(input(run(p[1])))
     else:
         return p
 
