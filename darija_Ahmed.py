@@ -38,8 +38,6 @@ reserved = {
     'naw3': 'NAW3',  # class TODO
     '3aref': '3AREF',  # def TODO
     'wlaila': 'WLAILA',  # elif TODO
-    'masd9ch': 'MASD9CH',  # except TODO
-    'akhiran': 'AKHIRAN',  # finally TODO
     'lkola': 'LKOLA',  # for TODO
     '3amm': '3AMM',  # global TODO
     'huwa': 'HUWA',  # is TODO
@@ -48,6 +46,8 @@ reserved = {
     'tele3': 'TELE3',  # raise TODO
     'red': 'RED',  # return TODO
     'jereb': 'JEREB',  # try TODO
+    'masd9ch': 'MASD9CH',  # except TODO
+    'akhiran': 'AKHIRAN',  # finally TODO
 
     # 'rje3': 'RJE3',  # yield
     # 'men': 'MEN',  # from
@@ -188,6 +188,7 @@ def p_darija(p):
            | input
            | while
            | doWhile
+           | try
            | empty
     '''
     run(p[1])
@@ -372,6 +373,15 @@ def p_input(p):
     '''
     p[0] = (p[1], p[3])
 
+def p_try(p):
+    '''
+    try :  jereb LBRACKET instruction_list RBRACKET masd9ch LBRACKET instruction_list RBRACKET
+        |  jereb LBRACKET instruction_list RBRACKET masd9ch LBRACKET instruction_list RBRACKET akhiran LBRACKET instruction_list RBRACKET
+    '''
+    if len(p)==8:
+        p[0] = (p[1], p[3], p[5], p[7])
+    else:
+        p[0] = (p[1], p[3], p[5], p[7],p[9],p[11])
 
 def p_expression_terminals(p):
     '''
@@ -552,6 +562,14 @@ def run(p):
                 return(input())
             else:
                 return(input(run(p[1])+'\n'))
+        elif p[0] == "jereb":
+            try:
+                run(p[2])
+            except:
+                run(p[6])
+            finally:
+                if len(p)!=8: run(p[7])
+                else: return None
     else:
         return p
 
