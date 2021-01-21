@@ -1,14 +1,14 @@
-Created by PLY version 3.8 (http://www.dabeaz.com/ply)
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
 Unused terminals:
 
-    3AMM
-    DOUZ
     3AKSS
+    3AMM
     3AREF
+    DOUZ
+    NAW3
     RED
     TELE3
-    NAW3
 
 Grammar
 
@@ -233,6 +233,9 @@ state 0
   ! shift/reduce conflict for KMEL resolved as shift
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -251,6 +254,8 @@ state 0
     ID              shift and go to state 18
     KTEB            shift and go to state 20
     (               shift and go to state 21
+    MINUS           shift and go to state 23
+    PLUS            shift and go to state 22
     INT             shift and go to state 24
     FLOAT           shift and go to state 25
     STRING          shift and go to state 26
@@ -263,18 +268,16 @@ state 0
     MA7ED           shift and go to state 35
     DIR             shift and go to state 36
     QRA             shift and go to state 37
-    MINUS           reduce using rule 75 (empty -> .)
-    PLUS            reduce using rule 75 (empty -> .)
     $end            reduce using rule 75 (empty -> .)
     [               shift and go to state 38
 
-  ! MINUS           [ shift and go to state 23 ]
-  ! PLUS            [ shift and go to state 22 ]
   ! KHREJ           [ reduce using rule 75 (empty -> .) ]
   ! KMEL            [ reduce using rule 75 (empty -> .) ]
   ! ID              [ reduce using rule 75 (empty -> .) ]
   ! KTEB            [ reduce using rule 75 (empty -> .) ]
   ! (               [ reduce using rule 75 (empty -> .) ]
+  ! MINUS           [ reduce using rule 75 (empty -> .) ]
+  ! PLUS            [ reduce using rule 75 (empty -> .) ]
   ! INT             [ reduce using rule 75 (empty -> .) ]
   ! FLOAT           [ reduce using rule 75 (empty -> .) ]
   ! STRING          [ reduce using rule 75 (empty -> .) ]
@@ -378,6 +381,9 @@ state 2
   ! shift/reduce conflict for KMEL resolved as shift
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -398,6 +404,8 @@ state 2
     ID              shift and go to state 18
     KTEB            shift and go to state 20
     (               shift and go to state 21
+    MINUS           shift and go to state 23
+    PLUS            shift and go to state 22
     INT             shift and go to state 24
     FLOAT           shift and go to state 25
     STRING          shift and go to state 26
@@ -410,17 +418,15 @@ state 2
     MA7ED           shift and go to state 35
     DIR             shift and go to state 36
     QRA             shift and go to state 37
-    MINUS           reduce using rule 75 (empty -> .)
-    PLUS            reduce using rule 75 (empty -> .)
     [               shift and go to state 38
 
-  ! MINUS           [ shift and go to state 23 ]
-  ! PLUS            [ shift and go to state 22 ]
   ! KHREJ           [ reduce using rule 75 (empty -> .) ]
   ! KMEL            [ reduce using rule 75 (empty -> .) ]
   ! ID              [ reduce using rule 75 (empty -> .) ]
   ! KTEB            [ reduce using rule 75 (empty -> .) ]
   ! (               [ reduce using rule 75 (empty -> .) ]
+  ! MINUS           [ reduce using rule 75 (empty -> .) ]
+  ! PLUS            [ reduce using rule 75 (empty -> .) ]
   ! INT             [ reduce using rule 75 (empty -> .) ]
   ! FLOAT           [ reduce using rule 75 (empty -> .) ]
   ! STRING          [ reduce using rule 75 (empty -> .) ]
@@ -2233,6 +2239,9 @@ state 55
   ! shift/reduce conflict for KMEL resolved as shift
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -2251,6 +2260,8 @@ state 55
     ID              shift and go to state 18
     KTEB            shift and go to state 20
     (               shift and go to state 21
+    MINUS           shift and go to state 23
+    PLUS            shift and go to state 22
     INT             shift and go to state 24
     FLOAT           shift and go to state 25
     STRING          shift and go to state 26
@@ -2264,17 +2275,15 @@ state 55
     DIR             shift and go to state 36
     QRA             shift and go to state 37
     }               reduce using rule 75 (empty -> .)
-    MINUS           reduce using rule 75 (empty -> .)
-    PLUS            reduce using rule 75 (empty -> .)
     [               shift and go to state 38
 
-  ! MINUS           [ shift and go to state 23 ]
-  ! PLUS            [ shift and go to state 22 ]
   ! KHREJ           [ reduce using rule 75 (empty -> .) ]
   ! KMEL            [ reduce using rule 75 (empty -> .) ]
   ! ID              [ reduce using rule 75 (empty -> .) ]
   ! KTEB            [ reduce using rule 75 (empty -> .) ]
   ! (               [ reduce using rule 75 (empty -> .) ]
+  ! MINUS           [ reduce using rule 75 (empty -> .) ]
+  ! PLUS            [ reduce using rule 75 (empty -> .) ]
   ! INT             [ reduce using rule 75 (empty -> .) ]
   ! FLOAT           [ reduce using rule 75 (empty -> .) ]
   ! STRING          [ reduce using rule 75 (empty -> .) ]
@@ -2535,6 +2544,9 @@ state 59
   ! shift/reduce conflict for KMEL resolved as shift
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -2553,6 +2565,8 @@ state 59
     ID              shift and go to state 18
     KTEB            shift and go to state 20
     (               shift and go to state 21
+    MINUS           shift and go to state 23
+    PLUS            shift and go to state 22
     INT             shift and go to state 24
     FLOAT           shift and go to state 25
     STRING          shift and go to state 26
@@ -2566,17 +2580,15 @@ state 59
     DIR             shift and go to state 36
     QRA             shift and go to state 37
     }               reduce using rule 75 (empty -> .)
-    MINUS           reduce using rule 75 (empty -> .)
-    PLUS            reduce using rule 75 (empty -> .)
     [               shift and go to state 38
 
-  ! MINUS           [ shift and go to state 23 ]
-  ! PLUS            [ shift and go to state 22 ]
   ! KHREJ           [ reduce using rule 75 (empty -> .) ]
   ! KMEL            [ reduce using rule 75 (empty -> .) ]
   ! ID              [ reduce using rule 75 (empty -> .) ]
   ! KTEB            [ reduce using rule 75 (empty -> .) ]
   ! (               [ reduce using rule 75 (empty -> .) ]
+  ! MINUS           [ reduce using rule 75 (empty -> .) ]
+  ! PLUS            [ reduce using rule 75 (empty -> .) ]
   ! INT             [ reduce using rule 75 (empty -> .) ]
   ! FLOAT           [ reduce using rule 75 (empty -> .) ]
   ! STRING          [ reduce using rule 75 (empty -> .) ]
@@ -3258,6 +3270,9 @@ state 78
   ! shift/reduce conflict for KMEL resolved as shift
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -3277,6 +3292,8 @@ state 78
     ID              shift and go to state 18
     KTEB            shift and go to state 20
     (               shift and go to state 21
+    MINUS           shift and go to state 23
+    PLUS            shift and go to state 22
     INT             shift and go to state 24
     FLOAT           shift and go to state 25
     STRING          shift and go to state 26
@@ -3289,18 +3306,16 @@ state 78
     MA7ED           shift and go to state 35
     DIR             shift and go to state 36
     QRA             shift and go to state 37
-    MINUS           reduce using rule 75 (empty -> .)
-    PLUS            reduce using rule 75 (empty -> .)
     [               shift and go to state 38
 
-  ! MINUS           [ shift and go to state 23 ]
-  ! PLUS            [ shift and go to state 22 ]
   ! }               [ reduce using rule 75 (empty -> .) ]
   ! KHREJ           [ reduce using rule 75 (empty -> .) ]
   ! KMEL            [ reduce using rule 75 (empty -> .) ]
   ! ID              [ reduce using rule 75 (empty -> .) ]
   ! KTEB            [ reduce using rule 75 (empty -> .) ]
   ! (               [ reduce using rule 75 (empty -> .) ]
+  ! MINUS           [ reduce using rule 75 (empty -> .) ]
+  ! PLUS            [ reduce using rule 75 (empty -> .) ]
   ! INT             [ reduce using rule 75 (empty -> .) ]
   ! FLOAT           [ reduce using rule 75 (empty -> .) ]
   ! STRING          [ reduce using rule 75 (empty -> .) ]
@@ -3465,6 +3480,9 @@ state 84
   ! shift/reduce conflict for KMEL resolved as shift
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -3484,6 +3502,8 @@ state 84
     ID              shift and go to state 18
     KTEB            shift and go to state 20
     (               shift and go to state 21
+    MINUS           shift and go to state 23
+    PLUS            shift and go to state 22
     INT             shift and go to state 24
     FLOAT           shift and go to state 25
     STRING          shift and go to state 26
@@ -3496,18 +3516,16 @@ state 84
     MA7ED           shift and go to state 35
     DIR             shift and go to state 36
     QRA             shift and go to state 37
-    MINUS           reduce using rule 75 (empty -> .)
-    PLUS            reduce using rule 75 (empty -> .)
     [               shift and go to state 38
 
-  ! MINUS           [ shift and go to state 23 ]
-  ! PLUS            [ shift and go to state 22 ]
   ! }               [ reduce using rule 75 (empty -> .) ]
   ! KHREJ           [ reduce using rule 75 (empty -> .) ]
   ! KMEL            [ reduce using rule 75 (empty -> .) ]
   ! ID              [ reduce using rule 75 (empty -> .) ]
   ! KTEB            [ reduce using rule 75 (empty -> .) ]
   ! (               [ reduce using rule 75 (empty -> .) ]
+  ! MINUS           [ reduce using rule 75 (empty -> .) ]
+  ! PLUS            [ reduce using rule 75 (empty -> .) ]
   ! INT             [ reduce using rule 75 (empty -> .) ]
   ! FLOAT           [ reduce using rule 75 (empty -> .) ]
   ! STRING          [ reduce using rule 75 (empty -> .) ]
@@ -3744,6 +3762,7 @@ state 91
     (48) expression -> expression . TIMES expression
     (49) expression -> expression . DIVIDE expression
 
+  ! shift/reduce conflict for ) resolved as shift
     )               shift and go to state 77
     SUP             shift and go to state 97
     INF             shift and go to state 98
@@ -4790,6 +4809,9 @@ state 124
   ! shift/reduce conflict for KMEL resolved as shift
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -4808,6 +4830,8 @@ state 124
     ID              shift and go to state 18
     KTEB            shift and go to state 20
     (               shift and go to state 21
+    MINUS           shift and go to state 23
+    PLUS            shift and go to state 22
     INT             shift and go to state 24
     FLOAT           shift and go to state 25
     STRING          shift and go to state 26
@@ -4821,17 +4845,15 @@ state 124
     DIR             shift and go to state 36
     QRA             shift and go to state 37
     }               reduce using rule 75 (empty -> .)
-    MINUS           reduce using rule 75 (empty -> .)
-    PLUS            reduce using rule 75 (empty -> .)
     [               shift and go to state 38
 
-  ! MINUS           [ shift and go to state 23 ]
-  ! PLUS            [ shift and go to state 22 ]
   ! KHREJ           [ reduce using rule 75 (empty -> .) ]
   ! KMEL            [ reduce using rule 75 (empty -> .) ]
   ! ID              [ reduce using rule 75 (empty -> .) ]
   ! KTEB            [ reduce using rule 75 (empty -> .) ]
   ! (               [ reduce using rule 75 (empty -> .) ]
+  ! MINUS           [ reduce using rule 75 (empty -> .) ]
+  ! PLUS            [ reduce using rule 75 (empty -> .) ]
   ! INT             [ reduce using rule 75 (empty -> .) ]
   ! FLOAT           [ reduce using rule 75 (empty -> .) ]
   ! STRING          [ reduce using rule 75 (empty -> .) ]
@@ -4957,6 +4979,9 @@ state 127
   ! shift/reduce conflict for KMEL resolved as shift
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -4975,6 +5000,8 @@ state 127
     ID              shift and go to state 18
     KTEB            shift and go to state 20
     (               shift and go to state 21
+    MINUS           shift and go to state 23
+    PLUS            shift and go to state 22
     INT             shift and go to state 24
     FLOAT           shift and go to state 25
     STRING          shift and go to state 26
@@ -4988,17 +5015,15 @@ state 127
     DIR             shift and go to state 36
     QRA             shift and go to state 37
     }               reduce using rule 75 (empty -> .)
-    MINUS           reduce using rule 75 (empty -> .)
-    PLUS            reduce using rule 75 (empty -> .)
     [               shift and go to state 38
 
-  ! MINUS           [ shift and go to state 23 ]
-  ! PLUS            [ shift and go to state 22 ]
   ! KHREJ           [ reduce using rule 75 (empty -> .) ]
   ! KMEL            [ reduce using rule 75 (empty -> .) ]
   ! ID              [ reduce using rule 75 (empty -> .) ]
   ! KTEB            [ reduce using rule 75 (empty -> .) ]
   ! (               [ reduce using rule 75 (empty -> .) ]
+  ! MINUS           [ reduce using rule 75 (empty -> .) ]
+  ! PLUS            [ reduce using rule 75 (empty -> .) ]
   ! INT             [ reduce using rule 75 (empty -> .) ]
   ! FLOAT           [ reduce using rule 75 (empty -> .) ]
   ! STRING          [ reduce using rule 75 (empty -> .) ]
@@ -5269,6 +5294,9 @@ state 134
   ! shift/reduce conflict for KMEL resolved as shift
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -5287,6 +5315,8 @@ state 134
     ID              shift and go to state 18
     KTEB            shift and go to state 20
     (               shift and go to state 21
+    MINUS           shift and go to state 23
+    PLUS            shift and go to state 22
     INT             shift and go to state 24
     FLOAT           shift and go to state 25
     STRING          shift and go to state 26
@@ -5300,17 +5330,15 @@ state 134
     DIR             shift and go to state 36
     QRA             shift and go to state 37
     }               reduce using rule 75 (empty -> .)
-    MINUS           reduce using rule 75 (empty -> .)
-    PLUS            reduce using rule 75 (empty -> .)
     [               shift and go to state 38
 
-  ! MINUS           [ shift and go to state 23 ]
-  ! PLUS            [ shift and go to state 22 ]
   ! KHREJ           [ reduce using rule 75 (empty -> .) ]
   ! KMEL            [ reduce using rule 75 (empty -> .) ]
   ! ID              [ reduce using rule 75 (empty -> .) ]
   ! KTEB            [ reduce using rule 75 (empty -> .) ]
   ! (               [ reduce using rule 75 (empty -> .) ]
+  ! MINUS           [ reduce using rule 75 (empty -> .) ]
+  ! PLUS            [ reduce using rule 75 (empty -> .) ]
   ! INT             [ reduce using rule 75 (empty -> .) ]
   ! FLOAT           [ reduce using rule 75 (empty -> .) ]
   ! STRING          [ reduce using rule 75 (empty -> .) ]
@@ -5409,6 +5437,9 @@ state 135
   ! shift/reduce conflict for KMEL resolved as shift
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -5428,6 +5459,8 @@ state 135
     ID              shift and go to state 18
     KTEB            shift and go to state 20
     (               shift and go to state 21
+    MINUS           shift and go to state 23
+    PLUS            shift and go to state 22
     INT             shift and go to state 24
     FLOAT           shift and go to state 25
     STRING          shift and go to state 26
@@ -5440,18 +5473,16 @@ state 135
     MA7ED           shift and go to state 35
     DIR             shift and go to state 36
     QRA             shift and go to state 37
-    MINUS           reduce using rule 75 (empty -> .)
-    PLUS            reduce using rule 75 (empty -> .)
     [               shift and go to state 38
 
-  ! MINUS           [ shift and go to state 23 ]
-  ! PLUS            [ shift and go to state 22 ]
   ! }               [ reduce using rule 75 (empty -> .) ]
   ! KHREJ           [ reduce using rule 75 (empty -> .) ]
   ! KMEL            [ reduce using rule 75 (empty -> .) ]
   ! ID              [ reduce using rule 75 (empty -> .) ]
   ! KTEB            [ reduce using rule 75 (empty -> .) ]
   ! (               [ reduce using rule 75 (empty -> .) ]
+  ! MINUS           [ reduce using rule 75 (empty -> .) ]
+  ! PLUS            [ reduce using rule 75 (empty -> .) ]
   ! INT             [ reduce using rule 75 (empty -> .) ]
   ! FLOAT           [ reduce using rule 75 (empty -> .) ]
   ! STRING          [ reduce using rule 75 (empty -> .) ]
@@ -5572,6 +5603,9 @@ state 138
   ! shift/reduce conflict for KMEL resolved as shift
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -5591,6 +5625,8 @@ state 138
     ID              shift and go to state 18
     KTEB            shift and go to state 20
     (               shift and go to state 21
+    MINUS           shift and go to state 23
+    PLUS            shift and go to state 22
     INT             shift and go to state 24
     FLOAT           shift and go to state 25
     STRING          shift and go to state 26
@@ -5603,18 +5639,16 @@ state 138
     MA7ED           shift and go to state 35
     DIR             shift and go to state 36
     QRA             shift and go to state 37
-    MINUS           reduce using rule 75 (empty -> .)
-    PLUS            reduce using rule 75 (empty -> .)
     [               shift and go to state 38
 
-  ! MINUS           [ shift and go to state 23 ]
-  ! PLUS            [ shift and go to state 22 ]
   ! }               [ reduce using rule 75 (empty -> .) ]
   ! KHREJ           [ reduce using rule 75 (empty -> .) ]
   ! KMEL            [ reduce using rule 75 (empty -> .) ]
   ! ID              [ reduce using rule 75 (empty -> .) ]
   ! KTEB            [ reduce using rule 75 (empty -> .) ]
   ! (               [ reduce using rule 75 (empty -> .) ]
+  ! MINUS           [ reduce using rule 75 (empty -> .) ]
+  ! PLUS            [ reduce using rule 75 (empty -> .) ]
   ! INT             [ reduce using rule 75 (empty -> .) ]
   ! FLOAT           [ reduce using rule 75 (empty -> .) ]
   ! STRING          [ reduce using rule 75 (empty -> .) ]
@@ -6003,6 +6037,9 @@ state 147
   ! shift/reduce conflict for KMEL resolved as shift
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -6022,6 +6059,8 @@ state 147
     ID              shift and go to state 18
     KTEB            shift and go to state 20
     (               shift and go to state 21
+    MINUS           shift and go to state 23
+    PLUS            shift and go to state 22
     INT             shift and go to state 24
     FLOAT           shift and go to state 25
     STRING          shift and go to state 26
@@ -6034,18 +6073,16 @@ state 147
     MA7ED           shift and go to state 35
     DIR             shift and go to state 36
     QRA             shift and go to state 37
-    MINUS           reduce using rule 75 (empty -> .)
-    PLUS            reduce using rule 75 (empty -> .)
     [               shift and go to state 38
 
-  ! MINUS           [ shift and go to state 23 ]
-  ! PLUS            [ shift and go to state 22 ]
   ! }               [ reduce using rule 75 (empty -> .) ]
   ! KHREJ           [ reduce using rule 75 (empty -> .) ]
   ! KMEL            [ reduce using rule 75 (empty -> .) ]
   ! ID              [ reduce using rule 75 (empty -> .) ]
   ! KTEB            [ reduce using rule 75 (empty -> .) ]
   ! (               [ reduce using rule 75 (empty -> .) ]
+  ! MINUS           [ reduce using rule 75 (empty -> .) ]
+  ! PLUS            [ reduce using rule 75 (empty -> .) ]
   ! INT             [ reduce using rule 75 (empty -> .) ]
   ! FLOAT           [ reduce using rule 75 (empty -> .) ]
   ! STRING          [ reduce using rule 75 (empty -> .) ]
@@ -6418,6 +6455,9 @@ state 168
   ! shift/reduce conflict for KMEL resolved as shift
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -6436,6 +6476,8 @@ state 168
     ID              shift and go to state 18
     KTEB            shift and go to state 20
     (               shift and go to state 21
+    MINUS           shift and go to state 23
+    PLUS            shift and go to state 22
     INT             shift and go to state 24
     FLOAT           shift and go to state 25
     STRING          shift and go to state 26
@@ -6449,17 +6491,15 @@ state 168
     DIR             shift and go to state 36
     QRA             shift and go to state 37
     }               reduce using rule 75 (empty -> .)
-    MINUS           reduce using rule 75 (empty -> .)
-    PLUS            reduce using rule 75 (empty -> .)
     [               shift and go to state 38
 
-  ! MINUS           [ shift and go to state 23 ]
-  ! PLUS            [ shift and go to state 22 ]
   ! KHREJ           [ reduce using rule 75 (empty -> .) ]
   ! KMEL            [ reduce using rule 75 (empty -> .) ]
   ! ID              [ reduce using rule 75 (empty -> .) ]
   ! KTEB            [ reduce using rule 75 (empty -> .) ]
   ! (               [ reduce using rule 75 (empty -> .) ]
+  ! MINUS           [ reduce using rule 75 (empty -> .) ]
+  ! PLUS            [ reduce using rule 75 (empty -> .) ]
   ! INT             [ reduce using rule 75 (empty -> .) ]
   ! FLOAT           [ reduce using rule 75 (empty -> .) ]
   ! STRING          [ reduce using rule 75 (empty -> .) ]
@@ -6557,6 +6597,9 @@ state 169
   ! shift/reduce conflict for KMEL resolved as shift
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -6575,6 +6618,8 @@ state 169
     ID              shift and go to state 18
     KTEB            shift and go to state 20
     (               shift and go to state 21
+    MINUS           shift and go to state 23
+    PLUS            shift and go to state 22
     INT             shift and go to state 24
     FLOAT           shift and go to state 25
     STRING          shift and go to state 26
@@ -6588,17 +6633,15 @@ state 169
     DIR             shift and go to state 36
     QRA             shift and go to state 37
     }               reduce using rule 75 (empty -> .)
-    MINUS           reduce using rule 75 (empty -> .)
-    PLUS            reduce using rule 75 (empty -> .)
     [               shift and go to state 38
 
-  ! MINUS           [ shift and go to state 23 ]
-  ! PLUS            [ shift and go to state 22 ]
   ! KHREJ           [ reduce using rule 75 (empty -> .) ]
   ! KMEL            [ reduce using rule 75 (empty -> .) ]
   ! ID              [ reduce using rule 75 (empty -> .) ]
   ! KTEB            [ reduce using rule 75 (empty -> .) ]
   ! (               [ reduce using rule 75 (empty -> .) ]
+  ! MINUS           [ reduce using rule 75 (empty -> .) ]
+  ! PLUS            [ reduce using rule 75 (empty -> .) ]
   ! INT             [ reduce using rule 75 (empty -> .) ]
   ! FLOAT           [ reduce using rule 75 (empty -> .) ]
   ! STRING          [ reduce using rule 75 (empty -> .) ]
@@ -6696,6 +6739,9 @@ state 170
   ! shift/reduce conflict for KMEL resolved as shift
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -6714,6 +6760,8 @@ state 170
     ID              shift and go to state 18
     KTEB            shift and go to state 20
     (               shift and go to state 21
+    MINUS           shift and go to state 23
+    PLUS            shift and go to state 22
     INT             shift and go to state 24
     FLOAT           shift and go to state 25
     STRING          shift and go to state 26
@@ -6727,17 +6775,15 @@ state 170
     DIR             shift and go to state 36
     QRA             shift and go to state 37
     }               reduce using rule 75 (empty -> .)
-    MINUS           reduce using rule 75 (empty -> .)
-    PLUS            reduce using rule 75 (empty -> .)
     [               shift and go to state 38
 
-  ! MINUS           [ shift and go to state 23 ]
-  ! PLUS            [ shift and go to state 22 ]
   ! KHREJ           [ reduce using rule 75 (empty -> .) ]
   ! KMEL            [ reduce using rule 75 (empty -> .) ]
   ! ID              [ reduce using rule 75 (empty -> .) ]
   ! KTEB            [ reduce using rule 75 (empty -> .) ]
   ! (               [ reduce using rule 75 (empty -> .) ]
+  ! MINUS           [ reduce using rule 75 (empty -> .) ]
+  ! PLUS            [ reduce using rule 75 (empty -> .) ]
   ! INT             [ reduce using rule 75 (empty -> .) ]
   ! FLOAT           [ reduce using rule 75 (empty -> .) ]
   ! STRING          [ reduce using rule 75 (empty -> .) ]
@@ -6835,6 +6881,9 @@ state 171
   ! shift/reduce conflict for KMEL resolved as shift
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -6853,6 +6902,8 @@ state 171
     ID              shift and go to state 18
     KTEB            shift and go to state 20
     (               shift and go to state 21
+    MINUS           shift and go to state 23
+    PLUS            shift and go to state 22
     INT             shift and go to state 24
     FLOAT           shift and go to state 25
     STRING          shift and go to state 26
@@ -6866,17 +6917,15 @@ state 171
     DIR             shift and go to state 36
     QRA             shift and go to state 37
     }               reduce using rule 75 (empty -> .)
-    MINUS           reduce using rule 75 (empty -> .)
-    PLUS            reduce using rule 75 (empty -> .)
     [               shift and go to state 38
 
-  ! MINUS           [ shift and go to state 23 ]
-  ! PLUS            [ shift and go to state 22 ]
   ! KHREJ           [ reduce using rule 75 (empty -> .) ]
   ! KMEL            [ reduce using rule 75 (empty -> .) ]
   ! ID              [ reduce using rule 75 (empty -> .) ]
   ! KTEB            [ reduce using rule 75 (empty -> .) ]
   ! (               [ reduce using rule 75 (empty -> .) ]
+  ! MINUS           [ reduce using rule 75 (empty -> .) ]
+  ! PLUS            [ reduce using rule 75 (empty -> .) ]
   ! INT             [ reduce using rule 75 (empty -> .) ]
   ! FLOAT           [ reduce using rule 75 (empty -> .) ]
   ! STRING          [ reduce using rule 75 (empty -> .) ]
@@ -6974,6 +7023,9 @@ state 172
   ! shift/reduce conflict for KMEL resolved as shift
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -6992,6 +7044,8 @@ state 172
     ID              shift and go to state 18
     KTEB            shift and go to state 20
     (               shift and go to state 21
+    MINUS           shift and go to state 23
+    PLUS            shift and go to state 22
     INT             shift and go to state 24
     FLOAT           shift and go to state 25
     STRING          shift and go to state 26
@@ -7005,17 +7059,15 @@ state 172
     DIR             shift and go to state 36
     QRA             shift and go to state 37
     }               reduce using rule 75 (empty -> .)
-    MINUS           reduce using rule 75 (empty -> .)
-    PLUS            reduce using rule 75 (empty -> .)
     [               shift and go to state 38
 
-  ! MINUS           [ shift and go to state 23 ]
-  ! PLUS            [ shift and go to state 22 ]
   ! KHREJ           [ reduce using rule 75 (empty -> .) ]
   ! KMEL            [ reduce using rule 75 (empty -> .) ]
   ! ID              [ reduce using rule 75 (empty -> .) ]
   ! KTEB            [ reduce using rule 75 (empty -> .) ]
   ! (               [ reduce using rule 75 (empty -> .) ]
+  ! MINUS           [ reduce using rule 75 (empty -> .) ]
+  ! PLUS            [ reduce using rule 75 (empty -> .) ]
   ! INT             [ reduce using rule 75 (empty -> .) ]
   ! FLOAT           [ reduce using rule 75 (empty -> .) ]
   ! STRING          [ reduce using rule 75 (empty -> .) ]
@@ -7113,6 +7165,9 @@ state 173
   ! shift/reduce conflict for KMEL resolved as shift
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -7131,6 +7186,8 @@ state 173
     ID              shift and go to state 18
     KTEB            shift and go to state 20
     (               shift and go to state 21
+    MINUS           shift and go to state 23
+    PLUS            shift and go to state 22
     INT             shift and go to state 24
     FLOAT           shift and go to state 25
     STRING          shift and go to state 26
@@ -7144,17 +7201,15 @@ state 173
     DIR             shift and go to state 36
     QRA             shift and go to state 37
     }               reduce using rule 75 (empty -> .)
-    MINUS           reduce using rule 75 (empty -> .)
-    PLUS            reduce using rule 75 (empty -> .)
     [               shift and go to state 38
 
-  ! MINUS           [ shift and go to state 23 ]
-  ! PLUS            [ shift and go to state 22 ]
   ! KHREJ           [ reduce using rule 75 (empty -> .) ]
   ! KMEL            [ reduce using rule 75 (empty -> .) ]
   ! ID              [ reduce using rule 75 (empty -> .) ]
   ! KTEB            [ reduce using rule 75 (empty -> .) ]
   ! (               [ reduce using rule 75 (empty -> .) ]
+  ! MINUS           [ reduce using rule 75 (empty -> .) ]
+  ! PLUS            [ reduce using rule 75 (empty -> .) ]
   ! INT             [ reduce using rule 75 (empty -> .) ]
   ! FLOAT           [ reduce using rule 75 (empty -> .) ]
   ! STRING          [ reduce using rule 75 (empty -> .) ]
@@ -7252,6 +7307,9 @@ state 174
   ! shift/reduce conflict for KMEL resolved as shift
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -7271,6 +7329,8 @@ state 174
     ID              shift and go to state 18
     KTEB            shift and go to state 20
     (               shift and go to state 21
+    MINUS           shift and go to state 23
+    PLUS            shift and go to state 22
     INT             shift and go to state 24
     FLOAT           shift and go to state 25
     STRING          shift and go to state 26
@@ -7283,18 +7343,16 @@ state 174
     MA7ED           shift and go to state 35
     DIR             shift and go to state 36
     QRA             shift and go to state 37
-    MINUS           reduce using rule 75 (empty -> .)
-    PLUS            reduce using rule 75 (empty -> .)
     [               shift and go to state 38
 
-  ! MINUS           [ shift and go to state 23 ]
-  ! PLUS            [ shift and go to state 22 ]
   ! }               [ reduce using rule 75 (empty -> .) ]
   ! KHREJ           [ reduce using rule 75 (empty -> .) ]
   ! KMEL            [ reduce using rule 75 (empty -> .) ]
   ! ID              [ reduce using rule 75 (empty -> .) ]
   ! KTEB            [ reduce using rule 75 (empty -> .) ]
   ! (               [ reduce using rule 75 (empty -> .) ]
+  ! MINUS           [ reduce using rule 75 (empty -> .) ]
+  ! PLUS            [ reduce using rule 75 (empty -> .) ]
   ! INT             [ reduce using rule 75 (empty -> .) ]
   ! FLOAT           [ reduce using rule 75 (empty -> .) ]
   ! STRING          [ reduce using rule 75 (empty -> .) ]
@@ -7391,6 +7449,9 @@ state 175
   ! shift/reduce conflict for KMEL resolved as shift
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -7410,6 +7471,8 @@ state 175
     ID              shift and go to state 18
     KTEB            shift and go to state 20
     (               shift and go to state 21
+    MINUS           shift and go to state 23
+    PLUS            shift and go to state 22
     INT             shift and go to state 24
     FLOAT           shift and go to state 25
     STRING          shift and go to state 26
@@ -7422,18 +7485,16 @@ state 175
     MA7ED           shift and go to state 35
     DIR             shift and go to state 36
     QRA             shift and go to state 37
-    MINUS           reduce using rule 75 (empty -> .)
-    PLUS            reduce using rule 75 (empty -> .)
     [               shift and go to state 38
 
-  ! MINUS           [ shift and go to state 23 ]
-  ! PLUS            [ shift and go to state 22 ]
   ! }               [ reduce using rule 75 (empty -> .) ]
   ! KHREJ           [ reduce using rule 75 (empty -> .) ]
   ! KMEL            [ reduce using rule 75 (empty -> .) ]
   ! ID              [ reduce using rule 75 (empty -> .) ]
   ! KTEB            [ reduce using rule 75 (empty -> .) ]
   ! (               [ reduce using rule 75 (empty -> .) ]
+  ! MINUS           [ reduce using rule 75 (empty -> .) ]
+  ! PLUS            [ reduce using rule 75 (empty -> .) ]
   ! INT             [ reduce using rule 75 (empty -> .) ]
   ! FLOAT           [ reduce using rule 75 (empty -> .) ]
   ! STRING          [ reduce using rule 75 (empty -> .) ]
@@ -7530,6 +7591,9 @@ state 176
   ! shift/reduce conflict for KMEL resolved as shift
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -7549,6 +7613,8 @@ state 176
     ID              shift and go to state 18
     KTEB            shift and go to state 20
     (               shift and go to state 21
+    MINUS           shift and go to state 23
+    PLUS            shift and go to state 22
     INT             shift and go to state 24
     FLOAT           shift and go to state 25
     STRING          shift and go to state 26
@@ -7561,18 +7627,16 @@ state 176
     MA7ED           shift and go to state 35
     DIR             shift and go to state 36
     QRA             shift and go to state 37
-    MINUS           reduce using rule 75 (empty -> .)
-    PLUS            reduce using rule 75 (empty -> .)
     [               shift and go to state 38
 
-  ! MINUS           [ shift and go to state 23 ]
-  ! PLUS            [ shift and go to state 22 ]
   ! }               [ reduce using rule 75 (empty -> .) ]
   ! KHREJ           [ reduce using rule 75 (empty -> .) ]
   ! KMEL            [ reduce using rule 75 (empty -> .) ]
   ! ID              [ reduce using rule 75 (empty -> .) ]
   ! KTEB            [ reduce using rule 75 (empty -> .) ]
   ! (               [ reduce using rule 75 (empty -> .) ]
+  ! MINUS           [ reduce using rule 75 (empty -> .) ]
+  ! PLUS            [ reduce using rule 75 (empty -> .) ]
   ! INT             [ reduce using rule 75 (empty -> .) ]
   ! FLOAT           [ reduce using rule 75 (empty -> .) ]
   ! STRING          [ reduce using rule 75 (empty -> .) ]
@@ -7669,6 +7733,9 @@ state 177
   ! shift/reduce conflict for KMEL resolved as shift
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -7688,6 +7755,8 @@ state 177
     ID              shift and go to state 18
     KTEB            shift and go to state 20
     (               shift and go to state 21
+    MINUS           shift and go to state 23
+    PLUS            shift and go to state 22
     INT             shift and go to state 24
     FLOAT           shift and go to state 25
     STRING          shift and go to state 26
@@ -7700,18 +7769,16 @@ state 177
     MA7ED           shift and go to state 35
     DIR             shift and go to state 36
     QRA             shift and go to state 37
-    MINUS           reduce using rule 75 (empty -> .)
-    PLUS            reduce using rule 75 (empty -> .)
     [               shift and go to state 38
 
-  ! MINUS           [ shift and go to state 23 ]
-  ! PLUS            [ shift and go to state 22 ]
   ! }               [ reduce using rule 75 (empty -> .) ]
   ! KHREJ           [ reduce using rule 75 (empty -> .) ]
   ! KMEL            [ reduce using rule 75 (empty -> .) ]
   ! ID              [ reduce using rule 75 (empty -> .) ]
   ! KTEB            [ reduce using rule 75 (empty -> .) ]
   ! (               [ reduce using rule 75 (empty -> .) ]
+  ! MINUS           [ reduce using rule 75 (empty -> .) ]
+  ! PLUS            [ reduce using rule 75 (empty -> .) ]
   ! INT             [ reduce using rule 75 (empty -> .) ]
   ! FLOAT           [ reduce using rule 75 (empty -> .) ]
   ! STRING          [ reduce using rule 75 (empty -> .) ]
@@ -7808,6 +7875,9 @@ state 178
   ! shift/reduce conflict for KMEL resolved as shift
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -7827,6 +7897,8 @@ state 178
     ID              shift and go to state 18
     KTEB            shift and go to state 20
     (               shift and go to state 21
+    MINUS           shift and go to state 23
+    PLUS            shift and go to state 22
     INT             shift and go to state 24
     FLOAT           shift and go to state 25
     STRING          shift and go to state 26
@@ -7839,18 +7911,16 @@ state 178
     MA7ED           shift and go to state 35
     DIR             shift and go to state 36
     QRA             shift and go to state 37
-    MINUS           reduce using rule 75 (empty -> .)
-    PLUS            reduce using rule 75 (empty -> .)
     [               shift and go to state 38
 
-  ! MINUS           [ shift and go to state 23 ]
-  ! PLUS            [ shift and go to state 22 ]
   ! }               [ reduce using rule 75 (empty -> .) ]
   ! KHREJ           [ reduce using rule 75 (empty -> .) ]
   ! KMEL            [ reduce using rule 75 (empty -> .) ]
   ! ID              [ reduce using rule 75 (empty -> .) ]
   ! KTEB            [ reduce using rule 75 (empty -> .) ]
   ! (               [ reduce using rule 75 (empty -> .) ]
+  ! MINUS           [ reduce using rule 75 (empty -> .) ]
+  ! PLUS            [ reduce using rule 75 (empty -> .) ]
   ! INT             [ reduce using rule 75 (empty -> .) ]
   ! FLOAT           [ reduce using rule 75 (empty -> .) ]
   ! STRING          [ reduce using rule 75 (empty -> .) ]
@@ -7947,6 +8017,9 @@ state 179
   ! shift/reduce conflict for KMEL resolved as shift
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -7966,6 +8039,8 @@ state 179
     ID              shift and go to state 18
     KTEB            shift and go to state 20
     (               shift and go to state 21
+    MINUS           shift and go to state 23
+    PLUS            shift and go to state 22
     INT             shift and go to state 24
     FLOAT           shift and go to state 25
     STRING          shift and go to state 26
@@ -7978,18 +8053,16 @@ state 179
     MA7ED           shift and go to state 35
     DIR             shift and go to state 36
     QRA             shift and go to state 37
-    MINUS           reduce using rule 75 (empty -> .)
-    PLUS            reduce using rule 75 (empty -> .)
     [               shift and go to state 38
 
-  ! MINUS           [ shift and go to state 23 ]
-  ! PLUS            [ shift and go to state 22 ]
   ! }               [ reduce using rule 75 (empty -> .) ]
   ! KHREJ           [ reduce using rule 75 (empty -> .) ]
   ! KMEL            [ reduce using rule 75 (empty -> .) ]
   ! ID              [ reduce using rule 75 (empty -> .) ]
   ! KTEB            [ reduce using rule 75 (empty -> .) ]
   ! (               [ reduce using rule 75 (empty -> .) ]
+  ! MINUS           [ reduce using rule 75 (empty -> .) ]
+  ! PLUS            [ reduce using rule 75 (empty -> .) ]
   ! INT             [ reduce using rule 75 (empty -> .) ]
   ! FLOAT           [ reduce using rule 75 (empty -> .) ]
   ! STRING          [ reduce using rule 75 (empty -> .) ]
@@ -8195,6 +8268,9 @@ WARNING: shift/reduce conflict for KHREJ in state 0 resolved as shift
 WARNING: shift/reduce conflict for KMEL in state 0 resolved as shift
 WARNING: shift/reduce conflict for ID in state 0 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 0 resolved as shift
+WARNING: shift/reduce conflict for ( in state 0 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 0 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 0 resolved as shift
 WARNING: shift/reduce conflict for INT in state 0 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 0 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 0 resolved as shift
@@ -8212,6 +8288,9 @@ WARNING: shift/reduce conflict for KHREJ in state 2 resolved as shift
 WARNING: shift/reduce conflict for KMEL in state 2 resolved as shift
 WARNING: shift/reduce conflict for ID in state 2 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 2 resolved as shift
+WARNING: shift/reduce conflict for ( in state 2 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 2 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 2 resolved as shift
 WARNING: shift/reduce conflict for INT in state 2 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 2 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 2 resolved as shift
@@ -8233,6 +8312,9 @@ WARNING: shift/reduce conflict for KHREJ in state 55 resolved as shift
 WARNING: shift/reduce conflict for KMEL in state 55 resolved as shift
 WARNING: shift/reduce conflict for ID in state 55 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 55 resolved as shift
+WARNING: shift/reduce conflict for ( in state 55 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 55 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 55 resolved as shift
 WARNING: shift/reduce conflict for INT in state 55 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 55 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 55 resolved as shift
@@ -8250,6 +8332,9 @@ WARNING: shift/reduce conflict for KHREJ in state 59 resolved as shift
 WARNING: shift/reduce conflict for KMEL in state 59 resolved as shift
 WARNING: shift/reduce conflict for ID in state 59 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 59 resolved as shift
+WARNING: shift/reduce conflict for ( in state 59 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 59 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 59 resolved as shift
 WARNING: shift/reduce conflict for INT in state 59 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 59 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 59 resolved as shift
@@ -8272,6 +8357,9 @@ WARNING: shift/reduce conflict for KHREJ in state 78 resolved as shift
 WARNING: shift/reduce conflict for KMEL in state 78 resolved as shift
 WARNING: shift/reduce conflict for ID in state 78 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 78 resolved as shift
+WARNING: shift/reduce conflict for ( in state 78 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 78 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 78 resolved as shift
 WARNING: shift/reduce conflict for INT in state 78 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 78 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 78 resolved as shift
@@ -8290,6 +8378,9 @@ WARNING: shift/reduce conflict for KHREJ in state 84 resolved as shift
 WARNING: shift/reduce conflict for KMEL in state 84 resolved as shift
 WARNING: shift/reduce conflict for ID in state 84 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 84 resolved as shift
+WARNING: shift/reduce conflict for ( in state 84 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 84 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 84 resolved as shift
 WARNING: shift/reduce conflict for INT in state 84 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 84 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 84 resolved as shift
@@ -8304,10 +8395,14 @@ WARNING: shift/reduce conflict for DIR in state 84 resolved as shift
 WARNING: shift/reduce conflict for QRA in state 84 resolved as shift
 WARNING: shift/reduce conflict for [ in state 84 resolved as shift
 WARNING: shift/reduce conflict for [ in state 89 resolved as shift
+WARNING: shift/reduce conflict for ) in state 91 resolved as shift
 WARNING: shift/reduce conflict for KHREJ in state 124 resolved as shift
 WARNING: shift/reduce conflict for KMEL in state 124 resolved as shift
 WARNING: shift/reduce conflict for ID in state 124 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 124 resolved as shift
+WARNING: shift/reduce conflict for ( in state 124 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 124 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 124 resolved as shift
 WARNING: shift/reduce conflict for INT in state 124 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 124 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 124 resolved as shift
@@ -8325,6 +8420,9 @@ WARNING: shift/reduce conflict for KHREJ in state 127 resolved as shift
 WARNING: shift/reduce conflict for KMEL in state 127 resolved as shift
 WARNING: shift/reduce conflict for ID in state 127 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 127 resolved as shift
+WARNING: shift/reduce conflict for ( in state 127 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 127 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 127 resolved as shift
 WARNING: shift/reduce conflict for INT in state 127 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 127 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 127 resolved as shift
@@ -8342,6 +8440,9 @@ WARNING: shift/reduce conflict for KHREJ in state 134 resolved as shift
 WARNING: shift/reduce conflict for KMEL in state 134 resolved as shift
 WARNING: shift/reduce conflict for ID in state 134 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 134 resolved as shift
+WARNING: shift/reduce conflict for ( in state 134 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 134 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 134 resolved as shift
 WARNING: shift/reduce conflict for INT in state 134 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 134 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 134 resolved as shift
@@ -8360,6 +8461,9 @@ WARNING: shift/reduce conflict for KHREJ in state 135 resolved as shift
 WARNING: shift/reduce conflict for KMEL in state 135 resolved as shift
 WARNING: shift/reduce conflict for ID in state 135 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 135 resolved as shift
+WARNING: shift/reduce conflict for ( in state 135 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 135 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 135 resolved as shift
 WARNING: shift/reduce conflict for INT in state 135 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 135 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 135 resolved as shift
@@ -8378,6 +8482,9 @@ WARNING: shift/reduce conflict for KHREJ in state 138 resolved as shift
 WARNING: shift/reduce conflict for KMEL in state 138 resolved as shift
 WARNING: shift/reduce conflict for ID in state 138 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 138 resolved as shift
+WARNING: shift/reduce conflict for ( in state 138 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 138 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 138 resolved as shift
 WARNING: shift/reduce conflict for INT in state 138 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 138 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 138 resolved as shift
@@ -8396,6 +8503,9 @@ WARNING: shift/reduce conflict for KHREJ in state 147 resolved as shift
 WARNING: shift/reduce conflict for KMEL in state 147 resolved as shift
 WARNING: shift/reduce conflict for ID in state 147 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 147 resolved as shift
+WARNING: shift/reduce conflict for ( in state 147 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 147 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 147 resolved as shift
 WARNING: shift/reduce conflict for INT in state 147 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 147 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 147 resolved as shift
@@ -8413,6 +8523,9 @@ WARNING: shift/reduce conflict for KHREJ in state 168 resolved as shift
 WARNING: shift/reduce conflict for KMEL in state 168 resolved as shift
 WARNING: shift/reduce conflict for ID in state 168 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 168 resolved as shift
+WARNING: shift/reduce conflict for ( in state 168 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 168 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 168 resolved as shift
 WARNING: shift/reduce conflict for INT in state 168 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 168 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 168 resolved as shift
@@ -8430,6 +8543,9 @@ WARNING: shift/reduce conflict for KHREJ in state 169 resolved as shift
 WARNING: shift/reduce conflict for KMEL in state 169 resolved as shift
 WARNING: shift/reduce conflict for ID in state 169 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 169 resolved as shift
+WARNING: shift/reduce conflict for ( in state 169 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 169 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 169 resolved as shift
 WARNING: shift/reduce conflict for INT in state 169 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 169 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 169 resolved as shift
@@ -8447,6 +8563,9 @@ WARNING: shift/reduce conflict for KHREJ in state 170 resolved as shift
 WARNING: shift/reduce conflict for KMEL in state 170 resolved as shift
 WARNING: shift/reduce conflict for ID in state 170 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 170 resolved as shift
+WARNING: shift/reduce conflict for ( in state 170 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 170 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 170 resolved as shift
 WARNING: shift/reduce conflict for INT in state 170 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 170 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 170 resolved as shift
@@ -8464,6 +8583,9 @@ WARNING: shift/reduce conflict for KHREJ in state 171 resolved as shift
 WARNING: shift/reduce conflict for KMEL in state 171 resolved as shift
 WARNING: shift/reduce conflict for ID in state 171 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 171 resolved as shift
+WARNING: shift/reduce conflict for ( in state 171 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 171 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 171 resolved as shift
 WARNING: shift/reduce conflict for INT in state 171 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 171 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 171 resolved as shift
@@ -8481,6 +8603,9 @@ WARNING: shift/reduce conflict for KHREJ in state 172 resolved as shift
 WARNING: shift/reduce conflict for KMEL in state 172 resolved as shift
 WARNING: shift/reduce conflict for ID in state 172 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 172 resolved as shift
+WARNING: shift/reduce conflict for ( in state 172 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 172 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 172 resolved as shift
 WARNING: shift/reduce conflict for INT in state 172 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 172 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 172 resolved as shift
@@ -8498,6 +8623,9 @@ WARNING: shift/reduce conflict for KHREJ in state 173 resolved as shift
 WARNING: shift/reduce conflict for KMEL in state 173 resolved as shift
 WARNING: shift/reduce conflict for ID in state 173 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 173 resolved as shift
+WARNING: shift/reduce conflict for ( in state 173 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 173 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 173 resolved as shift
 WARNING: shift/reduce conflict for INT in state 173 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 173 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 173 resolved as shift
@@ -8516,6 +8644,9 @@ WARNING: shift/reduce conflict for KHREJ in state 174 resolved as shift
 WARNING: shift/reduce conflict for KMEL in state 174 resolved as shift
 WARNING: shift/reduce conflict for ID in state 174 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 174 resolved as shift
+WARNING: shift/reduce conflict for ( in state 174 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 174 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 174 resolved as shift
 WARNING: shift/reduce conflict for INT in state 174 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 174 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 174 resolved as shift
@@ -8534,6 +8665,9 @@ WARNING: shift/reduce conflict for KHREJ in state 175 resolved as shift
 WARNING: shift/reduce conflict for KMEL in state 175 resolved as shift
 WARNING: shift/reduce conflict for ID in state 175 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 175 resolved as shift
+WARNING: shift/reduce conflict for ( in state 175 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 175 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 175 resolved as shift
 WARNING: shift/reduce conflict for INT in state 175 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 175 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 175 resolved as shift
@@ -8552,6 +8686,9 @@ WARNING: shift/reduce conflict for KHREJ in state 176 resolved as shift
 WARNING: shift/reduce conflict for KMEL in state 176 resolved as shift
 WARNING: shift/reduce conflict for ID in state 176 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 176 resolved as shift
+WARNING: shift/reduce conflict for ( in state 176 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 176 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 176 resolved as shift
 WARNING: shift/reduce conflict for INT in state 176 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 176 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 176 resolved as shift
@@ -8570,6 +8707,9 @@ WARNING: shift/reduce conflict for KHREJ in state 177 resolved as shift
 WARNING: shift/reduce conflict for KMEL in state 177 resolved as shift
 WARNING: shift/reduce conflict for ID in state 177 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 177 resolved as shift
+WARNING: shift/reduce conflict for ( in state 177 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 177 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 177 resolved as shift
 WARNING: shift/reduce conflict for INT in state 177 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 177 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 177 resolved as shift
@@ -8588,6 +8728,9 @@ WARNING: shift/reduce conflict for KHREJ in state 178 resolved as shift
 WARNING: shift/reduce conflict for KMEL in state 178 resolved as shift
 WARNING: shift/reduce conflict for ID in state 178 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 178 resolved as shift
+WARNING: shift/reduce conflict for ( in state 178 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 178 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 178 resolved as shift
 WARNING: shift/reduce conflict for INT in state 178 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 178 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 178 resolved as shift
@@ -8606,6 +8749,9 @@ WARNING: shift/reduce conflict for KHREJ in state 179 resolved as shift
 WARNING: shift/reduce conflict for KMEL in state 179 resolved as shift
 WARNING: shift/reduce conflict for ID in state 179 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 179 resolved as shift
+WARNING: shift/reduce conflict for ( in state 179 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 179 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 179 resolved as shift
 WARNING: shift/reduce conflict for INT in state 179 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 179 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 179 resolved as shift

@@ -13,10 +13,10 @@ import ply.yacc as yacc
 tokens = [
     'INT', 'FLOAT',  # Numbers
     'PLUS', 'MINUS', 'TIMES', 'DIVIDE',  # operations
-     # Parentheses and brackets and braces
+    # Parentheses and brackets and braces
     'ID',
     'STRING',
-    'EQUALS', #delimiters
+    'EQUALS',  # delimiters
     'INCREMENTATION', 'DECREMENTATION',
     'SUP', 'INF', 'EQUALSCOMP', 'INFEQUALS', 'SUPEQUALS', 'DIFFERENT',  # comparison ops
 
@@ -90,7 +90,8 @@ t_EQUALS = r'\='
 # t_COMMA = r','
 # t_LBRACKET = r'\['
 # t_RBRACKET = r'\]'
-literals = [',','[',']','{','}','(',')','+',';','.']
+literals = [',', '[', ']', '{', '}', '(', ')', '+', ';', '.']
+
 
 def t_COMMENT(t):
     r'\#.*'
@@ -149,6 +150,7 @@ def t_ID(t):
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
+
 
     # A string containing ignored characters (spaces and tabs)
 t_ignore = ' \t'
@@ -423,11 +425,14 @@ def p_expression_terminals(p):
     '''
     p[0] = p[1]
 # ARRAYS :)
+
+
 def p_arraylist_1(p):
     '''
     arraylist :  expression
     '''
     p[0] = [p[1]]
+
 
 def p_arraylist_2(p):
     '''
@@ -443,20 +448,24 @@ def p_array(p):
     '''
     p[0] = p[2]
 
+
 def p_arrayelt(p):
     '''
     arrayelt : ID '[' expression ']'
     '''
-    p[0] = ('arrelt',p[1],p[3])
+    p[0] = ('arrelt', p[1], p[3])
+
 
 def p_arrayelts(p):
     '''
     arrayelts : ID '[' expression ']' '[' expression ']'
     '''
-    p[0] = ('arrelts',p[1],p[3],p[6])
+    p[0] = ('arrelts', p[1], p[3], p[6])
+
 
 def p_arrayappend(p):
     pass
+
 
 def p_printing(p):
     '''
@@ -514,7 +523,7 @@ def run(p):
         except TypeError:
             print("Hadchi li ktbti machi huwa hadak!")
         if p[0] == '=':
-            if p[1] == 'arrelt':
+            if p[1][0] == 'arrelt':
                 ids[p[1][1]][run(p[1][2])] = run(p[2])
             else:
                 ids[p[1]] = run(p[2])
