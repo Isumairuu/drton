@@ -151,7 +151,6 @@ def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
 
-
     # A string containing ignored characters (spaces and tabs)
 t_ignore = ' \t'
 
@@ -421,7 +420,6 @@ def p_expression_terminals(p):
                | WALO
                | array
                | arrayelt
-               | arrayelts
     '''
     p[0] = p[1]
 # ARRAYS :)
@@ -451,16 +449,24 @@ def p_array(p):
 
 def p_arrayelt(p):
     '''
-    arrayelt : ID '[' expression ']'
+    arrayelt : ID dimensions
     '''
-    p[0] = ('arrelt', p[1], p[3])
+    p[0] = ('arrelt', p[1], p[2])
 
 
-def p_arrayelts(p):
+def p_dimensions(p):
     '''
-    arrayelts : ID '[' expression ']' '[' expression ']'
+    dimensions : '[' expression ']'
     '''
-    p[0] = ('arrelts', p[1], p[3], p[6])
+    p[0] = [run(p[2])]
+
+
+def p_demensions(p):
+    '''
+    dimensions : dimensions '[' expression ']'
+    '''
+    p[1].append(run(p[3]))
+    p[0] = p[1]
 
 
 def p_arrayappend(p):
@@ -524,7 +530,21 @@ def run(p):
             print("Hadchi li ktbti machi huwa hadak!")
         if p[0] == '=':
             if p[1][0] == 'arrelt':
-                ids[p[1][1]][run(p[1][2])] = run(p[2])
+                # dimension are stored in a table(p[1][2]), so the objective is to arrive at ids[p[1][1]][1stDim][2ndDim]...[lastDim],
+                #  and since when we have array = array, they will share the same memory allocation and any change that will happen to one
+                #  will happen to the other, thus with a loop, we advance until we arrive at the dimension before last then
+                # we modify the value, we stop at the before last so that our variable would still be a table and would still share
+                #  the same memory as our table in "ids"
+                tab = ids[p[1][1]]
+                j = len(p[1][2])-1
+                t = 0
+                for i in p[1][2]:
+                    if t < j:
+                        tab = tab[i]
+                    else:
+                        break
+                    t = t+1
+                tab[p[1][2][j]] = run(p[2])
             else:
                 ids[p[1]] = run(p[2])
         elif p[0] == 'id':
