@@ -12,11 +12,11 @@ import ply.yacc as yacc
 
 tokens = [
     'INT', 'FLOAT',  # Numbers
-    'PLUS', 'MINUS', 'TIMES', 'DIVIDE',  # operations
-    'LPAREN', 'RPAREN', 'LBRACKET', 'RBRACKET',  # Parentheses and brackets
+     'MINUS', 'TIMES', 'DIVIDE',  # operations
+     # Parentheses and brackets and braces
     'ID',
     'STRING',
-    'EQUALS', 'SEMICOLON',
+    'EQUALS', #delimiters
     'INCREMENTATION', 'DECREMENTATION',
     'SUP', 'INF', 'EQUALSCOMP', 'INFEQUALS', 'SUPEQUALS', 'DIFFERENT',  # comparison ops
 
@@ -43,7 +43,7 @@ reserved = {
     # arrays TODO
     '3amm': '3AMM',  # global TODO
     'douz': 'DOUZ',  # pass TODO
-    '3akss': '3AKSS',  # TODO # 3akss(condition)
+    '3akss': '3AKSS',  # TODO 3akss(condition)
     '3aref': '3AREF',  # def TODO
     'red': 'RED',  # return TODO
 
@@ -77,19 +77,20 @@ t_INFEQUALS = r'\<\='
 t_SUPEQUALS = r'\>\='
 t_INCREMENTATION = r'\+\+'
 t_DECREMENTATION = r'--'
-t_PLUS = r'\+'
+# t_PLUS = r'\+'
 t_MINUS = r'-'
 t_TIMES = r'\*'
 t_DIVIDE = r'/'
 t_EQUALS = r'\='
-t_LPAREN = r'\('
-t_RPAREN = r'\)'
-t_SEMICOLON = r';'
-t_LBRACKET = r'\{'
-t_RBRACKET = r'\}'
-
-# literals = ['{', '}', '==']
-
+# t_LPAREN = r'\('
+# t_RPAREN = r'\)'
+# t_SEMICOLON = r';'
+# t_LCBRACE = r'\{'
+# t_RCBRACE = r'\}'
+# t_COMMA = r','
+# t_LBRACKET = r'\['
+# t_RBRACKET = r'\]'
+literals = [',','[',']','{','}','(',')','+',';']
 
 def t_COMMENT(t):
     r'\#.*'
@@ -169,10 +170,10 @@ lexer = lex.lex()
 #     return (token.lexpos - line_start) + 1
 
 precedence = (
-    ('left', 'PLUS', 'MINUS'),
+    ('left', '+', 'MINUS'),
     ('left', 'TIMES', 'DIVIDE'),
     ('left', 'WA', 'AW'),
-    ('nonassoc', 'LPAREN', 'RPAREN'),
+    ('nonassoc', '(', ')'),
     ('nonassoc', 'SUP', 'INF', 'SUPEQUALS', 'INFEQUALS', 'EQUALSCOMP'),
 
 )
@@ -229,8 +230,8 @@ def p_var_assign(p):
 
 def p_if(p):
     '''
-    if : ILA LPAREN condition RPAREN LBRACKET instruction_list RBRACKET
-        | ILA LPAREN condition RPAREN LBRACKET instruction_list RBRACKET WLA LBRACKET instruction_list RBRACKET
+    if : ILA '(' condition ')' '{' instruction_list '}'
+        | ILA '(' condition ')' '{' instruction_list '}' WLA '{' instruction_list '}'
 
     '''
     if len(p) == 8:
@@ -241,17 +242,17 @@ def p_if(p):
 
 def p_for(p):
     '''
-    for : LKOLA LPAREN var_assign  SEMICOLON condition SEMICOLON incrementation  RPAREN LBRACKET instruction_list RBRACKET
-        | LKOLA LPAREN var_assign  SEMICOLON condition SEMICOLON decrementation  RPAREN LBRACKET instruction_list RBRACKET
-        | LKOLA LPAREN expression SEMICOLON condition SEMICOLON incrementation  RPAREN LBRACKET instruction_list RBRACKET
-        | LKOLA LPAREN expression SEMICOLON condition SEMICOLON decrementation  RPAREN LBRACKET instruction_list RBRACKET
+    for : LKOLA '(' var_assign  ';' condition ';' incrementation  ')' '{' instruction_list '}'
+        | LKOLA '(' var_assign  ';' condition ';' decrementation  ')' '{' instruction_list '}'
+        | LKOLA '(' expression ';' condition ';' incrementation  ')' '{' instruction_list '}'
+        | LKOLA '(' expression ';' condition ';' decrementation  ')' '{' instruction_list '}'
     '''
     p[0] = (p[1], p[3], p[5], p[7], p[10])
 
 
 def p_while(p):
     '''
-    while : MA7ED LPAREN condition RPAREN LBRACKET instruction_list RBRACKET
+    while : MA7ED '(' condition ')' '{' instruction_list '}'
 
     '''
     p[0] = (p[1], p[3], p[6])
@@ -259,7 +260,7 @@ def p_while(p):
 
 def p_doWhile(p):
     '''
-    doWhile :  DIR LBRACKET instruction_list RBRACKET MA7ED LPAREN condition RPAREN
+    doWhile :  DIR '{' instruction_list '}' MA7ED '(' condition ')'
     '''
     p[0] = (p[1], p[3], p[7])
 
@@ -308,8 +309,8 @@ def p_instruction_list(p):
 
 def p_condition_big(p):
     '''
-    condition : LPAREN condition RPAREN AW LPAREN condition RPAREN
-              | LPAREN condition RPAREN WA LPAREN condition RPAREN
+    condition : '(' condition ')' AW '(' condition ')'
+              | '(' condition ')' WA '(' condition ')'
 
     '''
     p[0] = (p[4], p[2], p[6])
@@ -317,8 +318,8 @@ def p_condition_big(p):
 
 def p_condition_medium1(p):
     '''
-    condition : condition WA LPAREN condition RPAREN
-              | condition AW LPAREN condition RPAREN
+    condition : condition WA '(' condition ')'
+              | condition AW '(' condition ')'
 
     '''
     p[0] = (p[2], p[1], p[4])
@@ -326,8 +327,8 @@ def p_condition_medium1(p):
 
 def p_condition_medium2(p):
     '''
-    condition : LPAREN condition RPAREN WA condition
-              | LPAREN condition RPAREN AW condition
+    condition : '(' condition ')' WA condition
+              | '(' condition ')' AW condition
 
     '''
     p[0] = (p[4], p[2], p[5])
@@ -363,13 +364,13 @@ def p_condition_exp(p):
 
 def p_expression(p):
     '''
-    expression : expression PLUS expression
+    expression : expression '+' expression
                | expression MINUS expression
                | expression TIMES expression
                | expression DIVIDE expression
-               | LPAREN expression RPAREN
+               | '(' expression ')'
                | MINUS expression
-               | PLUS expression
+               | '+' expression
     '''
     if p[1] == '+':
         p[0] = p[2]
@@ -390,16 +391,16 @@ def p_expression_id(p):
 
 def p_input(p):
     '''
-    input : QRA LPAREN expression RPAREN
-          | QRA LPAREN RPAREN
+    input : QRA '(' expression ')'
+          | QRA '(' ')'
     '''
     p[0] = (p[1], p[3])
 
 
 def p_try(p):
     '''
-    try :  JEREB LBRACKET instruction_list RBRACKET MASD9CH LBRACKET instruction_list RBRACKET
-        |  JEREB LBRACKET instruction_list RBRACKET MASD9CH LBRACKET instruction_list RBRACKET AKHIRAN LBRACKET instruction_list RBRACKET
+    try :  JEREB '{' instruction_list '}' MASD9CH '{' instruction_list '}'
+        |  JEREB '{' instruction_list '}' MASD9CH '{' instruction_list '}' AKHIRAN '{' instruction_list '}'
     '''
     if len(p) == 9:
         p[0] = (p[1], p[3], p[5], p[7])
@@ -415,15 +416,35 @@ def p_expression_terminals(p):
                | KHATE2
                | S7I7
                | WALO
+               | array
     '''
     p[0] = p[1]
+# ARRAYS :)
+def p_arraylist_1(p):
+    '''
+    arraylist :  expression
+    '''
+    p[0] = [p[1]]
 
+def p_arraylist_2(p):
+    '''
+    arraylist : arraylist ',' expression
+    '''
+    p[0] = p[1]
+    p[0].append(p[3])
+
+
+def p_array(p):
+    '''
+    array : '[' arraylist ']'
+    '''
+    p[0] = p[2]
 
 def p_printing(p):
     '''
-    printing : KTEB LPAREN condition RPAREN
-            | KTEB LPAREN incrementation RPAREN
-            | KTEB LPAREN decrementation RPAREN
+    printing : KTEB '(' condition ')'
+            | KTEB '(' incrementation ')'
+            | KTEB '(' decrementation ')'
     '''
     p[0] = (p[1], p[3])
 
