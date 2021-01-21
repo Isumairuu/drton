@@ -151,6 +151,7 @@ def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
 
+
     # A string containing ignored characters (spaces and tabs)
 t_ignore = ' \t'
 
@@ -445,6 +446,13 @@ def p_array(p):
     array : '[' arraylist ']'
     '''
     p[0] = p[2]
+
+
+def p_array_empty(p):
+    '''
+    array : '[' ']'
+    '''
+    p[0] = []
 
 
 def p_arrayelt(p):
