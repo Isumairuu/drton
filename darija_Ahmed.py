@@ -3,6 +3,7 @@
 # tokenizer for a simple expression evaluator for
 # numbers and +,-,*,/
 # ------------------------------------------------------------
+import sys
 import ply.lex as lex
 import ply.yacc as yacc
 
@@ -34,21 +35,22 @@ reserved = {
     'Walo': 'WALO',  # None
     'qra': 'QRA',  # input
     'kmel': 'KMEL',  # continue
-    'dir': 'DIR',
-    'naw3': 'NAW3',  # class TODO
-    '3aref': '3AREF',  # def TODO
-    'wlaila': 'WLAILA',  # elif TODO
-    'lkola': 'LKOLA',  # for TODO
+    'dir': 'DIR',  # do
+    'jereb': 'JEREB',  # try
+    'masd9ch': 'MASD9CH',  # except
+    'akhiran': 'AKHIRAN',  # finally
+    'lkola': 'LKOLA',  # for
+    # arrays TODO
     '3amm': '3AMM',  # global TODO
-    'huwa': 'HUWA',  # is TODO
-    'machi': 'machi',  # not TODO
     'douz': 'DOUZ',  # pass TODO
-    'tele3': 'TELE3',  # raise TODO
+    '3akss': '3AKSS',  # TODO # 3akss(condition)
+    '3aref': '3AREF',  # def TODO
     'red': 'RED',  # return TODO
-    'jereb': 'JEREB',  # try TODO
-    'masd9ch': 'MASD9CH',  # except TODO
-    'akhiran': 'AKHIRAN',  # finally TODO
 
+    'tele3': 'TELE3',  # raise TODO
+    'naw3': 'NAW3',  # class TODO
+
+    # 'huwa': 'HUWA',  # is
     # 'rje3': 'RJE3',  # yield
     # 'men': 'MEN',  # from
     # 'tsna': 'TSNA',  # await
@@ -177,21 +179,30 @@ precedence = (
 )
 
 
-def p_darija(p):
+# def p_darija(p):
+#     '''
+#     darija : var_assign
+#            | printing
+#            | incrementation
+#            | decrementation
+#            | expression
+#            | if
+#            | for
+#            | input
+#            | while
+#            | doWhile
+#            | try
+#            | empty
+#     '''
+#     run(p[1])
+
+
+def p_program(p):
     '''
-    darija : var_assign
-           | printing
-           | incrementation
-           | decrementation
-           | expression
-           | if
-           | input
-           | while
-           | doWhile
-           | try
-           | empty
+    program : instruction_list
     '''
-    run(p[1])
+    p = ('prog', p[1])
+    run(p)
 
 
 def p_incrementation(p):
@@ -229,6 +240,16 @@ def p_if(p):
         p[0] = (p[1], p[3], p[6], p[10])
 
 
+def p_for(p):
+    '''
+    for : LKOLA LPAREN var_assign  SEMICOLON condition SEMICOLON incrementation  RPAREN LBRACKET instruction_list RBRACKET
+        | LKOLA LPAREN var_assign  SEMICOLON condition SEMICOLON decrementation  RPAREN LBRACKET instruction_list RBRACKET
+        | LKOLA LPAREN expression SEMICOLON condition SEMICOLON incrementation  RPAREN LBRACKET instruction_list RBRACKET
+        | LKOLA LPAREN expression SEMICOLON condition SEMICOLON decrementation  RPAREN LBRACKET instruction_list RBRACKET
+    '''
+    p[0] = (p[1], p[3], p[5], p[7], p[10])
+
+
 def p_while(p):
     '''
     while : MA7ED LPAREN condition RPAREN LBRACKET instruction_list RBRACKET
@@ -251,7 +272,9 @@ def p_instruction(p):
            | incrementation
            | decrementation
            | expression
+           | try
            | if
+           | for
            | KHREJ
            | KMEL
            | while
@@ -373,15 +396,17 @@ def p_input(p):
     '''
     p[0] = (p[1], p[3])
 
+
 def p_try(p):
     '''
-    try :  jereb LBRACKET instruction_list RBRACKET masd9ch LBRACKET instruction_list RBRACKET
-        |  jereb LBRACKET instruction_list RBRACKET masd9ch LBRACKET instruction_list RBRACKET akhiran LBRACKET instruction_list RBRACKET
+    try :  JEREB LBRACKET instruction_list RBRACKET MASD9CH LBRACKET instruction_list RBRACKET
+        |  JEREB LBRACKET instruction_list RBRACKET MASD9CH LBRACKET instruction_list RBRACKET AKHIRAN LBRACKET instruction_list RBRACKET
     '''
-    if len(p)==8:
+    if len(p) == 9:
         p[0] = (p[1], p[3], p[5], p[7])
     else:
-        p[0] = (p[1], p[3], p[5], p[7],p[9],p[11])
+        p[0] = (p[1], p[3], p[5], p[7], p[9], p[11])
+
 
 def p_expression_terminals(p):
     '''
@@ -423,33 +448,34 @@ didContinue = False
 def run(p):
     global ids, didBreak, didContinue
     if type(p) == tuple:
-        if p[0] == '+':
-            try:
-                return run(p[1]) + run(p[2])
-            except TypeError:
+        if(p[0] == 'prog'):
+            for i in p[1]:
+                run(i)
+        try:
+            if p[0] == '+':
                 try:
+                    return run(p[1]) + run(p[2])
+                except TypeError:
                     # number and string concatenation
                     return str(run(p[1])) + str(run(p[2]))
-                except TypeError:
-                    print("action impossible")
-        elif p[0] == '-':
-            try:
+            elif p[0] == '-':
                 return run(p[1]) - run(p[2])
-            except TypeError:
-                print("Action impossible")
-        elif p[0] == '*':
-            return run(p[1]) * run(p[2])
-        elif p[0] == '/':
-            return run(p[1]) / run(p[2])
-        elif p[0] == '++':
-            ids[p[1]] = ids[p[1]] + 1
-            return ids[p[1]]
-        elif p[0] == '--':
-            ids[p[1]] = ids[p[1]] - 1
-            return ids[p[1]]
-        elif p[0] == 'neg':
-            return -run(p[1])
-        elif p[0] == '=':
+            elif p[0] == '*':
+                return run(p[1]) * run(p[2])
+            elif p[0] == '/':
+                return run(p[1]) / run(p[2])
+
+            elif p[0] == '++':
+                ids[p[1]] = ids[p[1]] + 1
+                return ids[p[1]]
+            elif p[0] == '--':
+                ids[p[1]] = ids[p[1]] - 1
+                return ids[p[1]]
+            elif p[0] == 'neg':
+                return -run(p[1])
+        except TypeError:
+            print("     action impo")
+        if p[0] == '=':
             ids[p[1]] = run(p[2])
         elif p[0] == 'id':
             return ids[p[1]]
@@ -532,6 +558,34 @@ def run(p):
                     didContinue = False
                     continue
                 break
+        elif p[0] == "lkola":
+            didBreak = False
+            didContinue = False
+            if p[1][0] == '=':
+                run(p[1])
+
+            while run(p[2]):
+                for i in p[4]:
+                    if i == 'khrej':
+                        break
+                    elif i == "kmel":
+                        didContinue = True
+                        break
+                    elif didBreak == True:
+                        didBreak = False
+                        break
+                    elif didContinue == True:
+                        break
+                    else:
+                        run(i)
+                else:
+                    run(p[3])
+                    continue
+                if(didContinue == True):  # in the case of continue, we dont want to exit the loop
+                    didContinue = False
+                    run(p[3])
+                    continue
+                break
         elif p[0] == 'dir':
             didBreak = False
             didContinue = False
@@ -559,17 +613,28 @@ def run(p):
                 break
         elif p[0] == 'qra':
             if p[1] == ')':
-                return(input())
+                return(int(input()))
             else:
-                return(input(run(p[1])+'\n'))
+                return(int(input(run(p[1])+'\n')))
         elif p[0] == "jereb":
-            try:
-                run(p[2])
-            except:
-                run(p[6])
-            finally:
-                if len(p)!=8: run(p[7])
-                else: return None
+            if len(p) == 4:
+                try:
+                    for i in p[1]:
+                        run(i)
+                except:
+                    for i in p[3]:
+                        run(i)
+            else:
+                try:
+                    for i in p[1]:
+                        run(i)
+                except:
+                    for i in p[3]:
+                        run(i)
+                finally:
+                    for i in p[5]:
+                        run(i)
+
     else:
         return p
 
@@ -616,4 +681,9 @@ while True:
     except EOFError:
         break
     parser.parse(i)
-    # break
+#     # break
+# try:
+# f = open(sys.argv[1])
+# parser.parse(f.read())
+# except:
+#     print("Erreur")
