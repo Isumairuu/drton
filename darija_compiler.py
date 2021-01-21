@@ -12,7 +12,7 @@ import ply.yacc as yacc
 
 tokens = [
     'INT', 'FLOAT',  # Numbers
-     'MINUS', 'TIMES', 'DIVIDE',  # operations
+    'PLUS', 'MINUS', 'TIMES', 'DIVIDE',  # operations
      # Parentheses and brackets and braces
     'ID',
     'STRING',
@@ -77,7 +77,7 @@ t_INFEQUALS = r'\<\='
 t_SUPEQUALS = r'\>\='
 t_INCREMENTATION = r'\+\+'
 t_DECREMENTATION = r'--'
-# t_PLUS = r'\+'
+t_PLUS = r'\+'
 t_MINUS = r'-'
 t_TIMES = r'\*'
 t_DIVIDE = r'/'
@@ -170,7 +170,7 @@ lexer = lex.lex()
 #     return (token.lexpos - line_start) + 1
 
 precedence = (
-    ('left', '+', 'MINUS'),
+    ('left', 'PLUS', 'MINUS'),
     ('left', 'TIMES', 'DIVIDE'),
     ('left', 'WA', 'AW'),
     ('nonassoc', '(', ')'),
@@ -364,13 +364,13 @@ def p_condition_exp(p):
 
 def p_expression(p):
     '''
-    expression : expression '+' expression
+    expression : expression PLUS expression
                | expression MINUS expression
                | expression TIMES expression
                | expression DIVIDE expression
                | '(' expression ')'
                | MINUS expression
-               | '+' expression
+               | PLUS expression
     '''
     if p[1] == '+':
         p[0] = p[2]
@@ -417,6 +417,7 @@ def p_expression_terminals(p):
                | S7I7
                | WALO
                | array
+               | arrayelt
     '''
     p[0] = p[1]
 # ARRAYS :)
@@ -439,6 +440,15 @@ def p_array(p):
     array : '[' arraylist ']'
     '''
     p[0] = p[2]
+
+def p_arrayelt(p):
+    '''
+    arrayelt : ID '[' INT ']'
+    '''
+    p[0] = ('arrelt',p[1],p[3])
+
+def p_arrayappend(p):
+    pass
 
 def p_printing(p):
     '''
@@ -494,13 +504,15 @@ def run(p):
             elif p[0] == 'neg':
                 return -run(p[1])
         except TypeError:
-            print("     action impo")
+            print("Hadchi li ktbti machi huwa hadak!")
         if p[0] == '=':
             ids[p[1]] = run(p[2])
         elif p[0] == 'id':
             return ids[p[1]]
         elif p[0] == 'kteb':
             print(run(p[1]))
+        elif p[0] == 'arrelt':
+            return ids[p[1]][p[2]]
         elif p[0] == 'wa':
             return run(p[1]) and run(p[2])
         elif p[0] == 'aw':
