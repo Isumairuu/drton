@@ -149,7 +149,6 @@ def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
 
-
     # A string containing ignored characters (spaces and tabs)
 t_ignore = ' \t'
 
@@ -613,9 +612,9 @@ def run(p):
                 break
         elif p[0] == 'qra':
             if p[1] == ')':
-                return(int(input()))
+                return(int(input()))  # TODO read string, numbers
             else:
-                return(int(input(run(p[1])+'\n')))
+                return(int(input(run(p[1])+'\n')))  # TODO read string, numbers
         elif p[0] == "jereb":
             if len(p) == 4:
                 try:
