@@ -40,8 +40,8 @@ reserved = {
     'masd9ch': 'MASD9CH',  # except
     'akhiran': 'AKHIRAN',  # finally
     'lkola': 'LKOLA',  # for
-    'l3akss': 'L3AKSS',
-    'mojod':  'MOJOD',
+    'l3akss': 'L3AKSS',  # not
+    'mojod':  'MOJOD',  # global
     # array functions
     'douz': 'DOUZ',  # pass TODO
     '3aref': '3AREF',  # def TODO
@@ -150,7 +150,6 @@ def t_ID(t):
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
-
 
     # A string containing ignored characters (spaces and tabs)
 t_ignore = ' \t'
@@ -593,9 +592,10 @@ def run(p):
         elif p[0] == 'kteb':
             print(run(p[1]))
         elif p[0] == 'arrelt':
-            return ids[p[1]][run(p[2])]
-        # elif p[0] == 'arrelts':
-        #     return ids[p[1]][run(p[2])][run(p[3])]
+            tab = ids[p[1]]
+            for i in p[2]:
+                tab = tab[i]
+            return tab
         elif p[0] == 'wa':
             return run(p[1]) and run(p[2])
         elif p[0] == 'aw':
