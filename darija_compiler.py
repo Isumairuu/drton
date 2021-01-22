@@ -40,10 +40,10 @@ reserved = {
     'masd9ch': 'MASD9CH',  # except
     'akhiran': 'AKHIRAN',  # finally
     'lkola': 'LKOLA',  # for
-    # arrays TODO
-    '3amm': '3AMM',  # global TODO
+    'l3akss': 'L3AKSS',
+    'mojod':  'MOJOD',
+    # array functions
     'douz': 'DOUZ',  # pass TODO
-    '3akss': '3AKSS',  # TODO 3akss(condition)
     '3aref': '3AREF',  # def TODO
     'red': 'RED',  # return TODO
 
@@ -226,7 +226,20 @@ def p_var_assign(p):
     '''
     var_assign : ID EQUALS expression
                | ID EQUALS input
-               | arrayelt EQUALS expression
+    '''
+    p[0] = ('=', p[1], p[3])
+
+
+def p_var_assign_global(p):
+    '''
+    var_assign : MOJOD var_assign
+    '''
+    p[0] = ('=', p[1], p[2])
+
+
+def p_arrayelt_assign(p):
+    '''
+    arrayelt_assign : arrayelt EQUALS expression
     '''
     p[0] = ('=', p[1], p[3])
 
@@ -271,6 +284,7 @@ def p_doWhile(p):
 def p_instruction(p):
     '''
     instruction : var_assign
+           | arrayelt_assign
            | printing
            | incrementation
            | decrementation
@@ -344,6 +358,13 @@ def p_condition(p):
 
     '''
     p[0] = (p[2], p[1], p[3])
+
+
+def p_condition(p):
+    '''
+    condition : L3AKSS '(' condition ')'
+    '''
+    p[0] = (p[1], p[3])
 
 
 def p_condition_comp(p):
@@ -504,10 +525,11 @@ def p_error(p):
 ids = {}
 didBreak = False
 didContinue = False
+locals = [[]]
 
 
 def run(p):
-    global ids, didBreak, didContinue
+    global ids, didBreak, didContinue, locals
     if type(p) == tuple:
         if(p[0] == 'prog'):
             for i in p[1]:
@@ -554,7 +576,12 @@ def run(p):
                     t = t+1
                 tab[p[1][2][j]] = run(p[2])
             else:
-                ids[p[1]] = run(p[2])
+                if p[1] == 'mojod':
+                    ids[p[2][1]] = run(p[2][2])
+                    locals[0].append(p[1])
+                else:
+                    ids[p[1]] = run(p[2])
+                    locals[len(locals)-1].append(p[1])
         elif p[0] == 'id':
             return ids[p[1]]
         elif p[0] == 'kteb':
@@ -579,8 +606,11 @@ def run(p):
             return run(p[1]) > run(p[2])
         elif p[0] == '<':
             return run(p[1]) < run(p[2])
+        elif p[0] == 'l3akss':
+            return not(run(p[1]))
         elif p[0] == "ila":
             if run(p[1]):
+                locals.append([])
                 for i in p[2]:
                     if didBreak == True:  # case where a block inside this block triggered break, we shouldnt keep executing the current if block
                         break
@@ -597,9 +627,14 @@ def run(p):
                         # meme principe que break
                         didContinue = True
                         break
+
                     run(i)
+                for i in locals[len(locals)-1]:
+                    ids.pop(i)
+                locals.pop()
             else:
                 if len(p) > 3:
+                    locals.append([])
                     for i in p[3]:
                         if didBreak == True:
                             break
@@ -611,11 +646,16 @@ def run(p):
                         elif i == 'kmel':
                             didContinue = True
                             break
+                        locals.append([])
                         run(i)
+                    for i in locals[len(locals)-1]:
+                        ids.pop[i]
+                    locals.pop()
         elif p[0] == "ma7ed":
             # on donne a ces variables false au cas ou elle sont devenu true suite a autre boucle
             didBreak = False
             didContinue = False
+            locals.append([])
             while run(p[1]):
                 for i in p[2]:
                     # si parmis les instructions qui se trouve directement dans le block de while, je sort de la boucle for,
@@ -640,12 +680,15 @@ def run(p):
                     didContinue = False
                     continue
                 break
+            for i in locals[len(locals)-1]:
+                ids.pop[i]
+            locals.pop()
         elif p[0] == "lkola":
             didBreak = False
             didContinue = False
+            locals.append([])
             if p[1][0] == '=':
                 run(p[1])
-
             while run(p[2]):
                 for i in p[4]:
                     if i == 'khrej':
@@ -668,9 +711,13 @@ def run(p):
                     run(p[3])
                     continue
                 break
+            for i in locals[len(locals)-1]:
+                ids.pop[i]
+            locals.pop()
         elif p[0] == 'dir':
             didBreak = False
             didContinue = False
+            locals.append([])
             while(True):
                 for i in p[1]:
                     if i == 'khrej':
@@ -693,6 +740,9 @@ def run(p):
                     if(run(p[2])):
                         continue
                 break
+            for i in locals[len(locals)-1]:
+                ids.pop[i]
+            locals.pop()
         elif p[0] == 'qra':
             if p[1] == ')':
                 return(int(input()))  # TODO read string, numbers
