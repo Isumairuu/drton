@@ -46,7 +46,7 @@ reserved = {
     'douz': 'DOUZ',  # pass TODO
     '3aref': '3AREF',  # def TODO
     'red': 'RED',  # return TODO
-
+    'tol': 'TOL', #len
     'tele3': 'TELE3',  # raise TODO
     'naw3': 'NAW3',  # class TODO
 
@@ -297,6 +297,7 @@ def p_instruction(p):
            | while
            | doWhile
            | input
+           | len
            | empty
 
 
@@ -510,6 +511,11 @@ def p_printing(p):
     '''
     p[0] = (p[1], p[3])
 
+def p_len(p):
+    '''
+    len : TOL '(' expression ')'
+    '''
+    p[0] = (p[1],p[3])
 
 def p_empty(p):
     '''
@@ -588,8 +594,8 @@ def run(p):
             print(run(p[1]))
         elif p[0] == 'arrelt':
             return ids[p[1]][run(p[2])]
-        elif p[0] == 'arrelts':
-            return ids[p[1]][run(p[2])][run(p[3])]
+        # elif p[0] == 'arrelts':
+        #     return ids[p[1]][run(p[2])][run(p[3])]
         elif p[0] == 'wa':
             return run(p[1]) and run(p[2])
         elif p[0] == 'aw':
@@ -608,6 +614,11 @@ def run(p):
             return run(p[1]) < run(p[2])
         elif p[0] == 'l3akss':
             return not(run(p[1]))
+        elif p[0] == 'tol':
+            try:
+                print(len(run(p[1])))
+            except TypeError:
+                print("Kat khdm ghir m3a list wla jomla")
         elif p[0] == "ila":
             if run(p[1]):
                 locals.append([])
