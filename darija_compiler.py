@@ -592,10 +592,13 @@ def run(p):
         elif p[0] == 'kteb':
             print(run(p[1]))
         elif p[0] == 'arrelt':
-            tab = ids[p[1]]
-            for i in p[2]:
-                tab = tab[i]
-            return tab
+            try:
+                tab = ids[p[1]]
+                for i in p[2]:
+                    tab = tab[i]
+                return tab
+            except TypeError:
+                print('List kat takhd ghir ra9m fl indice!')
         elif p[0] == 'wa':
             return run(p[1]) and run(p[2])
         elif p[0] == 'aw':
