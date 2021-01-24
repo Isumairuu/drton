@@ -90,7 +90,7 @@ t_EQUALS = r'\='
 # t_COMMA = r','
 # t_LBRACKET = r'\['
 # t_RBRACKET = r'\]'
-literals = [',', '[', ']', '{', '}', '(', ')', '+', ';', '.']
+literals = [',', '[', ']', '{', '}', '(', ')', '+', ';', '.',':']
 
 
 def t_COMMENT(t):
@@ -442,6 +442,7 @@ def p_expression_terminals(p):
                | WALO
                | array
                | arrayelt
+               | arrayslice
     '''
     p[0] = p[1]
 # ARRAYS :)
@@ -496,6 +497,25 @@ def p_demensions(p):
     '''
     p[1].append(run(p[3]))
     p[0] = p[1]
+
+
+def p_arrayslice(p):
+    '''
+    arrayslice : ID '[' expression ':' expression ']'
+               | ID '[' ':' expression ']'
+               | ID '[' expression ':' ']'
+               | ID '[' ':' ']'
+    '''
+    if len(p) == 7:
+        p[0] = ('slice',p[1], p[3], p[4],p[5])
+    elif len(p) == 5:
+        p[0] = ('slice',p[1])
+    elif p[3] == ':':
+        # accessing [:expr]
+        p[0] = ('slice',p[1], p[3],p[4]) #I included the ':' just to differentiate later
+    else:
+        # accessing [expr:]
+        p[0] = ('slice',p[1], p[3])
 
 
 def p_arrayappend(p):
@@ -599,6 +619,15 @@ def run(p):
                 return tab
             except TypeError:
                 print('List kat takhd ghir ra9m fl indice!')
+        elif p[0] == 'slice':
+            if len(p)==5:
+                return ids[p[1]][run(p[2]):run(p[4])]
+            elif len(p)==2:
+                return ids[p[1]][:]
+            elif len(p)==4:
+                return ids[p[1]][:run(p[3])]
+            else:
+                return ids[p[1]][run(p[2]):]
         elif p[0] == 'wa':
             return run(p[1]) and run(p[2])
         elif p[0] == 'aw':
