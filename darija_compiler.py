@@ -19,7 +19,6 @@ tokens = [
     'EQUALS',  # delimiters
     'INCREMENTATION', 'DECREMENTATION',
     'SUP', 'INF', 'EQUALSCOMP', 'INFEQUALS', 'SUPEQUALS', 'DIFFERENT',  # comparison ops
-
 ]
 
 reserved = {
@@ -43,27 +42,15 @@ reserved = {
     'l3akss': 'L3AKSS',  # not
     'mojod':  'MOJOD',  # global
     # array functions
+    'zid' : 'ZID', #append
+    'kber' : 'KBER' , #extend
     'douz': 'DOUZ',  # pass TODO
     '3aref': '3AREF',  # def TODO
     'red': 'RED',  # return TODO
     'tol': 'TOL', #len
     'tele3': 'TELE3',  # raise TODO
     'naw3': 'NAW3',  # class TODO
-
-    # 'huwa': 'HUWA',  # is
-    # 'rje3': 'RJE3',  # yield
-    # 'men': 'MEN',  # from
-    # 'tsna': 'TSNA',  # await
-    # 'mamtzamench': 'MAMTZAMENCH',  # async
-    # 'ftared': 'FTARED',  # assert
-    # 'b7al': 'B7AL',  # as
-    # 'mse7': 'MSE7',  # del
-    # 'jib': 'JIB',  # import
-    # 'fi': 'FI',  # in
-    # 'lambda': 'LAMBDA',  # lambda
-    # 'machima7ali': 'MACHIMA7ALI',  # nonlocal
-    # 'm3a': 'M3A',  # with
-
+    'func': 'FUNC'
 }
 
 tokens = tokens + list(reserved.values())
@@ -82,15 +69,7 @@ t_MINUS = r'-'
 t_TIMES = r'\*'
 t_DIVIDE = r'/'
 t_EQUALS = r'\='
-# t_LPAREN = r'\('
-# t_RPAREN = r'\)'
-# t_SEMICOLON = r';'
-# t_LCBRACE = r'\{'
-# t_RCBRACE = r'\}'
-# t_COMMA = r','
-# t_LBRACKET = r'\['
-# t_RBRACKET = r'\]'
-literals = [',', '[', ']', '{', '}', '(', ')', '+', ';', '.',':']
+literals = [',', '[', ']', '{', '}', '(', ')', '+', ';', '.',':','?']
 
 
 def t_COMMENT(t):
@@ -179,25 +158,6 @@ precedence = (
 
 )
 
-
-# def p_darija(p):
-#     '''
-#     darija : var_assign
-#            | printing
-#            | incrementation
-#            | decrementation
-#            | expression
-#            | if
-#            | for
-#            | input
-#            | while
-#            | doWhile
-#            | try
-#            | empty
-#     '''
-#     run(p[1])
-
-
 def p_program(p):
     '''
     program : instruction_list
@@ -239,6 +199,7 @@ def p_var_assign_global(p):
 def p_arrayelt_assign(p):
     '''
     arrayelt_assign : arrayelt EQUALS expression
+                    | arrayslice EQUALS expression
     '''
     p[0] = ('=', p[1], p[3])
 
@@ -298,8 +259,10 @@ def p_instruction(p):
            | input
            | len
            | empty
-
-
+           | func
+           | appel_func
+           | return
+           | arrfn
     '''
     p[0] = p[1]
 
@@ -378,7 +341,6 @@ def p_condition_comp(p):
     '''
     p[0] = (p[2], p[1], p[3])
 
-
 def p_condition_exp(p):
     '''
     condition : expression
@@ -443,6 +405,7 @@ def p_expression_terminals(p):
                | array
                | arrayelt
                | arrayslice
+               | arrfn
     '''
     p[0] = p[1]
 # ARRAYS :)
@@ -518,9 +481,88 @@ def p_arrayslice(p):
         p[0] = ('slice',p[1], p[3])
 
 
-def p_arrayappend(p):
-    pass
+def p_arrfn(p):
+    '''
+    arrfn : ID '.' ZID '(' expression ')'
+          | ID '.' KBER '(' array ')'
+    '''
+    p[0] = ('arrfn',p[1],p[3],p[5])
 
+#functions
+def p_argument(p):
+    '''
+    argument : INT
+               | FLOAT
+               | STRING
+    '''
+    p[0] = p[1]
+
+def p_argument_list(p):
+    '''
+        argument_list : argument
+                      | argument_list ',' argument
+    '''
+    if len(p) == 2:
+        p[0] = [p[1]]
+    else:
+        if(not isinstance(p[1], list)):
+            p[1] = [p[3]]
+        else:
+            p[1].append(p[3])
+        p[0] = p[1]
+
+
+def p_parameter(p):
+    '''
+    parameter : ID
+    '''
+    p[0] = p[1]
+
+def p_parameter_list(p):
+    '''
+        parameter_list : parameter
+                       | parameter_list ',' parameter
+    '''
+    if len(p) == 2:
+        p[0] = [p[1]]
+    else:
+        if(not isinstance(p[1], list)):
+            p[1] = [p[3]]
+        else:
+            p[1].append(p[3])
+        p[0] = p[1]
+
+
+def p_func(p):
+
+    '''
+    func : FUNC ID '(' parameter_list ')' '{' instruction_list '}'
+         | FUNC ID '(' ')' '{' instruction_list '}'
+    '''
+    if(len(p)==8):
+        p[0]=('3aref',p[2],p[6])
+    else:
+        p[0]=('3aref',p[2],p[4],p[7])
+
+
+def p_appel_func(p):
+
+    '''
+    appel_func : ID '(' argument_list ')'
+               | ID '('  ')' 
+    '''
+    if(len(p)==4):
+        p[0]=('appel_func',p[1])
+    else:
+        p[0]=('appel_func',p[1],p[3])
+
+def p_return(p):
+    '''
+    return : RED expression
+
+    '''
+
+    p[0]=('red',p[2])
 
 def p_printing(p):
     '''
@@ -551,7 +593,8 @@ ids = {}
 didBreak = False
 didContinue = False
 locals = [[]]
-
+functions = {}
+function_arguments={}
 
 def run(p):
     global ids, didBreak, didContinue, locals
@@ -631,6 +674,12 @@ def run(p):
                     return ids[p[1]][run(p[2]):]
             except TypeError:
                 print('T9d t9sm ghir lists wla joumal!')
+        elif p[0] == 'arrfn':
+            if p[2] == 'zid':
+
+                return ids[p[1]].append(run(p[3]))
+            elif p[2] == 'kber' :
+                return ids[p[1]].extend(run(p[3]))
         elif p[0] == 'wa':
             return run(p[1]) and run(p[2])
         elif p[0] == 'aw':
@@ -812,7 +861,30 @@ def run(p):
                 finally:
                     for i in p[5]:
                         run(i)
-
+        elif p[0] == "3aref":
+            if(len(p)==4):
+                function_arguments[p[1]]=p[2]
+                for i in p[2]:
+                    ids[i]=0
+                    print(ids)
+                functions[p[1]]=p[3]
+            else:
+                functions[p[1]]=p[2]
+            # for i in functions[p[1]]:
+            #     run(i)
+        elif p[0]=="appel_func":
+            #print(functions)
+            if(len(p)==3):
+                k=0
+                for i in function_arguments[p[1]]:
+                    ids[i]=p[2][k]
+                    k=k+1
+            for i in functions[p[1]]:
+                print(i)
+                if(i[0]=="red"):
+                    print(run(i[1]))
+                    break
+                run(i)
     else:
         return p
 
