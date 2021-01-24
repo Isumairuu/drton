@@ -620,14 +620,17 @@ def run(p):
             except TypeError:
                 print('List kat takhd ghir ra9m fl indice!')
         elif p[0] == 'slice':
-            if len(p)==5:
-                return ids[p[1]][run(p[2]):run(p[4])]
-            elif len(p)==2:
-                return ids[p[1]][:]
-            elif len(p)==4:
-                return ids[p[1]][:run(p[3])]
-            else:
-                return ids[p[1]][run(p[2]):]
+            try:
+                if len(p)==5:
+                    return ids[p[1]][run(p[2]):run(p[4])]
+                elif len(p)==2:
+                    return ids[p[1]][:]
+                elif len(p)==4:
+                    return ids[p[1]][:run(p[3])]
+                else:
+                    return ids[p[1]][run(p[2]):]
+            except TypeError:
+                print('T9d t9sm ghir lists wla joumal!')
         elif p[0] == 'wa':
             return run(p[1]) and run(p[2])
         elif p[0] == 'aw':
