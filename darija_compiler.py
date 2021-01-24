@@ -42,27 +42,17 @@ reserved = {
     'lkola': 'LKOLA',  # for
     'l3akss': 'L3AKSS',  # not
     'mojod':  'MOJOD',  # global
-    # array functions
-    'douz': 'DOUZ',  # pass TODO
-    '3aref': '3AREF',  # def TODO
-    'red': 'RED',  # return TODO
-    'tol': 'TOL', #len
-    'tele3': 'TELE3',  # raise TODO
-    'naw3': 'NAW3',  # class TODO
-
-    # 'huwa': 'HUWA',  # is
-    # 'rje3': 'RJE3',  # yield
-    # 'men': 'MEN',  # from
-    # 'tsna': 'TSNA',  # await
-    # 'mamtzamench': 'MAMTZAMENCH',  # async
-    # 'ftared': 'FTARED',  # assert
-    # 'b7al': 'B7AL',  # as
-    # 'mse7': 'MSE7',  # del
-    # 'jib': 'JIB',  # import
-    # 'fi': 'FI',  # in
-    # 'lambda': 'LAMBDA',  # lambda
-    # 'machima7ali': 'MACHIMA7ALI',  # nonlocal
-    # 'm3a': 'M3A',  # with
+    'red': 'RED',  # return
+    'ta3rif': 'TA3RIF',  # function
+    'douz': 'DOUZ',  # pass
+    # array ta3riftions
+    'tol': 'TOL',  # len
+    'zid': 'ZID',  # append
+    'kber': 'KBER',  # extend
+    'msse7': 'MSSE7',  # pop TODO
+    'dkhel': 'DKHEL',  # insert TODO
+    'khwi': 'KHWEI',  # khwi TODO
+    # other fuctions, example
 
 }
 
@@ -82,15 +72,8 @@ t_MINUS = r'-'
 t_TIMES = r'\*'
 t_DIVIDE = r'/'
 t_EQUALS = r'\='
-# t_LPAREN = r'\('
-# t_RPAREN = r'\)'
-# t_SEMICOLON = r';'
-# t_LCBRACE = r'\{'
-# t_RCBRACE = r'\}'
-# t_COMMA = r','
-# t_LBRACKET = r'\['
-# t_RBRACKET = r'\]'
-literals = [',', '[', ']', '{', '}', '(', ')', '+', ';', '.',':']
+
+literals = [',', '[', ']', '{', '}', '(', ')', '+', ';', '.', ':']
 
 
 def t_COMMENT(t):
@@ -169,7 +152,7 @@ lexer = lex.lex()
 # def find_column(input, token):
 #     line_start = input.rfind('\n', 0, token.lexpos) + 1
 #     return (token.lexpos - line_start) + 1
-
+##############################################################################################################
 precedence = (
     ('left', 'PLUS', 'MINUS'),
     ('left', 'TIMES', 'DIVIDE'),
@@ -178,24 +161,6 @@ precedence = (
     ('nonassoc', 'SUP', 'INF', 'SUPEQUALS', 'INFEQUALS', 'EQUALSCOMP'),
 
 )
-
-
-# def p_darija(p):
-#     '''
-#     darija : var_assign
-#            | printing
-#            | incrementation
-#            | decrementation
-#            | expression
-#            | if
-#            | for
-#            | input
-#            | while
-#            | doWhile
-#            | try
-#            | empty
-#     '''
-#     run(p[1])
 
 
 def p_program(p):
@@ -298,6 +263,9 @@ def p_instruction(p):
            | input
            | len
            | empty
+           | func
+           | appel_func
+           | return
 
 
     '''
@@ -507,20 +475,102 @@ def p_arrayslice(p):
                | ID '[' ':' ']'
     '''
     if len(p) == 7:
-        p[0] = ('slice',p[1], p[3], p[4],p[5])
+        p[0] = ('slice', p[1], p[3], p[4], p[5])
     elif len(p) == 5:
-        p[0] = ('slice',p[1])
+        p[0] = ('slice', p[1])
     elif p[3] == ':':
         # accessing [:expr]
-        p[0] = ('slice',p[1], p[3],p[4]) #I included the ':' just to differentiate later
+        # I included the ':' just to differentiate later
+        p[0] = ('slice', p[1], p[3], p[4])
     else:
         # accessing [expr:]
-        p[0] = ('slice',p[1], p[3])
+        p[0] = ('slice', p[1], p[3])
 
 
 def p_arrayappend(p):
     pass
 
+######### functions #########
+
+
+def p_argument(p):
+    '''
+    argument : INT
+               | FLOAT
+               | STRING
+    '''
+    p[0] = p[1]
+
+
+def p_argument_list(p):
+    '''
+        argument_list : argument
+                      | argument_list ',' argument
+    '''
+    if len(p) == 2:
+        p[0] = [p[1]]
+    else:
+        if(not isinstance(p[1], list)):
+            p[1] = [p[3]]
+        else:
+            p[1].append(p[3])
+        p[0] = p[1]
+
+
+def p_parameter(p):
+    '''
+    parameter : ID
+    '''
+    p[0] = p[1]
+
+
+def p_parameter_list(p):
+    '''
+        parameter_list : parameter
+                       | parameter_list ',' parameter
+    '''
+    if len(p) == 2:
+        p[0] = [p[1]]
+    else:
+        if(not isinstance(p[1], list)):
+            p[1] = [p[3]]
+        else:
+            p[1].append(p[3])
+        p[0] = p[1]
+
+
+def p_func(p):
+    '''
+    func : TA3RIF ID '(' parameter_list ')' '{' instruction_list '}'
+         | TA3RIF ID '(' ')' '{' instruction_list '}'
+    '''
+    if(len(p) == 8):
+        p[0] = ('ta3rif', p[2], p[6])
+    else:
+        p[0] = ('ta3rif', p[2], p[4], p[7])
+
+
+def p_appel_func(p):
+    '''
+    appel_func : ID '(' argument_list ')'
+               | ID '('  ')' 
+    '''
+    if(len(p) == 4):
+        p[0] = ('appel_func', p[1])
+    else:
+        p[0] = ('appel_func', p[1], p[3])
+
+
+def p_return(p):
+    '''
+    return : RED expression
+
+    '''
+
+    p[0] = ('red', p[2])
+
+
+#################################
 
 def p_printing(p):
     '''
@@ -530,11 +580,13 @@ def p_printing(p):
     '''
     p[0] = (p[1], p[3])
 
+
 def p_len(p):
     '''
     len : TOL '(' expression ')'
     '''
-    p[0] = (p[1],p[3])
+    p[0] = (p[1], p[3])
+
 
 def p_empty(p):
     '''
@@ -548,9 +600,19 @@ def p_error(p):
 
 
 ids = {}
+functions = {}
+function_arguments = {}
 didBreak = False
 didContinue = False
 locals = [[]]
+
+
+def is_number(string):
+    try:
+        float(string)
+        return True
+    except ValueError:
+        return False
 
 
 def run(p):
@@ -620,11 +682,11 @@ def run(p):
             except TypeError:
                 print('List kat takhd ghir ra9m fl indice!')
         elif p[0] == 'slice':
-            if len(p)==5:
+            if len(p) == 5:
                 return ids[p[1]][run(p[2]):run(p[4])]
-            elif len(p)==2:
+            elif len(p) == 2:
                 return ids[p[1]][:]
-            elif len(p)==4:
+            elif len(p) == 4:
                 return ids[p[1]][:run(p[3])]
             else:
                 return ids[p[1]][run(p[2]):]
@@ -788,9 +850,18 @@ def run(p):
             locals.pop()
         elif p[0] == 'qra':
             if p[1] == ')':
-                return(int(input()))  # TODO read string, numbers
+                inp = input()
             else:
-                return(int(input(run(p[1])+'\n')))  # TODO read string, numbers
+                inp = input(run(p[1])+'\n')
+            if is_number(inp):
+                inp = float(inp)
+                if inp % int(inp) == 0:
+                    return(int(inp))
+                else:
+                    return(inp)
+            else:
+                return(inp)
+
         elif p[0] == "jereb":
             if len(p) == 4:
                 try:
@@ -809,6 +880,29 @@ def run(p):
                 finally:
                     for i in p[5]:
                         run(i)
+        elif p[0] == "ta3rif":
+            if(len(p) == 4):
+                function_arguments[p[1]] = p[2]
+                for i in p[2]:
+                    ids[i] = 0
+
+                functions[p[1]] = p[3]
+            else:
+                functions[p[1]] = p[2]
+            # for i in functions[p[1]]:
+            #     run(i)
+        elif p[0] == "appel_func":
+            # print(functions)
+            if(len(p) == 3):
+                k = 0
+                for i in function_arguments[p[1]]:
+                    ids[i] = p[2][k]
+                    k = k+1
+            for i in functions[p[1]]:
+                # if(i[0] == "red"):
+                #     print(run(i[1]))
+                #     break
+                run(i)
 
     else:
         return p
@@ -816,49 +910,14 @@ def run(p):
 
 parser = yacc.yacc()
 
-while True:
-    try:
-        i = input('>> ')
+if len(sys.argv) > 1:
+    f = open(sys.argv[1])
+    parser.parse(f.read())
+else:
+    while True:
+        try:
+            i = input('>> ')
 
-        # i = '''
-        # ila(1>0){
-        #     kteb("ok")
-        #     ila(5==5){
-        #         kteb("yes")
-        #         ila(2<1){
-        #             kteb("ah")
-        #             }
-        #         wla{
-        #             kteb("no")
-        #             a = 0
-        #             ma7ed(a<10){
-        #                 kteb(a)
-        #                 a++
-        #                 ila(a==5){
-        #                 kteb("by")
-        #                 b = 0
-        #                 ma7ed(b<10){
-        #                     b++
-        #                     kteb("b= " + b)
-        #                     ila(b==5){
-        #                         kteb("by2")
-        #                         khrej
-        #                     }
-        #                 }
-        #                 khrej
-        #                 }
-        #             }
-        #         }
-        #     }
-        # }
-        # '''
-
-    except EOFError:
-        break
-    parser.parse(i)
-#     # break
-# try:
-# f = open(sys.argv[1])
-# parser.parse(f.read())
-# except:
-#     print("Erreur")
+            parser.parse(i)
+        except EOFError:
+            break

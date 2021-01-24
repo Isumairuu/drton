@@ -1,3 +1,3 @@
 kteb("hello from file")
-a = qra("3ti chi ra9m : ")
+a = qra("3ti chi ra9m : "
 lkola(a;a>0;a--){ khrej kteb(a)}
