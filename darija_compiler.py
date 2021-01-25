@@ -48,9 +48,9 @@ reserved = {
     'tol': 'TOL',  # len
     'zid': 'ZID',  # append
     'kber': 'KBER',  # extend
-    'msse7': 'MSSE7',  # pop TODO
-    'dkhel': 'DKHEL',  # insert TODO
-    'khwi': 'KHWI',  # khwi TODO
+    'msse7': 'MSSE7',  # pop
+    'dkhel': 'DKHEL',  # insert
+    'khwi': 'KHWI',  # khwi
     # other fuctions, example
 
 }
@@ -491,59 +491,20 @@ def p_arrfn(p):
     '''
     arrfn : ID '.' ZID '(' expression ')'
           | ID '.' KBER '(' array ')'
+          | ID '.' KHWI '(' ')'
+          | ID '.' DKHEL '(' expression ',' expression ')' 
+          | ID '.' MSSE7 '(' expression ')'
+          | ID '.' MSSE7 '(' ')'
     '''
-    p[0] = ('arrfn', p[1], p[3], p[5])
-
-# functions
-
-
-def p_argument(p):
-    '''
-    argument : INT
-               | FLOAT
-               | STRING
-    '''
-    p[0] = p[1]
-
-
-def p_argument_list(p):
-    '''
-        argument_list : argument
-                      | argument_list ',' argument
-    '''
-    if len(p) == 2:
-        p[0] = [p[1]]
-    else:
-        if(not isinstance(p[1], list)):
-            p[1] = [p[3]]
-        else:
-            p[1].append(p[3])
-        p[0] = p[1]
-
-
-def p_parameter(p):
-    '''
-    parameter : ID
-    '''
-    p[0] = p[1]
-
-
-def p_parameter_list(p):
-    '''
-        parameter_list : parameter
-                       | parameter_list ',' parameter
-    '''
-    if len(p) == 2:
-        p[0] = [p[1]]
-    else:
-        if(not isinstance(p[1], list)):
-            p[1] = [p[3]]
-        else:
-            p[1].append(p[3])
-        p[0] = p[1]
-
+    if len(p) == 7:
+        p[0] = ('arrfn', p[1], p[3], p[5])
+    elif len(p) == 6:
+        p[0] = ('arrfn', p[1], p[3])
+    elif len(p) == 9:
+        p[0] = ('arrfn', p[1], p[3], p[5], p[7])
 
 ######### functions #########
+
 
 def p_argument_list(p):
     '''
@@ -740,10 +701,18 @@ def run(p):
                 print('T9d t9sm ghir lists wla joumal!')
         elif p[0] == 'arrfn':
             if p[2] == 'zid':
-
                 return ids[p[1]].append(run(p[3]))
             elif p[2] == 'kber':
                 return ids[p[1]].extend(run(p[3]))
+            elif p[2] == 'khwi':
+                return ids[p[1]].clear()
+            elif p[2] == 'dkhel':
+                return ids[p[1]].insert(run(p[3]), run(p[4]))
+            elif p[2] == 'msse7':
+                if len(p) == 3:
+                    return ids[p[1]].pop()
+                else:
+                    return ids[p[1]].pop(run(p[3]))
         elif p[0] == 'wa':
             return run(p[1]) and run(p[2])
         elif p[0] == 'aw':
