@@ -71,7 +71,7 @@ t_MINUS = r'-'
 t_TIMES = r'\*'
 t_DIVIDE = r'/'
 t_EQUALS = r'\='
-literals = [',', '[', ']', '{', '}', '(', ')', '+', ';', '.',':']
+literals = [',', '[', ']', '{', '}', '(', ')', '+', ';', '.', ':']
 
 
 def t_COMMENT(t):
@@ -131,6 +131,7 @@ def t_ID(t):
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
+
 
     # A string containing ignored characters (spaces and tabs)
 t_ignore = ' \t'
@@ -344,6 +345,7 @@ def p_condition_comp(p):
     '''
     p[0] = (p[2], p[1], p[3])
 
+
 def p_condition_exp(p):
     '''
     condition : expression
@@ -490,9 +492,11 @@ def p_arrfn(p):
     arrfn : ID '.' ZID '(' expression ')'
           | ID '.' KBER '(' array ')'
     '''
-    p[0] = ('arrfn',p[1],p[3],p[5])
+    p[0] = ('arrfn', p[1], p[3], p[5])
 
-#functions
+# functions
+
+
 def p_argument(p):
     '''
     argument : INT
@@ -500,6 +504,7 @@ def p_argument(p):
                | STRING
     '''
     p[0] = p[1]
+
 
 def p_argument_list(p):
     '''
@@ -521,6 +526,7 @@ def p_parameter(p):
     parameter : ID
     '''
     p[0] = p[1]
+
 
 def p_parameter_list(p):
     '''
@@ -643,7 +649,8 @@ didBreak = False
 didContinue = False
 locals = [[]]
 functions = {}
-function_arguments={}
+function_arguments = {}
+
 
 def is_number(string):
     try:
@@ -721,11 +728,11 @@ def run(p):
                 print('List kat takhd ghir ra9m fl indice!')
         elif p[0] == 'slice':
             try:
-                if len(p)==5:
+                if len(p) == 5:
                     return ids[p[1]][run(p[2]):run(p[4])]
-                elif len(p)==2:
+                elif len(p) == 2:
                     return ids[p[1]][:]
-                elif len(p)==4:
+                elif len(p) == 4:
                     return ids[p[1]][:run(p[3])]
                 else:
                     return ids[p[1]][run(p[2]):]
@@ -735,7 +742,7 @@ def run(p):
             if p[2] == 'zid':
 
                 return ids[p[1]].append(run(p[3]))
-            elif p[2] == 'kber' :
+            elif p[2] == 'kber':
                 return ids[p[1]].extend(run(p[3]))
         elif p[0] == 'wa':
             return run(p[1]) and run(p[2])
@@ -801,7 +808,7 @@ def run(p):
                         locals.append([])
                         run(i)
                     for i in locals[len(locals)-1]:
-                        ids.pop[i]
+                        ids.pop(i)
                     locals.pop()
         elif p[0] == "ma7ed":
             # on donne a ces variables false au cas ou elle sont devenu true suite a autre boucle
@@ -833,7 +840,7 @@ def run(p):
                     continue
                 break
             for i in locals[len(locals)-1]:
-                ids.pop[i]
+                ids.pop(i)
             locals.pop()
         elif p[0] == "lkola":
             didBreak = False
@@ -864,7 +871,7 @@ def run(p):
                     continue
                 break
             for i in locals[len(locals)-1]:
-                ids.pop[i]
+                ids.pop(i)
             locals.pop()
         elif p[0] == 'dir':
             didBreak = False
@@ -893,7 +900,7 @@ def run(p):
                         continue
                 break
             for i in locals[len(locals)-1]:
-                ids.pop[i]
+                ids.pop(i)
             locals.pop()
         elif p[0] == 'qra':
             if p[1] == ')':
@@ -936,16 +943,19 @@ def run(p):
                 functions[p[1]] = p[3]
             else:
                 functions[p[1]] = p[2]
-            # for i in functions[p[1]]:
-            #     run(i)
+
         elif p[0] == "appel_func":
             if(len(p) == 3):
                 k = 0
                 for i in function_arguments[p[1]]:
                     ids[i] = p[2][k]
                     k = k+1
+            locals.append([])
             for i in functions[p[1]]:
                 run(i)
+            for j in locals[len(locals)-1]:
+                ids.pop(j)
+            locals.pop()
 
     else:
         return p
