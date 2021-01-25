@@ -140,8 +140,9 @@ t_ignore = ' \t'
 
 
 def t_error(t):
-    print("Illegal character '%s'" % t.value[0])
-    t.lexer.skip(1)
+    print("fSter : ", t.lineno)
+    print("lCharacter '%s' makhassch ikon tma" % t.value[0])
+    exit()
 
 
 lexer = lex.lex()
@@ -343,7 +344,7 @@ def p_condition_comp(p):
               | expression INFEQUALS expression
               | expression DIFFERENT expression
     '''
-    p[0] = (p[2], p[1], p[3])
+    p[0] = ('comp', p[2], p[1], p[3])
 
 
 def p_condition_exp(p):
@@ -474,6 +475,7 @@ def p_arrayslice(p):
                | ID '[' expression ':' ']'
                | ID '[' ':' ']'
     '''
+
     if len(p) == 7:
         p[0] = ('slice', p[1], p[3], p[4], p[5])
     elif len(p) == 5:
@@ -600,7 +602,13 @@ def p_empty(p):
 
 
 def p_error(p):
-    print("Syntax error at ", p.value)
+    try:
+        print("Ghalat dyal syntax fster: ", p.lineno)
+        print("9bel men:", p.value)
+    except AttributeError:
+        # p.lineno and p.value might generate error if at the end of block } is missing
+        print("Ghalat dyal syntax, t2eked bila ga3 l2a9wass o ma3qofat msdodin")
+    exitDarija()
 
 
 ids = {}
@@ -619,6 +627,11 @@ def is_number(string):
         return True
     except ValueError:
         return False
+
+
+def exitDarija():
+    if len(sys.argv) > 1:
+        exit()
 
 
 def run(p):
@@ -650,7 +663,8 @@ def run(p):
             elif p[0] == 'neg':
                 return -run(p[1])
         except TypeError:
-            print("Hadchi li ktbti machi huwa hadak!")
+            print("Had l'operation li 7awetli dir maymknch!")
+            exitDarija()
         if p[0] == '=':
             if p[1][0] == 'arrelt':
                 # dimension are stored in a table(p[1][2]), so the objective is to arrive at ids[p[1][1]][1stDim][2ndDim]...[lastDim],
@@ -676,7 +690,11 @@ def run(p):
                     ids[p[1]] = run(p[2])
                     locals[len(locals)-1].append(p[1])
         elif p[0] == 'id':
-            return ids[p[1]]
+            try:
+                return ids[p[1]]
+            except KeyError:
+                print("lvariable '"+p[1]+"' makaynach")
+                exitDarija()
         elif p[0] == 'kteb':
             print(run(p[1]))
         elif p[0] == 'arrelt':
@@ -686,7 +704,11 @@ def run(p):
                     tab = tab[i]
                 return tab
             except TypeError:
-                print('List kat takhd ghir ra9m fl indice!')
+                print("l'indice li 3titi fih mochkil")
+                exitDarija()
+            except KeyError:
+                print("lvariable '"+p[1]+"' makaynach")
+                exitDarija()
         elif p[0] == 'slice':
             try:
                 if len(p) == 5:
@@ -699,41 +721,53 @@ def run(p):
                     return ids[p[1]][run(p[2]):]
             except TypeError:
                 print('T9d t9sm ghir lists wla joumal!')
+                exitDarija()
         elif p[0] == 'arrfn':
-            if p[2] == 'zid':
-                return ids[p[1]].append(run(p[3]))
-            elif p[2] == 'kber':
-                return ids[p[1]].extend(run(p[3]))
-            elif p[2] == 'khwi':
-                return ids[p[1]].clear()
-            elif p[2] == 'dkhel':
-                return ids[p[1]].insert(run(p[3]), run(p[4]))
-            elif p[2] == 'msse7':
-                if len(p) == 3:
-                    return ids[p[1]].pop()
-                else:
-                    return ids[p[1]].pop(run(p[3]))
+            try:
+                if p[2] == 'zid':
+                    return ids[p[1]].append(run(p[3]))
+                elif p[2] == 'kber':
+                    return ids[p[1]].extend(run(p[3]))
+                elif p[2] == 'khwi':
+                    return ids[p[1]].clear()
+                elif p[2] == 'dkhel':
+                    return ids[p[1]].insert(run(p[3]), run(p[4]))
+                elif p[2] == 'msse7':
+                    if len(p) == 3:
+                        return ids[p[1]].pop()
+                    else:
+                        return ids[p[1]].pop(run(p[3]))
+            except TypeError:
+                print("'"+p[2]+"' Kat khdm ghir m3a tableau")
+                exitDarija()
         elif p[0] == 'wa':
             return run(p[1]) and run(p[2])
         elif p[0] == 'aw':
             return run(p[1]) or run(p[2])
-        elif p[0] == '==':
-            return run(p[1]) == run(p[2])
-        elif p[0] == '!=':
-            return run(p[1]) != run(p[2])
-        elif p[0] == '>=':
-            return run(p[1]) >= run(p[2])
-        elif p[0] == '<=':
-            return run(p[1]) <= run(p[2])
-        elif p[0] == '>':
-            return run(p[1]) > run(p[2])
-        elif p[0] == '<':
-            return run(p[1]) < run(p[2])
+        elif p[0] == 'comp':
+            try:
+                if p[1] == '==':
+                    return run(p[2]) == run(p[3])
+                elif p[1] == '!=':
+                    return run(p[2]) != run(p[3])
+                elif p[1] == '>=':
+                    return run(p[2]) >= run(p[3])
+                elif p[1] == '<=':
+                    return run(p[2]) <= run(p[3])
+                elif p[1] == '>':
+                    return run(p[2]) > run(p[3])
+                elif p[1] == '<':
+                    return run(p[2]) < run(p[3])
+            except TypeError:
+                print("Maymknch dir had lmo9arana '" +
+                      p[1]+"' bles types li 3titi")
+                exitDarija()
+
         elif p[0] == 'l3akss':
             return not(run(p[1]))
         elif p[0] == 'tol':
             try:
-                print(len(run(p[1])))
+                return len(run(p[1]))
             except TypeError:
                 print("Kat khdm ghir m3a list wla jomla")
         elif p[0] == "ila":
@@ -931,6 +965,7 @@ def run(p):
 
 
 parser = yacc.yacc()
+
 
 if len(sys.argv) > 1:
     f = open(sys.argv[1])
