@@ -493,27 +493,27 @@ def p_arrayappend(p):
 ######### functions #########
 
 
-def p_argument(p):
-    '''
-    argument : INT
-               | FLOAT
-               | STRING
-    '''
-    p[0] = p[1]
+# def p_argument(p):
+#     '''
+#     argument : INT
+#                | FLOAT
+#                | STRING
+#     '''
+#     p[0] = p[1]
 
 
 def p_argument_list(p):
     '''
-        argument_list : argument
-                      | argument_list ',' argument
+        argument_list : expression
+                      | argument_list ',' expression
     '''
     if len(p) == 2:
-        p[0] = [p[1]]
+        p[0] = [run(p[1])]
     else:
         if(not isinstance(p[1], list)):
-            p[1] = [p[3]]
+            p[1] = [run(p[3])]
         else:
-            p[1].append(p[3])
+            p[1].append(run(p[3]))
         p[0] = p[1]
 
 
@@ -892,16 +892,12 @@ def run(p):
             # for i in functions[p[1]]:
             #     run(i)
         elif p[0] == "appel_func":
-            # print(functions)
             if(len(p) == 3):
                 k = 0
                 for i in function_arguments[p[1]]:
                     ids[i] = p[2][k]
                     k = k+1
             for i in functions[p[1]]:
-                # if(i[0] == "red"):
-                #     print(run(i[1]))
-                #     break
                 run(i)
 
     else:
