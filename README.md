@@ -1,10 +1,15 @@
-# darija-compiler
-**NAME** is a mini-compiler for a programming language written in *[Darija](https://en.wikipedia.org/wiki/Moroccan_Arabic)*. 
-This mini-compiler will include its own lexical, syntactic and semantic analyzer, it is based on Python, that serves as an intermediate language to generate the machine language. 
+# drton
+**drton** is a mini-compiler for a programming language written in *[Darija](https://en.wikipedia.org/wiki/Moroccan_Arabic)*. 
+This mini-compiler has its own lexical, syntactic and semantic analyzer. It is based on mostly on Python, which is also used as an intermediate language to generate the machine language by using python [ply](https://www.dabeaz.com/ply/).
 
-## Requirements
-* Python3
-* Python ply
+## Requirements:
+* Python (v3.7+)
+* Python ply `pip install ply`
+
+## Use:
+You can start using it by using the following commands:
+* `python parser.py` for interpreted mode
+* `python parser.py file.dr` to compile a file
 
 ## Keywords (and equivalent in python):
 Keyword | Python 
