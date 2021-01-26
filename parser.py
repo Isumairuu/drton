@@ -209,6 +209,8 @@ def p_expression(p):
                | expression MINUS expression
                | expression TIMES expression
                | expression DIVIDE expression
+               | expression MODULO expression
+               | expression POWER expression
                | '(' expression ')'
                | MINUS expression
                | PLUS expression
@@ -502,7 +504,10 @@ def run(p):
                 return run(p[1]) * run(p[2])
             elif p[0] == '/':
                 return run(p[1]) / run(p[2])
-
+            elif p[0] == '%':
+                return run(p[1]) % run(p[2])
+            elif p[0] == '^':
+                return run(p[1]) ** run(p[2])
             elif p[0] == '++':
                 ids[p[1]] = ids[p[1]] + 1
                 return ids[p[1]]

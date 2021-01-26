@@ -4,6 +4,8 @@ import ply.lex as lex
 tokens = [
     'INT', 'FLOAT',  # Numbers
     'PLUS', 'MINUS', 'TIMES', 'DIVIDE',  # operations
+    'MODULO',
+    'POWER',
     # Parentheses and brackets and braces
     'ID',
     'STRING',
@@ -34,7 +36,6 @@ reserved = {
     'mojod':  'MOJOD',  # global
     'red': 'RED',  # return
     'ta3rif': 'TA3RIF',  # function
-    'douz': 'DOUZ',  # pass
     # array ta3riftions
     'tol': 'TOL',  # len
     'zid': 'ZID',  # append
@@ -51,6 +52,8 @@ tokens = tokens + list(reserved.values())
 # Regular expression rules for simple tokens
 t_EQUALSCOMP = r'\=\='
 t_DIFFERENT = r'\!\='
+t_MODULO = r'\%'
+t_POWER = r'\^'
 t_SUP = r'\>'
 t_INF = r'\<'
 t_INFEQUALS = r'\<\='
