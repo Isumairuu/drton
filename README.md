@@ -186,10 +186,6 @@ We can use the slicing operator [ ] with lists too.
 
 * **lkola** (*for loop*):\
 The `lkola` loop is used to iterate over a sequence.
-The initialization statement is executed only once.
-Then, the test expression is evaluated. If the test expression is evaluated to false, the loop is terminated.
-However, if the test expression is evaluated to true, statements inside the body of the loop are executed, and the update expression is updated.
-Again the test expression is evaluated.
     ```Python
     lkola(i=0;i<5;i++){
         kteb("Iteration:",i)
