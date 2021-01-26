@@ -180,14 +180,30 @@ We can use the slicing operator [ ] with lists too.
             }
         }
         wla{
-            print("Negative number")
+            kteb("Negative number")
         }
         ```
 
 * **lkola** (*for loop*):\
 The `lkola` loop is used to iterate over a sequence.
+
     ```Python
     lkola(i=0;i<5;i++){
         kteb("Iteration:",i)
     }
+    ```
+
+* **ma7ed** (*while loop*):\
+The `ma7ed` loop is used to iterate over a block of code as long as the test expression (condition) is true.
+
+    ```Python
+    n = 10
+    # initialize sum and counter
+    sum = 0
+    ma7ed(i<n){
+        sum = sum + i
+        i = i+1    # update counter
+    }
+    # print the sum
+    kteb("The sum is", sum)
     ```
