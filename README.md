@@ -200,6 +200,7 @@ The `ma7ed` loop is used to iterate over a block of code as long as the test exp
     n = 10
     # initialize sum and counter
     sum = 0
+    i=1
     ma7ed(i<n){
         sum = sum + i
         i = i+1    # update counter
