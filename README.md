@@ -7,34 +7,34 @@ This mini-compiler will include its own lexical, syntactic and semantic analyzer
 * Python ply
 
 ## TOKENS (and python equivalent):
-* kteb : print
-* qra : input
-* ila  : if
-* wla  : else
-* dir  : do
-* ma7ed  : while
-* lkola  : for
-* khrej  : break
-* kmel  : continue
-* wa  : and
-* aw  : or
-* khate2  : false
-* s7i7  : true
-* mojod  : global
-* walo  : None
-* l3akss  : not
-* ta3rif  : def
-* red  : return
-* jereb  : try
-* masd9ch  : except
-* akhiran  : finally
-* douz  : pass
-* tol  : len
-* zid  : append
-* kber  : extend
-* msse7  : pop
-* dkhel  : insert
-* khwi  : clear
+* `kteb` : `print`
+* `qra` : `input`
+* `ila ` : `if`
+* `wla ` : `else`
+* `dir ` : `do`
+* `ma7ed ` : `while`
+* `lkola ` : `for`
+* `khrej ` : `break`
+* `kmel ` : `continue`
+* `wa ` : `and`
+* `aw ` : `or`
+* `khate2 ` : `false`
+* `s7i7 ` : `true`
+* `mojod ` : `global`
+* `walo ` : `None`
+* `l3akss ` : `not`
+* `ta3rif ` : `def`
+* `red ` : `return`
+* `jereb ` : `try`
+* `masd9ch ` : `except`
+* `akhiran ` : `finally`
+* `douz ` : `pass`
+* `tol ` : `len`
+* `zid ` : `append`
+* `kber ` : `extend`
+* `msse7 ` : `pop`
+* `dkhel ` : `insert`
+* `khwi ` : `clear`
 
 ## Data types:
 * int `123456`
