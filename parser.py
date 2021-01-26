@@ -434,8 +434,12 @@ def p_printing(p):
     printing : KTEB '(' condition ')'
             | KTEB '(' incrementation ')'
             | KTEB '(' decrementation ')'
+            | KTEB '(' condition ',' condition ')'
     '''
-    p[0] = (p[1], p[3])
+    if len(p)==5:
+        p[0] = (p[1], p[3])
+    else:
+        p[0] = (p[1],p[3],p[5])
 
 
 def p_len(p):
@@ -557,7 +561,11 @@ def run(p):
                 print("lvariable '"+p[1]+"' makaynach")
                 exitDarija()
         elif p[0] == 'kteb':
-            print(run(p[1]))
+            if len(p) == 2:
+                print(run(p[1]))
+            else: 
+                print(run(p[1]),run(p[2]))
+
         elif p[0] == 'arrelt':
             try:
                 tab = ids[p[1]]

@@ -1,2 +1,5 @@
 
 *.pyc
+__pycache__/parsetab.cpython-39.pyc
+parser.out
+parsetab.py
