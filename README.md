@@ -1,2 +1,37 @@
 # darija-compiler
-The aim is to develop a mini-compiler for a programming language written in Darija. This mini-compiler will include its own lexical, syntactic and semantic analyzer, it will be based on a high-level language to generate its machine language after verification. The lexical analyzer should check the alphabet of the language according to the proposed regular expressions and automata, then the syntactic and semantic analyzer should verify the structure of the sentences of the language with the typology of the operants according to the operations. An error log will be fed in the event of an error, a mini-dictionary to be developed for this language.
+*name TODO* is a mini-compiler for a programming language written in *[Darija](https://en.wikipedia.org/wiki/Moroccan_Arabic)*. 
+This mini-compiler will include its own lexical, syntactic and semantic analyzer, it is based on Python, that serves as an intermediate language to generate the machine language. 
+
+## Requirements
+* Python3
+* Python ply
+
+## TOKENS (and python equivalent):
+* kteb : print
+* qra : input
+* ila  : if
+* wla  : else
+* dir  : do
+* ma7ed  : while
+* lkola  : for
+* khrej  : break
+* kmel  : continue
+* wa  : and
+* aw  : or
+* khate2  : false
+* s7i7  : true
+* mojod  : global
+* walo  : None
+* l3akss  : not
+* ta3rif  : def
+* red  : return
+* jereb  : try
+* masd9ch  : except
+* akhiran  : finally
+* douz  : pass
+* tol  : len
+* zid  : append
+* kber  : extend
+* msse7  : pop
+* dkhel  : insert
+* khwi  : clear

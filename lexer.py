@@ -22,7 +22,7 @@ reserved = {
     'aw': 'AW',  # or
     's7i7': 'S7I7',  # true
     'khrej': 'KHREJ',  # break
-    'Walo': 'WALO',  # None
+    'walo': 'WALO',  # None
     'qra': 'QRA',  # input
     'kmel': 'KMEL',  # continue
     'dir': 'DIR',  # do
@@ -41,7 +41,7 @@ reserved = {
     'kber': 'KBER',  # extend
     'msse7': 'MSSE7',  # pop
     'dkhel': 'DKHEL',  # insert
-    'khwi': 'KHWI',  # khwi
+    'khwi': 'KHWI',  # clear
     # other fuctions, example
 
 }
