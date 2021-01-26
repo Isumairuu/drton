@@ -163,18 +163,23 @@ def p_condition_medium2(p):
     '''
     condition : '(' condition ')' WA condition
               | '(' condition ')' AW condition
-
-    '''
-    p[0] = (p[4], p[2], p[5])
-
-
-def p_condition(p):
-    '''
-    condition :  condition WA condition
+              |  condition WA condition
               |  condition AW condition
 
     '''
-    p[0] = (p[2], p[1], p[3])
+    if(len(p) == 6):
+        p[0] = (p[4], p[2], p[5])
+    else:
+        p[0] = (p[2], p[1], p[3])
+
+
+# def p_condition(p):
+#     '''
+#     condition :  condition WA condition
+#               |  condition AW condition
+
+#     '''
+#     p[0] = (p[2], p[1], p[3])
 
 
 def p_condition(p):
@@ -563,9 +568,18 @@ def run(p):
         elif p[0] == 'kteb':
             if len(p) == 2:
                 print(run(p[1]))
+                toWrite = run(p[1])
             else: 
                 print(run(p[1]),run(p[2]))
+                toWrite = run(p[2])
 
+            if type(toWrite) == bool:
+                if toWrite:
+                    print("s7i7")
+                else:
+                    print("khate2")
+            else:
+                print(toWrite)
         elif p[0] == 'arrelt':
             try:
                 tab = ids[p[1]]
