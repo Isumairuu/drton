@@ -1,5 +1,5 @@
 # darija-compiler
-**name** is a mini-compiler for a programming language written in *[Darija](https://en.wikipedia.org/wiki/Moroccan_Arabic)*. 
+**NAME** is a mini-compiler for a programming language written in *[Darija](https://en.wikipedia.org/wiki/Moroccan_Arabic)*. 
 This mini-compiler will include its own lexical, syntactic and semantic analyzer, it is based on Python, that serves as an intermediate language to generate the machine language. 
 
 ## Requirements
@@ -35,3 +35,24 @@ This mini-compiler will include its own lexical, syntactic and semantic analyzer
 * msse7  : pop
 * dkhel  : insert
 * khwi  : clear
+
+## Data types:
+* int `123456`
+* float `12.3456`
+* strings `'string'` or `"string"`
+* lists `[]`
+
+## Features:
+* Variables
+* Comments
+* Control flow statements:
+    - loops (while,do-while,for)
+    - conditional statements
+    - function calls
+    - exceptions
+* Operators:
+    - artihmetic : `+ - * / `
+    - comparison : `> >= < <= == !=`
+    - logical : `and or not`
+    - assignement : `=`
+    - unary : `++ --`
