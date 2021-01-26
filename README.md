@@ -206,5 +206,44 @@ The `ma7ed` loop is used to iterate over a block of code as long as the test exp
         i = i+1    # update counter
     }
     # print the sum
-    kteb("The sum is", sum)
+    kteb("The sum is", sum) # Output : 9
     ```
+
+* **khrej** (*break*):
+The `khrej` statement terminates the loop containing it. Control of the program flows to the statement immediately after the body of the loop.
+
+    ```Python
+    str="string"
+    lkola (a=0;a<tol(str);a++){
+        if str[a] == "i":
+            khrej
+        kteb(val[a])
+    }
+    kteb("The end")
+    # Output:
+    #s
+    #t
+    #r
+    #The end
+    ```
+
+* **kmel** (*continue*):
+The `kmel` statement is used to skip the rest of the code inside a loop for the current iteration only. Loop does not terminate but continues on with the next iteration.
+
+    ```Python
+    str="string"
+    lkola (a=0;a<tol(str);a++){
+        if str[a] == "i":
+            khrej
+        kteb(val[a])
+    }
+    kteb("The end")
+    # Output:
+    #s
+    #t
+    #r
+    #n
+    #g
+    #The end
+    ```
+
