@@ -171,15 +171,15 @@ We can use the slicing operator [ ] with lists too.
     - We can have a `ila..wla` statement inside another `ila..wla` statement. This is called nesting in computer programming. 
         ```Python
         num = qra("Enter a number: ")
-        if (num >= 0){
-            if (num == 0){
+        ila (num >= 0){
+            ila (num == 0){
                 kteb("Zero")
             }
-            else{
+            wla{
                 kteb("Positive number")
             }
         }
-        else{
+        wla{
             print("Negative number")
         }
         ```
