@@ -144,16 +144,45 @@ We can use the slicing operator [ ] with lists too.
     ```
 
 * Logical operators:
-```Python
-    x = s7i7
-    y = khate2
+    ```Python
+        x = s7i7
+        y = khate2
 
-    print(x wa y)
-    # Output: khate2
+        print(x wa y)
+        # Output: khate2
 
-    print(x aw y)
-    # Output: s7i7
-```
+        print(x aw y)
+        # Output: s7i7
+    ```
 
+### Flow control:
+* **ila..wla** (*if..else*):
+    - The `ila..wla` statement evaluates test expression and will execute the body of `ila` only when the test condition is `s7i7` (True).\
+    If the condition is `khate2` (false), the body of `wla` is executed. *(The indent is unecessary)*
+        ```Python
+        num=5 #or num=-5
+        ila(num >= 0){
+            kteb('The number is positive')
+        }
+        wla{
+            kteb('The number is negative')
+        }
+        ```
+    - We can have a `ila..wla` statement inside another `ila..wla` statement. This is called nesting in computer programming. 
+        ```Python
+        num = qra("Enter a number: ")
+        if (num >= 0){
+            if (num == 0){
+                kteb("Zero")
+            }
+            else{
+                kteb("Positive number")
+            }
+        }
+        else{
+            print("Negative number")
+        }
+        ```
 
+* **lkola** (*for loop*):
 
