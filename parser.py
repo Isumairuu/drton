@@ -567,19 +567,16 @@ def run(p):
                 exitDarija()
         elif p[0] == 'kteb':
             if len(p) == 2:
-                print(run(p[1]))
                 toWrite = run(p[1])
+                if type(toWrite) == bool:
+                    if toWrite:
+                        print("s7i7")
+                    else:
+                        print("khate2")
+                else:
+                    print(toWrite)
             else: 
                 print(run(p[1]),run(p[2]))
-                toWrite = run(p[2])
-
-            if type(toWrite) == bool:
-                if toWrite:
-                    print("s7i7")
-                else:
-                    print("khate2")
-            else:
-                print(toWrite)
         elif p[0] == 'arrelt':
             try:
                 tab = ids[p[1]]
