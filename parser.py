@@ -453,12 +453,16 @@ def p_empty(p):
 
 
 def p_error(p):
-    try:
-        print("Ghalat dyal syntax fster: ", p.lineno)
-        print("9bel men:", p.value)
-    except AttributeError:
-        # p.lineno and p.value might generate error if at the end of block } is missing
-        print("Ghalat dyal syntax, t2eked bila ga3 l2a9wass o ma3qofat msdodin")
+    global foundError
+    if(not(foundError)):
+        try:
+            print("Ghalat dyal syntax fster: ", p.lineno)
+            print("9bel men:", p.value)
+        except AttributeError:
+            # p.lineno and p.value might generate error if at the end of block } is missing
+            print("Ghalat dyal syntax, t2eked bila ga3 l2a9wass o ma3qofat msdodin")
+        finally:
+            foundError = True
     exitDarija()
 
 
@@ -470,6 +474,7 @@ didContinue = False
 locals = [[]]
 functions = {}
 function_arguments = {}
+foundError = False
 
 
 def is_number(string):
@@ -487,6 +492,8 @@ def exitDarija():
 
 def run(p):
     global ids, didBreak, didContinue, locals
+    global foundError
+    foundError = False
     if type(p) == tuple:
         if(p[0] == 'prog'):
             for i in p[1]:
