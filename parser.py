@@ -268,6 +268,7 @@ def p_expression_terminals(p):
                | arrayelt
                | arrayslice
                | arrfn
+               | len
     '''
     p[0] = p[1]
 # ARRAYS :)

@@ -1,3 +1,7 @@
-kteb("hello from file")
-a = qra("3ti chi ra9m : "
-lkola(a;a>0;a--){ khrej kteb(a)}
+str="string"
+lkola (a=0;a<tol(str);a++){
+    if str[a] == "i":
+        khrej
+    kteb(val[a])
+}
+kteb("The end")
