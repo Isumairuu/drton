@@ -314,14 +314,14 @@ def p_dimensions(p):
     '''
     dimensions : '[' expression ']'
     '''
-    p[0] = [run(p[2])]
+    p[0] = [p[2]]
 
 
 def p_demensions(p):
     '''
     dimensions : dimensions '[' expression ']'
     '''
-    p[1].append(run(p[3]))
+    p[1].append(p[3])
     p[0] = p[1]
 
 
@@ -371,12 +371,12 @@ def p_argument_list(p):
                       | argument_list ',' expression
     '''
     if len(p) == 2:
-        p[0] = [run(p[1])]
+        p[0] = [p[1]]
     else:
         if(not isinstance(p[1], list)):
-            p[1] = [run(p[3])]
+            p[1] = [p[3]]
         else:
-            p[1].append(run(p[3]))
+            p[1].append(p[3])
         p[0] = p[1]
 
 
@@ -547,11 +547,11 @@ def run(p):
                 t = 0
                 for i in p[1][2]:
                     if t < j:
-                        tab = tab[i]
+                        tab = tab[run(i)]
                     else:
                         break
                     t = t+1
-                tab[p[1][2][j]] = run(p[2])
+                tab[p[1][2][run(j)]] = run(p[2])
             else:
                 if p[1] == 'mojod':
                     ids[p[2][1]] = run(p[2][2])
@@ -587,7 +587,7 @@ def run(p):
             try:
                 tab = ids[p[1]]
                 for i in p[2]:
-                    tab = tab[i]
+                    tab = tab[run(i)]
                 return tab
             except TypeError:
                 print("l'indice li 3titi fih mochkil")
@@ -876,7 +876,7 @@ def run(p):
                         "nombre d'arguments incorrects pour la fonction '", p[1], "'")
                     exitDarija()
                 for i in function_arguments[p[1]]:
-                    ids[i] = p[2][k]
+                    ids[i] = run(p[2][k])
                     k = k+1
             locals.append([])
             didReturn = False

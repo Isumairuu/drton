@@ -1,5 +1,12 @@
 ta3rif max(a,b){
-    kteb("hi")
+    kteb(a)
+    kteb(b)
 }
-
-kteb(max())
+a = 1
+b= "hello"
+max(a,b)
+str="string"
+lkola (a=0;a<tol(str);a++){
+    kteb(str[a])
+}
+kteb("The end")

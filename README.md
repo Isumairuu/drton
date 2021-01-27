@@ -1,10 +1,15 @@
-# darija-compiler
-**NAME** is a mini-compiler for a programming language written in *[Darija](https://en.wikipedia.org/wiki/Moroccan_Arabic)*. 
-This mini-compiler will include its own lexical, syntactic and semantic analyzer, it is based on Python, that serves as an intermediate language to generate the machine language. 
+# drton
+**drton** is a mini-compiler for a programming language written in *[Darija](https://en.wikipedia.org/wiki/Moroccan_Arabic)*. 
+This mini-compiler has its own lexical, syntactic and semantic analyzer. It is based on mostly on Python, which is also used as an intermediate language to generate the machine language by using python [ply](https://www.dabeaz.com/ply/).
 
-## Requirements
-* Python3
-* Python ply
+## Requirements:
+* Python (v3.7+)
+* Python ply `pip install ply`
+
+## Use:
+You can start using it by using the following commands:
+* `python parser.py` for interpreted mode
+* `python parser.py file.dr` to compile a file
 
 ## Keywords (and equivalent in python):
 Keyword | Python 
@@ -180,14 +185,70 @@ We can use the slicing operator [ ] with lists too.
             }
         }
         wla{
-            print("Negative number")
+            kteb("Negative number")
         }
         ```
 
 * **lkola** (*for loop*):\
 The `lkola` loop is used to iterate over a sequence.
+
     ```Python
     lkola(i=0;i<5;i++){
         kteb("Iteration:",i)
     }
     ```
+
+* **ma7ed** (*while loop*):\
+The `ma7ed` loop is used to iterate over a block of code as long as the test expression (condition) is true.
+
+    ```Python
+    n = 10
+    # initialize sum and counter
+    sum = 0
+    i=1
+    ma7ed(i<n){
+        sum = sum + i
+        i = i+1    # update counter
+    }
+    # print the sum
+    kteb("The sum is", sum) # Output : 9
+    ```
+
+* **khrej** (*break*):
+The `khrej` statement terminates the loop containing it. Control of the program flows to the statement immediately after the body of the loop.
+
+    ```Python
+    str="string"
+    lkola (a=0;a<tol(str);a++){
+        if str[a] == "i":
+            khrej
+        kteb(val[a])
+    }
+    kteb("The end")
+    # Output:
+    #s
+    #t
+    #r
+    #The end
+    ```
+
+* **kmel** (*continue*):
+The `kmel` statement is used to skip the rest of the code inside a loop for the current iteration only. Loop does not terminate but continues on with the next iteration.
+
+    ```Python
+    str="string"
+    lkola (a=0;a<tol(str);a++){
+        if str[a] == "i":
+            khrej
+        kteb(val[a])
+    }
+    kteb("The end")
+    # Output:
+    #s
+    #t
+    #r
+    #n
+    #g
+    #The end
+    ```
+
