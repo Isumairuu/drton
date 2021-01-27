@@ -75,15 +75,15 @@ You can use either integers or floating points numbers in this language.
     - float: `1.23`
 
 * **Strings** : You can choose either `'string'` or `"string"` to represent a string.  
-We can use the slicing operator [ ] to extract an item or parts of the string:
+We can use the slicing operator *[ : ]* to extract an item or parts of the string:
     ```Python
     a= "hello world!"
     kteb(a[0:5]) 
     hello
     ```
 
-* **lists** : \
-A list is created by placing all the items (elements) inside square brackets [], separated by commas.
+* **Lists** : \
+A list is created by placing all the items (elements) inside square brackets [ ], separated by commas.
 
     ```Python
     a = [5,10,15,20,25,30,35,40]
@@ -122,9 +122,38 @@ A list is created by placing all the items (elements) inside square brackets [],
         # Output: 5
         ```
 
-    - There are some methods that can be used with lists:
+    - List slicing:
 
+        ```Python
+        my_list = ['p','r','o','g','r','a','m','i','z']
 
+        kteb(my_list[2:5])
+        # Output: elements 3rd to 5th
+        kteb(my_list[:-5])
+        # Output: elements beginning to 4th
+        kteb(my_list[5:])
+        # Output: elements 6th to end
+        kteb(my_list[:])
+        # Output: elements beginning to end
+        ```
+    - The following methods can be used with lists:
+
+        ```Python
+        a=[1,2,3,4]
+
+        a.zid(5) # pushes an element to the end of the list
+        # Output: [1,2,3,4,5]
+        a.n9s() # pops the last element of the list
+        # Output: [1,2,3,4]
+        a.n9s(2) # pops the element at the indicated index
+        # Output: [1,2,4]
+        a.dkhel(2,3) # insert an element at the given index 
+        # Output: [1,2,3,4]
+        a.kber([5,6,7,8]) # pushes a list to the end of the list
+        # Output: [1, 2, 3, 4, 5, 6, 7, 8]
+        a.khwi() # deletes all elements of the given list
+        # Output: []
+        ``` 
 
 ### Operators:
 * Arithmetic operators:
