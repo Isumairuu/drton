@@ -111,11 +111,9 @@ def p_instruction(p):
            | while
            | doWhile
            | input
-           | len
            | empty
            | func
            | return
-           | arrfn
     '''
     p[0] = p[1]
 
@@ -266,9 +264,9 @@ def p_expression_terminals(p):
                | array
                | arrayelt
                | arrayslice
+               | appel_func
                | arrfn
                | len
-               | appel_func
     '''
     p[0] = p[1]
 # ARRAYS :)
