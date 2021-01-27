@@ -1,7 +1,158 @@
+# calclex.py
+#
+# tokenizer for a simple expression evaluator for
+# numbers and +,-,*,/
+# ------------------------------------------------------------
 import sys
-from lexer import *
+import ply.lex as lex
 import ply.yacc as yacc
 
+# List of token names.   This is always required
+
+
+tokens = [
+    'INT', 'FLOAT',  # Numbers
+    'PLUS', 'MINUS', 'TIMES', 'DIVIDE',  # operations
+    # Parentheses and brackets and braces
+    'ID',
+    'STRING',
+    'EQUALS',  # delimiters
+    'INCREMENTATION', 'DECREMENTATION',
+    'SUP', 'INF', 'EQUALSCOMP', 'INFEQUALS', 'SUPEQUALS', 'DIFFERENT',  # comparison ops
+]
+
+reserved = {
+    'kteb': 'KTEB',  # print
+    'wla': 'WLA',  # else
+    'ma7ed': 'MA7ED',  # while
+    'khate2': 'KHATE2',  # false
+    'ila': 'ILA',  # if
+    'wa': 'WA',  # and
+    'aw': 'AW',  # or
+    's7i7': 'S7I7',  # true
+    'khrej': 'KHREJ',  # break
+    'Walo': 'WALO',  # None
+    'qra': 'QRA',  # input
+    'kmel': 'KMEL',  # continue
+    'dir': 'DIR',  # do
+    'jereb': 'JEREB',  # try
+    'masd9ch': 'MASD9CH',  # except
+    'akhiran': 'AKHIRAN',  # finally
+    'lkola': 'LKOLA',  # for
+    'l3akss': 'L3AKSS',  # not
+    'mojod':  'MOJOD',  # global
+    'red': 'RED',  # return
+    'ta3rif': 'TA3RIF',  # function
+    'douz': 'DOUZ',  # pass
+    # array ta3riftions
+    'tol': 'TOL',  # len
+    'zid': 'ZID',  # append
+    'kber': 'KBER',  # extend
+    'msse7': 'MSSE7',  # pop
+    'dkhel': 'DKHEL',  # insert
+    'khwi': 'KHWI',  # khwi
+    # other fuctions, example
+
+}
+
+tokens = tokens + list(reserved.values())
+
+# Regular expression rules for simple tokens
+t_EQUALSCOMP = r'\=\='
+t_DIFFERENT = r'\!\='
+t_SUP = r'\>'
+t_INF = r'\<'
+t_INFEQUALS = r'\<\='
+t_SUPEQUALS = r'\>\='
+t_INCREMENTATION = r'\+\+'
+t_DECREMENTATION = r'--'
+t_PLUS = r'\+'
+t_MINUS = r'-'
+t_TIMES = r'\*'
+t_DIVIDE = r'/'
+t_EQUALS = r'\='
+literals = [',', '[', ']', '{', '}', '(', ')', '+', ';', '.', ':']
+
+
+def t_COMMENT(t):
+    r'\#.*'
+
+    # A regular expression rule with some action code
+
+
+def t_STRING(t):
+    # [^"] : means any character except ", this way "hello" + "there" wont be considered a "String" but "string" + "string"
+    r'("[^"]*")|(\'[^\']*\')'
+    if t.value[0] == '"':
+        t.value = t.value[1:-1]
+    elif t.value[0] == "'":
+        t.value = t.value[1:-1]
+    return t
+
+
+def t_FLOAT(t):
+    r'\d+\.\d+'
+    t.value = float(t.value)
+    return t
+
+
+def t_S7I7(t):
+    r's7i7'
+    t.value = True
+    return t
+
+
+def t_KHATE2(t):
+    r'khate2'
+    t.value = False
+    return t
+
+
+def t_WALO(t):
+    r'walo'
+    t.value = None
+    return t
+
+
+def t_INT(t):
+    r'\d+'
+    t.value = int(t.value)
+    return t
+
+
+def t_ID(t):
+    r'[a-zA-Z_][a-zA-Z_0-9]*'
+    t.type = reserved.get(t.value, 'ID')    # Check for reserved words
+    return t
+
+    # Define a rule so we can track line numbers
+
+
+def t_newline(t):
+    r'\n+'
+    t.lexer.lineno += len(t.value)
+
+
+    # A string containing ignored characters (spaces and tabs)
+t_ignore = ' \t'
+
+# Error handling rule
+
+
+def t_error(t):
+    print("fSter : ", t.lineno)
+    print("lCharacter '%s' makhassch ikon tma" % t.value[0])
+    exit()
+
+
+lexer = lex.lex()
+# Compute column.
+#     input is the input text string
+#     token is a token instance
+# def find_column(input, token):
+#     line_start = input.rfind('\n', 0, token.lexpos) + 1
+#     return (token.lexpos - line_start) + 1
+##############################################################################################################
 precedence = (
     ('left', 'PLUS', 'MINUS'),
     ('left', 'TIMES', 'DIVIDE'),
@@ -23,7 +174,6 @@ def p_program(p):
 def p_incrementation(p):
     '''
     incrementation : ID INCREMENTATION
-
     '''
     p[0] = ('++', p[1])
 
@@ -39,6 +189,9 @@ def p_var_assign(p):
     '''
     var_assign : ID EQUALS expression
                | ID EQUALS input
+
+
+
     '''
     p[0] = ('=', p[1], p[3])
 
@@ -62,7 +215,6 @@ def p_if(p):
     '''
     if : ILA '(' condition ')' '{' instruction_list '}'
         | ILA '(' condition ')' '{' instruction_list '}' WLA '{' instruction_list '}'
-
     '''
     if len(p) == 8:
         p[0] = (p[1], p[3], p[6])
@@ -83,7 +235,6 @@ def p_for(p):
 def p_while(p):
     '''
     while : MA7ED '(' condition ')' '{' instruction_list '}'
-
     '''
     p[0] = (p[1], p[3], p[6])
 
@@ -144,7 +295,6 @@ def p_condition_big(p):
     '''
     condition : '(' condition ')' AW '(' condition ')'
               | '(' condition ')' WA '(' condition ')'
-
     '''
     p[0] = (p[4], p[2], p[6])
 
@@ -153,7 +303,6 @@ def p_condition_medium1(p):
     '''
     condition : condition WA '(' condition ')'
               | condition AW '(' condition ')'
-
     '''
     p[0] = (p[2], p[1], p[4])
 
@@ -162,23 +311,16 @@ def p_condition_medium2(p):
     '''
     condition : '(' condition ')' WA condition
               | '(' condition ')' AW condition
-              |  condition WA condition
-              |  condition AW condition
-
     '''
-    if(len(p) == 6):
-        p[0] = (p[4], p[2], p[5])
-    else:
-        p[0] = (p[2], p[1], p[3])
+    p[0] = (p[4], p[2], p[5])
 
 
-# def p_condition(p):
-#     '''
-#     condition :  condition WA condition
-#               |  condition AW condition
-
-#     '''
-#     p[0] = (p[2], p[1], p[3])
+def p_condition(p):
+    '''
+    condition :  condition WA condition
+              |  condition AW condition
+    '''
+    p[0] = (p[2], p[1], p[3])
 
 
 def p_condition(p):
@@ -203,6 +345,7 @@ def p_condition_comp(p):
 def p_condition_exp(p):
     '''
     condition : expression
+
     '''
     p[0] = p[1]
 
@@ -213,8 +356,6 @@ def p_expression(p):
                | expression MINUS expression
                | expression TIMES expression
                | expression DIVIDE expression
-               | expression MODULO expression
-               | expression POWER expression
                | '(' expression ')'
                | MINUS expression
                | PLUS expression
@@ -267,8 +408,8 @@ def p_expression_terminals(p):
                | arrayelt
                | arrayslice
                | arrfn
-               | len
                | appel_func
+
     '''
     p[0] = p[1]
 # ARRAYS :)
@@ -351,7 +492,7 @@ def p_arrfn(p):
     arrfn : ID '.' ZID '(' expression ')'
           | ID '.' KBER '(' array ')'
           | ID '.' KHWI '(' ')'
-          | ID '.' DKHEL '(' expression ',' expression ')' 
+          | ID '.' DKHEL '(' expression ',' expression ')'
           | ID '.' MSSE7 '(' expression ')'
           | ID '.' MSSE7 '(' ')'
     '''
@@ -431,20 +572,17 @@ def p_return(p):
     '''
     p[0] = ('red', p[3])
 
-#################################
 
+#################################
 
 def p_printing(p):
     '''
     printing : KTEB '(' condition ')'
             | KTEB '(' incrementation ')'
             | KTEB '(' decrementation ')'
-            | KTEB '(' condition ',' condition ')'
+
     '''
-    if len(p) == 5:
-        p[0] = (p[1], p[3])
-    else:
-        p[0] = (p[1], p[3], p[5])
+    p[0] = (p[1], p[3])
 
 
 def p_len(p):
@@ -462,29 +600,22 @@ def p_empty(p):
 
 
 def p_error(p):
-    global foundError
-    if(not(foundError)):
-        try:
-            print("Ghalat dyal syntax fster: ", p.lineno)
-            print("9bel men:", p.value)
-        except AttributeError:
-            # p.lineno and p.value might generate error if at the end of block } is missing
-            print("Ghalat dyal syntax, t2eked bila ga3 l2a9wass o ma3qofat msdodin")
-        finally:
-            foundError = True
+    try:
+        print("Ghalat dyal syntax fster: ", p.lineno)
+        print("9bel men:", p.value)
+    except AttributeError:
+        # p.lineno and p.value might generate error if at the end of block } is missing
+        print("Ghalat dyal syntax, t2eked bila ga3 l2a9wass o ma3qofat msdodin")
     exitDarija()
 
 
 ids = {}
-functions = {}
-function_arguments = {}
 didBreak = False
 didContinue = False
 didReturn = False
 locals = [[]]
 functions = {}
 function_arguments = {}
-foundError = False
 returnValue = None
 
 
@@ -502,7 +633,7 @@ def exitDarija():
 
 
 def run(p):
-    global ids, didBreak, didContinue, locals, didReturn, foundError, returnValue
+    global ids, didBreak, didContinue, didReturn, locals, returnValue
     if type(p) == tuple:
         if(p[0] == 'prog'):
             for i in p[1]:
@@ -520,10 +651,7 @@ def run(p):
                 return run(p[1]) * run(p[2])
             elif p[0] == '/':
                 return run(p[1]) / run(p[2])
-            elif p[0] == '%':
-                return run(p[1]) % run(p[2])
-            elif p[0] == '^':
-                return run(p[1]) ** run(p[2])
+
             elif p[0] == '++':
                 ids[p[1]] = ids[p[1]] + 1
                 return ids[p[1]]
@@ -558,13 +686,7 @@ def run(p):
                     locals[0].append(p[1])
                 else:
                     ids[p[1]] = run(p[2])
-                    exists = False
-                    for i in locals:
-                        if p[1] in i:
-                            exists = True
-                            break
-                    if not(exists):
-                        locals[len(locals)-1].append(p[1])
+                    locals[len(locals)-1].append(p[1])
         elif p[0] == 'id':
             try:
                 return ids[p[1]]
@@ -572,17 +694,10 @@ def run(p):
                 print("lvariable '"+p[1]+"' makaynach")
                 exitDarija()
         elif p[0] == 'kteb':
-            if len(p) == 2:
-                toWrite = run(p[1])
-                if type(toWrite) == bool:
-                    if toWrite:
-                        print("s7i7")
-                    else:
-                        print("khate2")
-                else:
-                    print(toWrite)
-            else:
-                print(run(p[1]), run(p[2]))
+            print(run(p[1]))
+        elif p[0] == 'red':
+            return(run(p[1]))
+
         elif p[0] == 'arrelt':
             try:
                 tab = ids[p[1]]
@@ -657,9 +772,13 @@ def run(p):
             except TypeError:
                 print("Kat khdm ghir m3a list wla jomla")
         elif p[0] == "ila":
+
             if run(p[1]):
                 locals.append([])
                 for i in p[2]:
+                    print(i)
+                    if didReturn:
+                        break
                     if didBreak == True:  # case where a block inside this block triggered break, we shouldnt keep executing the current if block
                         break
                     elif i == 'khrej':
@@ -675,13 +794,10 @@ def run(p):
                         # meme principe que break
                         didContinue = True
                         break
-                    elif didReturn:
-                        break
                     elif i[0] == 'red':
                         didReturn = True
                         returnValue = run(i)
                         break
-
                     run(i)
                 for i in locals[len(locals)-1]:
                     ids.pop(i)
@@ -690,6 +806,7 @@ def run(p):
                 if len(p) > 3:
                     locals.append([])
                     for i in p[3]:
+                        print(i)
                         if didBreak == True:
                             break
                         elif i == 'khrej':
@@ -699,8 +816,6 @@ def run(p):
                             break
                         elif i == 'kmel':
                             didContinue = True
-                            break
-                        elif didReturn:
                             break
                         elif i[0] == 'red':
                             didReturn = True
@@ -717,11 +832,13 @@ def run(p):
             locals.append([])
             while run(p[1]):
                 for i in p[2]:
+                    if didReturn:
+                        break
                     # si parmis les instructions qui se trouve directement dans le block de while, je sort de la boucle for,
                     # et du coups en entre pas dans else donc on sort de while(see for/else dans python)
                     if i == 'khrej':
                         break
-                    elif i == 'kmel':
+                    if i == 'kmel':
                         didContinue = True
                         break
                     elif didBreak == True:
@@ -730,8 +847,6 @@ def run(p):
                         didBreak = False
                         break
                     elif didContinue == True:
-                        break
-                    elif didReturn:
                         break
                     elif i[0] == 'red':
                         didReturn = True
@@ -756,6 +871,8 @@ def run(p):
                 run(p[1])
             while run(p[2]):
                 for i in p[4]:
+                    if didReturn:
+                        break
                     if i == 'khrej':
                         break
                     elif i == "kmel":
@@ -765,8 +882,6 @@ def run(p):
                         didBreak = False
                         break
                     elif didContinue == True:
-                        break
-                    elif didReturn:
                         break
                     elif i[0] == 'red':
                         didReturn = True
@@ -791,6 +906,8 @@ def run(p):
             locals.append([])
             while(True):
                 for i in p[1]:
+                    if didReturn:
+                        break
                     if i == 'khrej':
                         break
                     if i == 'kmel':
@@ -800,8 +917,6 @@ def run(p):
                         didBreak = False
                         break
                     elif didContinue == True:
-                        break
-                    elif didReturn:
                         break
                     elif i[0] == 'red':
                         didReturn = True
@@ -852,8 +967,6 @@ def run(p):
                 finally:
                     for i in p[5]:
                         run(i)
-        elif p[0] == 'red':
-            return(run(p[1]))
         elif p[0] == "ta3rif":
             if p[1] in functions:
                 print("La fonction '", p[1], "' a été déja définie")
@@ -865,22 +978,22 @@ def run(p):
                 functions[p[1]] = p[3]
             else:
                 functions[p[1]] = p[2]
+
         elif p[0] == "appel_func":
             if p[1] not in functions:
-                print("La fonction '", p[1], "' n'existe pas")
+                print("Lfonction '", p[1], "' Mam definiyach")
                 exitDarija()
             elif len(p) == 3:
                 k = 0
                 if(len(p[2]) != len(function_arguments[p[1]])):
                     print(
-                        "nombre d'arguments incorrects pour la fonction '", p[1], "'")
+                        "l3adad dles arguments li 3titi lhad lfonction '", p[1], "' machi howa hadak")
                     exitDarija()
                 for i in function_arguments[p[1]]:
                     ids[i] = p[2][k]
                     k = k+1
             locals.append([])
             didReturn = False
-            returnValue = None
             for i in functions[p[1]]:
                 if i[0] == "red":
                     return run(i[1])
