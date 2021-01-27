@@ -873,6 +873,9 @@ def run(p):
             if p[1] not in functions:
                 print("La fonction '", p[1], "' n'existe pas")
                 exitDarija()
+            if (p[1] in function_arguments and len(p)==2):
+                print("La fonction '", p[1], "' doit être appelée avec des arguments")
+                exitDarija()
             elif len(p) == 3:
                 k = 0
                 if(len(p[2]) != len(function_arguments[p[1]])):
