@@ -150,14 +150,14 @@ We can use the slicing operator [ ] with lists too.
 
 * Logical operators:
     ```Python
-        x = s7i7
-        y = khate2
+    x = s7i7
+    y = khate2
 
-        print(x wa y)
-        # Output: khate2
+    print(x wa y)
+    # Output: khate2
 
-        print(x aw y)
-        # Output: s7i7
+    print(x aw y)
+    # Output: s7i7
     ```
 
 ### Flow control:
