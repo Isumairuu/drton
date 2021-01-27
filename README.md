@@ -82,8 +82,9 @@ We can use the slicing operator [ ] to extract an item or parts of the string:
     hello
     ```
 
-* **lists** : `['hello',455,1.23]`
-We can use the slicing operator [ ] with lists too.
+* **lists** : \
+A list is created by placing all the items (elements) inside square brackets [], separated by commas.
+
     ```Python
     a = [5,10,15,20,25,30,35,40]
 
@@ -96,6 +97,32 @@ We can use the slicing operator [ ] with lists too.
     kteb("a[5:]")
     # Output: [30, 35, 40]
     ```
+    - Lists indexing:
+
+        ```Python
+        # List indexing
+        my_list = ['p', 'r', 'o', 'b', 'e']
+
+        kteb(my_list[0])
+        # Output: p
+
+        kteb(my_list[2])
+        # Output: o
+
+        kteb(my_list[4])
+        # Output: e
+
+        n_list = ["Happy", [2, 0, 1, 5]]
+        # Nested List
+
+        kteb(n_list[0][1])
+        # Output: a
+
+        kteb(n_list[1][3])
+        # Output: 5
+        ```
+
+    - There are some methods that can be used with lists:
 
 
 
@@ -153,10 +180,10 @@ We can use the slicing operator [ ] with lists too.
     x = s7i7
     y = khate2
 
-    print(x wa y)
+    kteb(x wa y)
     # Output: khate2
 
-    print(x aw y)
+    kteb(x aw y)
     # Output: s7i7
     ```
 
