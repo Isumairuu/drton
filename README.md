@@ -39,7 +39,7 @@ Keyword | Python
  `tol ` | `len`
  `zid ` | `append`
  `kber ` | `extend`
- `msse7 ` | `pop`
+ `n9s ` | `pop`
  `dkhel ` | `insert`
  `khwi ` | `clear`
 
