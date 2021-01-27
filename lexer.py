@@ -40,7 +40,7 @@ reserved = {
     'tol': 'TOL',  # len
     'zid': 'ZID',  # append
     'kber': 'KBER',  # extend
-    'msse7': 'MSSE7',  # pop
+    'n9s': 'N9S',  # pop
     'dkhel': 'DKHEL',  # insert
     'khwi': 'KHWI',  # clear
     # other fuctions, example

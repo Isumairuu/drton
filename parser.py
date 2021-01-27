@@ -350,8 +350,8 @@ def p_arrfn(p):
           | ID '.' KBER '(' array ')'
           | ID '.' KHWI '(' ')'
           | ID '.' DKHEL '(' expression ',' expression ')' 
-          | ID '.' MSSE7 '(' expression ')'
-          | ID '.' MSSE7 '(' ')'
+          | ID '.' N9S '(' expression ')'
+          | ID '.' N9S '(' ')'
     '''
     if len(p) == 7:
         p[0] = ('arrfn', p[1], p[3], p[5])
@@ -609,18 +609,24 @@ def run(p):
         elif p[0] == 'arrfn':
             try:
                 if p[2] == 'zid':
-                    return ids[p[1]].append(run(p[3]))
+                    ids[p[1]].append(run(p[3]))
+                    print(ids[p[1]])
                 elif p[2] == 'kber':
-                    return ids[p[1]].extend(run(p[3]))
+                    ids[p[1]].extend(run(p[3]))
+                    print(ids[p[1]])
                 elif p[2] == 'khwi':
-                    return ids[p[1]].clear()
+                    ids[p[1]].clear()
+                    print(ids[p[1]])
                 elif p[2] == 'dkhel':
-                    return ids[p[1]].insert(run(p[3]), run(p[4]))
-                elif p[2] == 'msse7':
+                    ids[p[1]].insert(run(p[3]), run(p[4]))
+                    print(ids[p[1]])
+                elif p[2] == 'n9s':
                     if len(p) == 3:
-                        return ids[p[1]].pop()
+                        ids[p[1]].pop()
+                        print(ids[p[1]])
                     else:
-                        return ids[p[1]].pop(run(p[3]))
+                        ids[p[1]].pop(run(p[3]))
+                        print(ids[p[1]])
             except TypeError:
                 print("'"+p[2]+"' Kat khdm ghir m3a tableau")
                 exitDarija()

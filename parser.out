@@ -95,8 +95,8 @@ Rule 89    arrfn -> ID . ZID ( expression )
 Rule 90    arrfn -> ID . KBER ( array )
 Rule 91    arrfn -> ID . KHWI ( )
 Rule 92    arrfn -> ID . DKHEL ( expression , expression )
-Rule 93    arrfn -> ID . MSSE7 ( expression )
-Rule 94    arrfn -> ID . MSSE7 ( )
+Rule 93    arrfn -> ID . N9S ( expression )
+Rule 94    arrfn -> ID . N9S ( )
 Rule 95    argument_list -> expression
 Rule 96    argument_list -> argument_list , expression
 Rule 97    parameter -> ID
@@ -152,7 +152,7 @@ MASD9CH              : 64 65
 MINUS                : 53 59
 MODULO               : 56
 MOJOD                : 6
-MSSE7                : 93 94
+N9S                  : 93 94
 PLUS                 : 52 60
 POWER                : 57
 QRA                  : 62 63
@@ -294,8 +294,8 @@ state 0
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
   ! shift/reduce conflict for KHREJ resolved as shift
@@ -484,8 +484,8 @@ state 2
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
   ! shift/reduce conflict for KHREJ resolved as shift
@@ -1194,8 +1194,8 @@ state 21
     (90) arrfn -> ID . . KBER ( array )
     (91) arrfn -> ID . . KHWI ( )
     (92) arrfn -> ID . . DKHEL ( expression , expression )
-    (93) arrfn -> ID . . MSSE7 ( expression )
-    (94) arrfn -> ID . . MSSE7 ( )
+    (93) arrfn -> ID . . N9S ( expression )
+    (94) arrfn -> ID . . N9S ( )
     (83) dimensions -> . [ expression ]
     (84) dimensions -> . dimensions [ expression ]
 
@@ -1377,8 +1377,8 @@ state 26
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 26
@@ -1440,8 +1440,8 @@ state 27
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 26
@@ -1503,8 +1503,8 @@ state 28
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 26
@@ -2122,8 +2122,8 @@ state 47
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     ]               shift and go to state 83
@@ -2226,8 +2226,8 @@ state 50
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 26
@@ -2289,8 +2289,8 @@ state 51
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 26
@@ -2352,8 +2352,8 @@ state 52
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 26
@@ -2415,8 +2415,8 @@ state 53
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 26
@@ -2478,8 +2478,8 @@ state 54
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 26
@@ -2541,8 +2541,8 @@ state 55
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 26
@@ -2607,8 +2607,8 @@ state 56
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 26
@@ -2796,8 +2796,8 @@ state 60
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     :               shift and go to state 96
@@ -2863,8 +2863,8 @@ state 61
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     )               shift and go to state 98
@@ -2896,14 +2896,14 @@ state 62
     (90) arrfn -> ID . . KBER ( array )
     (91) arrfn -> ID . . KHWI ( )
     (92) arrfn -> ID . . DKHEL ( expression , expression )
-    (93) arrfn -> ID . . MSSE7 ( expression )
-    (94) arrfn -> ID . . MSSE7 ( )
+    (93) arrfn -> ID . . N9S ( expression )
+    (94) arrfn -> ID . . N9S ( )
 
     ZID             shift and go to state 100
     KBER            shift and go to state 101
     KHWI            shift and go to state 102
     DKHEL           shift and go to state 103
-    MSSE7           shift and go to state 104
+    N9S             shift and go to state 104
 
 
 state 63
@@ -2985,8 +2985,8 @@ state 65
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 26
@@ -3048,8 +3048,8 @@ state 66
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 26
@@ -3132,8 +3132,8 @@ state 67
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 107
@@ -3194,8 +3194,8 @@ state 69
     (90) arrfn -> ID . . KBER ( array )
     (91) arrfn -> ID . . KHWI ( )
     (92) arrfn -> ID . . DKHEL ( expression , expression )
-    (93) arrfn -> ID . . MSSE7 ( expression )
-    (94) arrfn -> ID . . MSSE7 ( )
+    (93) arrfn -> ID . . N9S ( expression )
+    (94) arrfn -> ID . . N9S ( )
     (83) dimensions -> . [ expression ]
     (84) dimensions -> . dimensions [ expression ]
 
@@ -3558,8 +3558,8 @@ state 74
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
   ! shift/reduce conflict for KHREJ resolved as shift
@@ -3713,8 +3713,8 @@ state 75
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 107
@@ -3784,8 +3784,8 @@ state 76
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     ID              shift and go to state 119
@@ -3865,8 +3865,8 @@ state 77
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 107
@@ -3976,8 +3976,8 @@ state 78
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
   ! shift/reduce conflict for KHREJ resolved as shift
@@ -4115,8 +4115,8 @@ state 79
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     )               shift and go to state 123
@@ -4187,8 +4187,8 @@ state 81
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 26
@@ -4328,8 +4328,8 @@ state 85
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 26
@@ -4856,8 +4856,8 @@ state 94
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 26
@@ -4942,8 +4942,8 @@ state 96
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     ]               shift and go to state 133
@@ -5076,8 +5076,8 @@ state 103
 
 state 104
 
-    (93) arrfn -> ID . MSSE7 . ( expression )
-    (94) arrfn -> ID . MSSE7 . ( )
+    (93) arrfn -> ID . N9S . ( expression )
+    (94) arrfn -> ID . N9S . ( )
 
     (               shift and go to state 140
 
@@ -5234,8 +5234,8 @@ state 107
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 107
@@ -5348,8 +5348,8 @@ state 113
     (90) arrfn -> ID . . KBER ( array )
     (91) arrfn -> ID . . KHWI ( )
     (92) arrfn -> ID . . DKHEL ( expression , expression )
-    (93) arrfn -> ID . . MSSE7 ( expression )
-    (94) arrfn -> ID . . MSSE7 ( )
+    (93) arrfn -> ID . . N9S ( expression )
+    (94) arrfn -> ID . . N9S ( )
     (83) dimensions -> . [ expression ]
     (84) dimensions -> . dimensions [ expression ]
 
@@ -5510,8 +5510,8 @@ state 115
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
   ! shift/reduce conflict for } resolved as shift
@@ -5669,8 +5669,8 @@ state 119
     (90) arrfn -> ID . . KBER ( array )
     (91) arrfn -> ID . . KHWI ( )
     (92) arrfn -> ID . . DKHEL ( expression , expression )
-    (93) arrfn -> ID . . MSSE7 ( expression )
-    (94) arrfn -> ID . . MSSE7 ( )
+    (93) arrfn -> ID . . N9S ( expression )
+    (94) arrfn -> ID . . N9S ( )
     (83) dimensions -> . [ expression ]
     (84) dimensions -> . dimensions [ expression ]
 
@@ -5784,8 +5784,8 @@ state 121
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
   ! shift/reduce conflict for } resolved as shift
@@ -6057,8 +6057,8 @@ state 127
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 26
@@ -6159,8 +6159,8 @@ state 130
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     ]               shift and go to state 172
@@ -6391,8 +6391,8 @@ state 135
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 26
@@ -6454,8 +6454,8 @@ state 136
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 26
@@ -6534,8 +6534,8 @@ state 139
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 26
@@ -6561,8 +6561,8 @@ state 139
 
 state 140
 
-    (93) arrfn -> ID . MSSE7 ( . expression )
-    (94) arrfn -> ID . MSSE7 ( . )
+    (93) arrfn -> ID . N9S ( . expression )
+    (94) arrfn -> ID . N9S ( . )
     (52) expression -> . expression PLUS expression
     (53) expression -> . expression MINUS expression
     (54) expression -> . expression TIMES expression
@@ -6598,8 +6598,8 @@ state 140
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     )               shift and go to state 180
@@ -6762,8 +6762,8 @@ state 144
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 107
@@ -6844,8 +6844,8 @@ state 145
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 184
@@ -6926,8 +6926,8 @@ state 146
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 186
@@ -7071,8 +7071,8 @@ state 149
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 107
@@ -7136,8 +7136,8 @@ state 150
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 26
@@ -7199,8 +7199,8 @@ state 151
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 26
@@ -7262,8 +7262,8 @@ state 152
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 26
@@ -7325,8 +7325,8 @@ state 153
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 26
@@ -7388,8 +7388,8 @@ state 154
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 26
@@ -7451,8 +7451,8 @@ state 155
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 26
@@ -7547,8 +7547,8 @@ state 158
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 107
@@ -7629,8 +7629,8 @@ state 159
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 107
@@ -8121,7 +8121,7 @@ state 178
 
 state 179
 
-    (93) arrfn -> ID . MSSE7 ( expression . )
+    (93) arrfn -> ID . N9S ( expression . )
     (52) expression -> expression . PLUS expression
     (53) expression -> expression . MINUS expression
     (54) expression -> expression . TIMES expression
@@ -8140,51 +8140,51 @@ state 179
 
 state 180
 
-    (94) arrfn -> ID . MSSE7 ( ) .
+    (94) arrfn -> ID . N9S ( ) .
 
-    PLUS            reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    MINUS           reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    TIMES           reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    DIVIDE          reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    MODULO          reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    POWER           reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    KHREJ           reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    KMEL            reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    ID              reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    MOJOD           reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    KTEB            reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    (               reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    INT             reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    FLOAT           reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    STRING          reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    KHATE2          reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    S7I7            reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    WALO            reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    JEREB           reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    ILA             reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    LKOLA           reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    MA7ED           reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    DIR             reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    QRA             reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    TA3RIF          reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    RED             reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    [               reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    TOL             reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    $end            reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    )               reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    ]               reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    ,               reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    }               reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    ;               reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    :               reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    SUP             reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    INF             reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    EQUALSCOMP      reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    SUPEQUALS       reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    INFEQUALS       reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    DIFFERENT       reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    WA              reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
-    AW              reduce using rule 94 (arrfn -> ID . MSSE7 ( ) .)
+    PLUS            reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    MINUS           reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    TIMES           reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    DIVIDE          reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    MODULO          reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    POWER           reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    KHREJ           reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    KMEL            reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    ID              reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    MOJOD           reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    KTEB            reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    (               reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    INT             reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    FLOAT           reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    STRING          reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    KHATE2          reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    S7I7            reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    WALO            reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    JEREB           reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    ILA             reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    LKOLA           reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    MA7ED           reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    DIR             reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    QRA             reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    TA3RIF          reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    RED             reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    [               reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    TOL             reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    $end            reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    )               reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    ]               reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    ,               reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    }               reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    ;               reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    :               reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    SUP             reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    INF             reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    EQUALSCOMP      reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    SUPEQUALS       reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    INFEQUALS       reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    DIFFERENT       reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    WA              reduce using rule 94 (arrfn -> ID . N9S ( ) .)
+    AW              reduce using rule 94 (arrfn -> ID . N9S ( ) .)
 
 
 state 181
@@ -8288,8 +8288,8 @@ state 184
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 107
@@ -8392,8 +8392,8 @@ state 186
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 107
@@ -8663,8 +8663,8 @@ state 195
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
   ! shift/reduce conflict for KHREJ resolved as shift
@@ -8875,8 +8875,8 @@ state 198
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
   ! shift/reduce conflict for KHREJ resolved as shift
@@ -9082,8 +9082,8 @@ state 202
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
   ! shift/reduce conflict for KHREJ resolved as shift
@@ -9368,8 +9368,8 @@ state 206
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 26
@@ -9395,51 +9395,51 @@ state 206
 
 state 207
 
-    (93) arrfn -> ID . MSSE7 ( expression ) .
+    (93) arrfn -> ID . N9S ( expression ) .
 
-    PLUS            reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    MINUS           reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    TIMES           reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    DIVIDE          reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    MODULO          reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    POWER           reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    KHREJ           reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    KMEL            reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    ID              reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    MOJOD           reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    KTEB            reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    (               reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    INT             reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    FLOAT           reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    STRING          reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    KHATE2          reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    S7I7            reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    WALO            reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    JEREB           reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    ILA             reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    LKOLA           reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    MA7ED           reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    DIR             reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    QRA             reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    TA3RIF          reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    RED             reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    [               reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    TOL             reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    $end            reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    )               reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    ]               reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    ,               reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    }               reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    ;               reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    :               reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    SUP             reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    INF             reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    EQUALSCOMP      reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    SUPEQUALS       reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    INFEQUALS       reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    DIFFERENT       reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    WA              reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
-    AW              reduce using rule 93 (arrfn -> ID . MSSE7 ( expression ) .)
+    PLUS            reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    MINUS           reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    TIMES           reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    DIVIDE          reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    MODULO          reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    POWER           reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    KHREJ           reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    KMEL            reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    ID              reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    MOJOD           reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    KTEB            reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    (               reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    INT             reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    FLOAT           reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    STRING          reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    KHATE2          reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    S7I7            reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    WALO            reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    JEREB           reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    ILA             reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    LKOLA           reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    MA7ED           reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    DIR             reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    QRA             reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    TA3RIF          reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    RED             reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    [               reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    TOL             reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    $end            reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    )               reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    ]               reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    ,               reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    }               reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    ;               reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    :               reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    SUP             reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    INF             reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    EQUALSCOMP      reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    SUPEQUALS       reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    INFEQUALS       reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    DIFFERENT       reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    WA              reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
+    AW              reduce using rule 93 (arrfn -> ID . N9S ( expression ) .)
 
 
 state 208
@@ -9497,8 +9497,8 @@ state 208
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 224
@@ -9579,8 +9579,8 @@ state 209
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 226
@@ -9768,8 +9768,8 @@ state 214
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
   ! shift/reduce conflict for KHREJ resolved as shift
@@ -9952,8 +9952,8 @@ state 215
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
   ! shift/reduce conflict for } resolved as shift
@@ -10160,8 +10160,8 @@ state 218
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
   ! shift/reduce conflict for } resolved as shift
@@ -10315,8 +10315,8 @@ state 219
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 107
@@ -10426,8 +10426,8 @@ state 220
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
   ! shift/reduce conflict for KHREJ resolved as shift
@@ -10617,8 +10617,8 @@ state 222
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
   ! shift/reduce conflict for } resolved as shift
@@ -10796,8 +10796,8 @@ state 224
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 107
@@ -10900,8 +10900,8 @@ state 226
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
     (               shift and go to state 107
@@ -11065,8 +11065,8 @@ state 230
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
   ! shift/reduce conflict for } resolved as shift
@@ -11365,8 +11365,8 @@ state 239
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
   ! shift/reduce conflict for } resolved as shift
@@ -11841,8 +11841,8 @@ state 255
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
   ! shift/reduce conflict for KHREJ resolved as shift
@@ -12025,8 +12025,8 @@ state 256
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
   ! shift/reduce conflict for KHREJ resolved as shift
@@ -12209,8 +12209,8 @@ state 257
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
   ! shift/reduce conflict for KHREJ resolved as shift
@@ -12393,8 +12393,8 @@ state 258
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
   ! shift/reduce conflict for KHREJ resolved as shift
@@ -12577,8 +12577,8 @@ state 259
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
   ! shift/reduce conflict for KHREJ resolved as shift
@@ -12761,8 +12761,8 @@ state 260
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
   ! shift/reduce conflict for KHREJ resolved as shift
@@ -12944,8 +12944,8 @@ state 261
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
   ! shift/reduce conflict for } resolved as shift
@@ -13128,8 +13128,8 @@ state 262
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
   ! shift/reduce conflict for } resolved as shift
@@ -13312,8 +13312,8 @@ state 263
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
   ! shift/reduce conflict for } resolved as shift
@@ -13496,8 +13496,8 @@ state 264
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
   ! shift/reduce conflict for } resolved as shift
@@ -13680,8 +13680,8 @@ state 265
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
   ! shift/reduce conflict for } resolved as shift
@@ -13864,8 +13864,8 @@ state 266
     (90) arrfn -> . ID . KBER ( array )
     (91) arrfn -> . ID . KHWI ( )
     (92) arrfn -> . ID . DKHEL ( expression , expression )
-    (93) arrfn -> . ID . MSSE7 ( expression )
-    (94) arrfn -> . ID . MSSE7 ( )
+    (93) arrfn -> . ID . N9S ( expression )
+    (94) arrfn -> . ID . N9S ( )
     (109) len -> . TOL ( expression )
 
   ! shift/reduce conflict for } resolved as shift
