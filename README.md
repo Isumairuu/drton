@@ -252,3 +252,31 @@ The `kmel` statement is used to skip the rest of the code inside a loop for the 
     #The end
     ```
 
+* **ta3rif** (*function def*):\
+A function is a group of related statements that performs a specific task.
+    - You can use a function without a return statement:
+
+        ```Python
+        ta3rif greet(name){ #indent is unecessary but used for styling
+            kteb("Salam, " , name)
+        }
+
+        greet('Ibrahim') # Output: Salam, Ibrahim
+        ```
+    - As you can use it with a return `red` statement:
+
+        ```Python
+        ta3rif absolute_value(num){
+            ila(num >= 0){
+                red(num)
+            }
+            wla{
+                red(-num)
+            }
+        }
+
+        kteb(absolute_value(2)) # Output: 2
+        kteb(absolute_value(-4)) # Output: 4
+        ```
+> You'll find more examples in the examples folder!
+    
