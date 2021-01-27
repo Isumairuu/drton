@@ -35,7 +35,6 @@ Keyword | Python
  `jereb ` | `try`
  `masd9ch ` | `except`
  `akhiran ` | `finally`
- `douz ` | `pass`
  `tol ` | `len`
  `zid ` | `append`
  `kber ` | `extend`
@@ -345,4 +344,32 @@ A function is a group of related statements that performs a specific task.
         kteb(absolute_value(-4)) # Output: 4
         ```
 > You'll find more examples in the examples folder!
-    
+
+* **jereb..masd9ch..akhiran** *(try..except..finally)*:
+
+    ```Python
+        str="string"
+        jereb{
+            lkola (a=0;a<tol(str);a++){
+                kteb(str[a]) #we can triger error by removing this
+            }
+        }
+        masd9ch{
+            kteb('There is a problem!')
+        }
+        akhiran{
+            kteb('default case')
+        }
+        # Output: if there is no error:
+        # s
+        # t
+        # r
+        # i
+        # n
+        # g
+        # default case
+        
+        # Output: if there is an error:
+        # There is a problem!
+        # default case
+    ```
