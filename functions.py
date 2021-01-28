@@ -37,6 +37,7 @@ def executeIfBlock(insts):
         elif i[0] == 'red':
             didReturn = True
             returnValue = run(i)
+            break
         run(i)
     for i in locals[len(locals)-1]:
         ids.pop(i)
