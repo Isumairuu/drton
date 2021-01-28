@@ -488,6 +488,155 @@ foundError = False
 returnValue = None
 
 
+def executeIfBlock(insts):
+    global ids, didBreak, didContinue, locals, didReturn, foundError, returnValue
+    locals.append([])
+    for i in insts:
+        if didBreak == True:  # case where a block inside this block triggered break, we shouldnt keep executing the current if block
+            break
+        elif i == 'khrej':
+            # dans les instruction de if, si on trouve "khrej" c'est qu'on doit sortir du while,
+            # donc j'ai defini cette variable global, qu'on va verifier dans while pour voir si on a break ou non,
+            # si elle appartient au instructions qui se trouve dans if, je donne true a la variable global,
+            #  et je ne termine pas les autre, instruction
+            didBreak = True
+            break
+        elif didContinue == True:
+            break
+        elif i == 'kmel':
+            # meme principe que break
+            didContinue = True
+            break
+        elif didReturn:
+            break
+        elif i[0] == 'red':
+            didReturn = True
+            returnValue = run(i)
+        run(i)
+    for i in locals[len(locals)-1]:
+        ids.pop(i)
+    locals.pop()
+
+
+def executeWhileLoop(p):
+    global ids, didBreak, didContinue, locals, didReturn, foundError, returnValue
+    # on donne a ces variables false au cas ou elle sont devenu true suite a autre boucle
+    didBreak = False
+    didContinue = False
+    locals.append([])
+    while run(p[1]):
+        for i in p[2]:
+            # si parmis les instructions qui se trouve directement dans le block de while, je sort de la boucle for,
+            # et du coups en entre pas dans else donc on sort de while(see for/else dans python)
+            if i == 'khrej':
+                break
+            elif i == 'kmel':
+                didContinue = True
+                break
+            elif didBreak == True:
+                # je verifie sinon si un if qui s'est executé dans ce block contient un break('khrej'),
+                #  si oui il aura changé didBreak en TRUE, et du coups on va sortir de ce while,
+                didBreak = False
+                break
+            elif didContinue == True:
+                break
+            elif didReturn:
+                break
+            elif i[0] == 'red':
+                didReturn = True
+                returnValue = run(i)
+                break
+            else:
+                run(i)
+        else:
+            continue
+        if(didContinue == True):  # in the case of continue, we dont want to exit the loop
+            didContinue = False
+            continue
+        break
+    for i in locals[len(locals)-1]:
+        ids.pop(i)
+    locals.pop()
+
+
+def executeDoWhileLoop(p):
+    global ids, didBreak, didContinue, locals, didReturn, foundError, returnValue
+    didBreak = False
+    didContinue = False
+    locals.append([])
+    while(True):
+        for i in p[1]:
+            if i == 'khrej':
+                break
+            if i == 'kmel':
+                didContinue = True
+                break
+            elif didBreak == True:
+                didBreak = False
+                break
+            elif didContinue == True:
+                break
+            elif didReturn:
+                break
+            elif i[0] == 'red':
+                didReturn = True
+                returnValue = run(i)
+                break
+            else:
+                run(i)
+        else:
+            if(run(p[2])):
+                continue
+        if(didContinue == True):  # in the case of continue, we dont want to exit the loop
+            didContinue = False
+            if(run(p[2])):
+                continue
+        break
+    for i in locals[len(locals)-1]:
+        ids.pop(i)
+    locals.pop()
+
+
+def executeForLoop(p):
+    global ids, didBreak, didContinue, locals, didReturn, foundError, returnValue
+    didBreak = False
+    didContinue = False
+    locals.append([])
+    if p[1][0] == '=':
+        run(p[1])
+    while run(p[2]):
+        for i in p[4]:
+            if i == 'khrej':
+                break
+            elif i == "kmel":
+                didContinue = True
+                break
+            elif didBreak == True:
+                didBreak = False
+                break
+            elif didContinue == True:
+                break
+            elif didReturn:
+                break
+            elif i[0] == 'red':
+                didReturn = True
+                returnValue = run(i)
+                break
+            else:
+                run(i)
+        else:
+            run(p[3])
+            continue
+        if(didContinue == True):  # in the case of continue, we dont want to exit the loop
+            didContinue = False
+            run(p[3])
+            continue
+        break
+    for i in locals[len(locals)-1]:
+        ids.pop(i)
+    locals.pop()
+
+
 def is_number(string):
     try:
         float(string)
@@ -658,168 +807,18 @@ def run(p):
                 print("Kat khdm ghir m3a list wla jomla")
         elif p[0] == "ila":
             if run(p[1]):
-                locals.append([])
-                for i in p[2]:
-                    if didBreak == True:  # case where a block inside this block triggered break, we shouldnt keep executing the current if block
-                        break
-                    elif i == 'khrej':
-                        # dans les instruction de if, si on trouve "khrej" c'est qu'on doit sortir du while,
-                        # donc j'ai defini cette variable global, qu'on va verifier dans while pour voir si on a break ou non,
-                        # si elle appartient au instructions qui se trouve dans if, je donne true a la variable global,
-                        #  et je ne termine pas les autre, instruction
-                        didBreak = True
-                        break
-                    elif didContinue == True:
-                        break
-                    elif i == 'kmel':
-                        # meme principe que break
-                        didContinue = True
-                        break
-                    elif didReturn:
-                        break
-                    elif i[0] == 'red':
-                        didReturn = True
-                        returnValue = run(i)
-                        break
-
-                    run(i)
-                for i in locals[len(locals)-1]:
-                    ids.pop(i)
-                locals.pop()
+                executeIfBlock(p[2])
             else:
                 if len(p) > 3:
-                    locals.append([])
-                    for i in p[3]:
-                        if didBreak == True:
-                            break
-                        elif i == 'khrej':
-                            didBreak = True
-                            break
-                        elif didContinue == True:
-                            break
-                        elif i == 'kmel':
-                            didContinue = True
-                            break
-                        elif didReturn:
-                            break
-                        elif i[0] == 'red':
-                            didReturn = True
-                            returnValue = run(i)
-                            break
-                        run(i)
-                    for i in locals[len(locals)-1]:
-                        ids.pop(i)
-                    locals.pop()
+                    executeIfBlock(p[3])
+
         elif p[0] == "ma7ed":
-            # on donne a ces variables false au cas ou elle sont devenu true suite a autre boucle
-            didBreak = False
-            didContinue = False
-            locals.append([])
-            while run(p[1]):
-                for i in p[2]:
-                    # si parmis les instructions qui se trouve directement dans le block de while, je sort de la boucle for,
-                    # et du coups en entre pas dans else donc on sort de while(see for/else dans python)
-                    if i == 'khrej':
-                        break
-                    elif i == 'kmel':
-                        didContinue = True
-                        break
-                    elif didBreak == True:
-                        # je verifie sinon si un if qui s'est executé dans ce block contient un break('khrej'),
-                        #  si oui il aura changé didBreak en TRUE, et du coups on va sortir de ce while,
-                        didBreak = False
-                        break
-                    elif didContinue == True:
-                        break
-                    elif didReturn:
-                        break
-                    elif i[0] == 'red':
-                        didReturn = True
-                        returnValue = run(i)
-                        break
-                    else:
-                        run(i)
-                else:
-                    continue
-                if(didContinue == True):  # in the case of continue, we dont want to exit the loop
-                    didContinue = False
-                    continue
-                break
-            for i in locals[len(locals)-1]:
-                ids.pop(i)
-            locals.pop()
+            executeWhileLoop(p)
+
         elif p[0] == "lkola":
-            didBreak = False
-            didContinue = False
-            locals.append([])
-            if p[1][0] == '=':
-                run(p[1])
-            while run(p[2]):
-                for i in p[4]:
-                    if i == 'khrej':
-                        break
-                    elif i == "kmel":
-                        didContinue = True
-                        break
-                    elif didBreak == True:
-                        didBreak = False
-                        break
-                    elif didContinue == True:
-                        break
-                    elif didReturn:
-                        break
-                    elif i[0] == 'red':
-                        didReturn = True
-                        returnValue = run(i)
-                        break
-                    else:
-                        run(i)
-                else:
-                    run(p[3])
-                    continue
-                if(didContinue == True):  # in the case of continue, we dont want to exit the loop
-                    didContinue = False
-                    run(p[3])
-                    continue
-                break
-            for i in locals[len(locals)-1]:
-                ids.pop(i)
-            locals.pop()
+            executeForLoop(p)
         elif p[0] == 'dir':
-            didBreak = False
-            didContinue = False
-            locals.append([])
-            while(True):
-                for i in p[1]:
-                    if i == 'khrej':
-                        break
-                    if i == 'kmel':
-                        didContinue = True
-                        break
-                    elif didBreak == True:
-                        didBreak = False
-                        break
-                    elif didContinue == True:
-                        break
-                    elif didReturn:
-                        break
-                    elif i[0] == 'red':
-                        didReturn = True
-                        returnValue = run(i)
-                        break
-                    else:
-                        run(i)
-                else:
-                    if(run(p[2])):
-                        continue
-                if(didContinue == True):  # in the case of continue, we dont want to exit the loop
-                    didContinue = False
-                    if(run(p[2])):
-                        continue
-                break
-            for i in locals[len(locals)-1]:
-                ids.pop(i)
-            locals.pop()
+            executeDoWhileLoop(p)
         elif p[0] == 'qra':
             if p[1] == ')':
                 inp = input()

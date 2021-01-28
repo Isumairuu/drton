@@ -1,10 +1,18 @@
+a = 12
 ta3rif max(a,b){
     kteb(a)
     kteb(b)
 }
+c = 22
+ila(s7i7){
+    kteb(c)
+    c = 10
+    kteb(c)
+}
+kteb(c)
 a = 1
 b= "hello"
-max(a,b)
+max()
 str="string"
 lkola (a=0;a<tol(str);a++){
     kteb(str[a])
