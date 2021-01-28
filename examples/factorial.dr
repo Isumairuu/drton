@@ -1,0 +1,11 @@
+ta3rif factorial(x){
+    ila(x == 1){
+        red(1)
+    }
+    wla{
+        red(x * factorial(x-1))
+    }
+}
+
+num = 5
+kteb("The factorial is",factorial(num))

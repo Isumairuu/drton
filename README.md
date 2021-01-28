@@ -35,11 +35,10 @@ Keyword | Python
  `jereb ` | `try`
  `masd9ch ` | `except`
  `akhiran ` | `finally`
- `douz ` | `pass`
  `tol ` | `len`
  `zid ` | `append`
  `kber ` | `extend`
- `msse7 ` | `pop`
+ `n9s ` | `pop`
  `dkhel ` | `insert`
  `khwi ` | `clear`
 
@@ -75,15 +74,16 @@ You can use either integers or floating points numbers in this language.
     - float: `1.23`
 
 * **Strings** : You can choose either `'string'` or `"string"` to represent a string.  
-We can use the slicing operator [ ] to extract an item or parts of the string:
+We can use the slicing operator *[ : ]* to extract an item or parts of the string:
     ```Python
     a= "hello world!"
     kteb(a[0:5]) 
     hello
     ```
 
-* **lists** : `['hello',455,1.23]`
-We can use the slicing operator [ ] with lists too.
+* **Lists** : \
+A list is created by placing all the items (elements) inside square brackets [ ], separated by commas.
+
     ```Python
     a = [5,10,15,20,25,30,35,40]
 
@@ -96,8 +96,71 @@ We can use the slicing operator [ ] with lists too.
     kteb("a[5:]")
     # Output: [30, 35, 40]
     ```
+    - Lists indexing:
 
+        ```Python
+        # List indexing
+        my_list = ['p', 'r', 'o', 'b', 'e']
 
+        kteb(my_list[0])
+        # Output: p
+
+        kteb(my_list[2])
+        # Output: o
+
+        kteb(my_list[4])
+        # Output: e
+
+        n_list = ["Happy", [2, 0, 1, 5]]
+        # Nested List
+
+        kteb(n_list[0][1])
+        # Output: a
+
+        kteb(n_list[1][3])
+        # Output: 5
+        ```
+
+    - List slicing:
+
+        ```Python
+        my_list = ['p','r','o','g','r','a','m','i','z']
+
+        kteb(my_list[2:5])
+        # Output: elements 3rd to 5th
+
+        kteb(my_list[:-5])
+        # Output: elements beginning to 4th
+
+        kteb(my_list[5:])
+        # Output: elements 6th to end
+
+        kteb(my_list[:])
+        # Output: elements beginning to end
+        ```
+    - The following methods can be used with lists:
+
+        ```Python
+        a=[1,2,3,4]
+
+        a.zid(5) # pushes an element to the end of the list
+        # Output: [1,2,3,4,5]
+
+        a.n9s() # pops the last element of the list
+        # Output: [1,2,3,4]
+
+        a.n9s(2) # pops the element at the indicated index
+        # Output: [1,2,4]
+        
+        a.dkhel(2,3) # insert an element at the given index 
+        # Output: [1,2,3,4]
+
+        a.kber([5,6,7,8]) # pushes a list to the end of the list
+        # Output: [1, 2, 3, 4, 5, 6, 7, 8]
+
+        a.khwi() # deletes all elements of the given list
+        # Output: []
+        ``` 
 
 ### Operators:
 * Arithmetic operators:
@@ -150,14 +213,14 @@ We can use the slicing operator [ ] with lists too.
 
 * Logical operators:
     ```Python
-        x = s7i7
-        y = khate2
+    x = s7i7
+    y = khate2
 
-        print(x wa y)
-        # Output: khate2
+    kteb(x wa y)
+    # Output: khate2
 
-        print(x aw y)
-        # Output: s7i7
+    kteb(x aw y)
+    # Output: s7i7
     ```
 
 ### Flow control:
@@ -211,7 +274,7 @@ The `ma7ed` loop is used to iterate over a block of code as long as the test exp
         i = i+1    # update counter
     }
     # print the sum
-    kteb("The sum is", sum) # Output : 9
+    kteb("The sum is", sum) # Output : The sum is 45
     ```
 
 * **khrej** (*break*):
@@ -220,9 +283,10 @@ The `khrej` statement terminates the loop containing it. Control of the program 
     ```Python
     str="string"
     lkola (a=0;a<tol(str);a++){
-        if str[a] == "i":
+        ila(str[a] == "i"){
             khrej
-        kteb(val[a])
+        }
+        kteb(str[a])
     }
     kteb("The end")
     # Output:
@@ -238,9 +302,10 @@ The `kmel` statement is used to skip the rest of the code inside a loop for the 
     ```Python
     str="string"
     lkola (a=0;a<tol(str);a++){
-        if str[a] == "i":
-            khrej
-        kteb(val[a])
+        ila(str[a] == "i"){
+            kmel
+        }
+        kteb(str[a])
     }
     kteb("The end")
     # Output:
@@ -252,3 +317,59 @@ The `kmel` statement is used to skip the rest of the code inside a loop for the 
     #The end
     ```
 
+* **ta3rif** (*function def*):\
+A function is a group of related statements that performs a specific task.
+    - You can use a function without a return statement:
+
+        ```Python
+        ta3rif greet(name){ #indent is unecessary but used for styling
+            kteb("Salam, " , name)
+        }
+
+        greet('Ibrahim') # Output: Salam, Ibrahim
+        ```
+    - As you can use it with a return `red` statement:
+
+        ```Python
+        ta3rif absolute_value(num){
+            ila(num >= 0){
+                red(num)
+            }
+            wla{
+                red(-num)
+            }
+        }
+
+        kteb(absolute_value(2)) # Output: 2
+        kteb(absolute_value(-4)) # Output: 4
+        ```
+> You'll find more examples in the examples folder!
+
+* **jereb..masd9ch..akhiran** *(try..except..finally)*:
+
+    ```Python
+        str="string"
+        jereb{
+            lkola (a=0;a<tol(str);a++){
+                kteb(str[a]) #we can triger error by removing this
+            }
+        }
+        masd9ch{
+            kteb('There is a problem!')
+        }
+        akhiran{
+            kteb('default case')
+        }
+        # Output: if there is no error:
+        # s
+        # t
+        # r
+        # i
+        # n
+        # g
+        # default case
+        
+        # Output: if there is an error:
+        # There is a problem!
+        # default case
+    ```
