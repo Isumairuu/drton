@@ -10,9 +10,9 @@ ila(s7i7){
     kteb(c)
 }
 kteb(c)
-a = 1
+x = 1
 b= "hello"
-max()
+max(x,a)
 str="string"
 lkola (a=0;a<tol(str);a++){
     kteb(str[a])

@@ -1,4 +1,4 @@
-Created by PLY version 3.8 (http://www.dabeaz.com/ply)
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
 Grammar
 
@@ -303,6 +303,9 @@ state 0
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for MOJOD resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -325,6 +328,8 @@ state 0
     MOJOD           shift and go to state 22
     KTEB            shift and go to state 25
     (               shift and go to state 26
+    MINUS           shift and go to state 28
+    PLUS            shift and go to state 27
     INT             shift and go to state 29
     FLOAT           shift and go to state 30
     STRING          shift and go to state 31
@@ -337,22 +342,20 @@ state 0
     MA7ED           shift and go to state 42
     DIR             shift and go to state 43
     QRA             shift and go to state 44
-    MINUS           reduce using rule 110 (empty -> .)
-    PLUS            reduce using rule 110 (empty -> .)
     $end            reduce using rule 110 (empty -> .)
     TA3RIF          shift and go to state 45
     RED             shift and go to state 46
     [               shift and go to state 47
     TOL             shift and go to state 48
 
-  ! MINUS           [ shift and go to state 28 ]
-  ! PLUS            [ shift and go to state 27 ]
   ! KHREJ           [ reduce using rule 110 (empty -> .) ]
   ! KMEL            [ reduce using rule 110 (empty -> .) ]
   ! ID              [ reduce using rule 110 (empty -> .) ]
   ! MOJOD           [ reduce using rule 110 (empty -> .) ]
   ! KTEB            [ reduce using rule 110 (empty -> .) ]
   ! (               [ reduce using rule 110 (empty -> .) ]
+  ! MINUS           [ reduce using rule 110 (empty -> .) ]
+  ! PLUS            [ reduce using rule 110 (empty -> .) ]
   ! INT             [ reduce using rule 110 (empty -> .) ]
   ! FLOAT           [ reduce using rule 110 (empty -> .) ]
   ! STRING          [ reduce using rule 110 (empty -> .) ]
@@ -493,6 +496,9 @@ state 2
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for MOJOD resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -517,6 +523,8 @@ state 2
     MOJOD           shift and go to state 22
     KTEB            shift and go to state 25
     (               shift and go to state 26
+    MINUS           shift and go to state 28
+    PLUS            shift and go to state 27
     INT             shift and go to state 29
     FLOAT           shift and go to state 30
     STRING          shift and go to state 31
@@ -529,21 +537,19 @@ state 2
     MA7ED           shift and go to state 42
     DIR             shift and go to state 43
     QRA             shift and go to state 44
-    MINUS           reduce using rule 110 (empty -> .)
-    PLUS            reduce using rule 110 (empty -> .)
     TA3RIF          shift and go to state 45
     RED             shift and go to state 46
     [               shift and go to state 47
     TOL             shift and go to state 48
 
-  ! MINUS           [ shift and go to state 28 ]
-  ! PLUS            [ shift and go to state 27 ]
   ! KHREJ           [ reduce using rule 110 (empty -> .) ]
   ! KMEL            [ reduce using rule 110 (empty -> .) ]
   ! ID              [ reduce using rule 110 (empty -> .) ]
   ! MOJOD           [ reduce using rule 110 (empty -> .) ]
   ! KTEB            [ reduce using rule 110 (empty -> .) ]
   ! (               [ reduce using rule 110 (empty -> .) ]
+  ! MINUS           [ reduce using rule 110 (empty -> .) ]
+  ! PLUS            [ reduce using rule 110 (empty -> .) ]
   ! INT             [ reduce using rule 110 (empty -> .) ]
   ! FLOAT           [ reduce using rule 110 (empty -> .) ]
   ! STRING          [ reduce using rule 110 (empty -> .) ]
@@ -3567,6 +3573,9 @@ state 74
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for MOJOD resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -3589,6 +3598,8 @@ state 74
     MOJOD           shift and go to state 22
     KTEB            shift and go to state 25
     (               shift and go to state 26
+    MINUS           shift and go to state 28
+    PLUS            shift and go to state 27
     INT             shift and go to state 29
     FLOAT           shift and go to state 30
     STRING          shift and go to state 31
@@ -3602,21 +3613,19 @@ state 74
     DIR             shift and go to state 43
     QRA             shift and go to state 44
     }               reduce using rule 110 (empty -> .)
-    MINUS           reduce using rule 110 (empty -> .)
-    PLUS            reduce using rule 110 (empty -> .)
     TA3RIF          shift and go to state 45
     RED             shift and go to state 46
     [               shift and go to state 47
     TOL             shift and go to state 48
 
-  ! MINUS           [ shift and go to state 28 ]
-  ! PLUS            [ shift and go to state 27 ]
   ! KHREJ           [ reduce using rule 110 (empty -> .) ]
   ! KMEL            [ reduce using rule 110 (empty -> .) ]
   ! ID              [ reduce using rule 110 (empty -> .) ]
   ! MOJOD           [ reduce using rule 110 (empty -> .) ]
   ! KTEB            [ reduce using rule 110 (empty -> .) ]
   ! (               [ reduce using rule 110 (empty -> .) ]
+  ! MINUS           [ reduce using rule 110 (empty -> .) ]
+  ! PLUS            [ reduce using rule 110 (empty -> .) ]
   ! INT             [ reduce using rule 110 (empty -> .) ]
   ! FLOAT           [ reduce using rule 110 (empty -> .) ]
   ! STRING          [ reduce using rule 110 (empty -> .) ]
@@ -3985,6 +3994,9 @@ state 78
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for MOJOD resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -4007,6 +4019,8 @@ state 78
     MOJOD           shift and go to state 22
     KTEB            shift and go to state 25
     (               shift and go to state 26
+    MINUS           shift and go to state 28
+    PLUS            shift and go to state 27
     INT             shift and go to state 29
     FLOAT           shift and go to state 30
     STRING          shift and go to state 31
@@ -4020,21 +4034,19 @@ state 78
     DIR             shift and go to state 43
     QRA             shift and go to state 44
     }               reduce using rule 110 (empty -> .)
-    MINUS           reduce using rule 110 (empty -> .)
-    PLUS            reduce using rule 110 (empty -> .)
     TA3RIF          shift and go to state 45
     RED             shift and go to state 46
     [               shift and go to state 47
     TOL             shift and go to state 48
 
-  ! MINUS           [ shift and go to state 28 ]
-  ! PLUS            [ shift and go to state 27 ]
   ! KHREJ           [ reduce using rule 110 (empty -> .) ]
   ! KMEL            [ reduce using rule 110 (empty -> .) ]
   ! ID              [ reduce using rule 110 (empty -> .) ]
   ! MOJOD           [ reduce using rule 110 (empty -> .) ]
   ! KTEB            [ reduce using rule 110 (empty -> .) ]
   ! (               [ reduce using rule 110 (empty -> .) ]
+  ! MINUS           [ reduce using rule 110 (empty -> .) ]
+  ! PLUS            [ reduce using rule 110 (empty -> .) ]
   ! INT             [ reduce using rule 110 (empty -> .) ]
   ! FLOAT           [ reduce using rule 110 (empty -> .) ]
   ! STRING          [ reduce using rule 110 (empty -> .) ]
@@ -5520,6 +5532,9 @@ state 115
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for MOJOD resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -5543,6 +5558,8 @@ state 115
     MOJOD           shift and go to state 22
     KTEB            shift and go to state 25
     (               shift and go to state 26
+    MINUS           shift and go to state 28
+    PLUS            shift and go to state 27
     INT             shift and go to state 29
     FLOAT           shift and go to state 30
     STRING          shift and go to state 31
@@ -5555,15 +5572,11 @@ state 115
     MA7ED           shift and go to state 42
     DIR             shift and go to state 43
     QRA             shift and go to state 44
-    MINUS           reduce using rule 110 (empty -> .)
-    PLUS            reduce using rule 110 (empty -> .)
     TA3RIF          shift and go to state 45
     RED             shift and go to state 46
     [               shift and go to state 47
     TOL             shift and go to state 48
 
-  ! MINUS           [ shift and go to state 28 ]
-  ! PLUS            [ shift and go to state 27 ]
   ! }               [ reduce using rule 110 (empty -> .) ]
   ! KHREJ           [ reduce using rule 110 (empty -> .) ]
   ! KMEL            [ reduce using rule 110 (empty -> .) ]
@@ -5571,6 +5584,8 @@ state 115
   ! MOJOD           [ reduce using rule 110 (empty -> .) ]
   ! KTEB            [ reduce using rule 110 (empty -> .) ]
   ! (               [ reduce using rule 110 (empty -> .) ]
+  ! MINUS           [ reduce using rule 110 (empty -> .) ]
+  ! PLUS            [ reduce using rule 110 (empty -> .) ]
   ! INT             [ reduce using rule 110 (empty -> .) ]
   ! FLOAT           [ reduce using rule 110 (empty -> .) ]
   ! STRING          [ reduce using rule 110 (empty -> .) ]
@@ -5794,6 +5809,9 @@ state 121
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for MOJOD resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -5817,6 +5835,8 @@ state 121
     MOJOD           shift and go to state 22
     KTEB            shift and go to state 25
     (               shift and go to state 26
+    MINUS           shift and go to state 28
+    PLUS            shift and go to state 27
     INT             shift and go to state 29
     FLOAT           shift and go to state 30
     STRING          shift and go to state 31
@@ -5829,15 +5849,11 @@ state 121
     MA7ED           shift and go to state 42
     DIR             shift and go to state 43
     QRA             shift and go to state 44
-    MINUS           reduce using rule 110 (empty -> .)
-    PLUS            reduce using rule 110 (empty -> .)
     TA3RIF          shift and go to state 45
     RED             shift and go to state 46
     [               shift and go to state 47
     TOL             shift and go to state 48
 
-  ! MINUS           [ shift and go to state 28 ]
-  ! PLUS            [ shift and go to state 27 ]
   ! }               [ reduce using rule 110 (empty -> .) ]
   ! KHREJ           [ reduce using rule 110 (empty -> .) ]
   ! KMEL            [ reduce using rule 110 (empty -> .) ]
@@ -5845,6 +5861,8 @@ state 121
   ! MOJOD           [ reduce using rule 110 (empty -> .) ]
   ! KTEB            [ reduce using rule 110 (empty -> .) ]
   ! (               [ reduce using rule 110 (empty -> .) ]
+  ! MINUS           [ reduce using rule 110 (empty -> .) ]
+  ! PLUS            [ reduce using rule 110 (empty -> .) ]
   ! INT             [ reduce using rule 110 (empty -> .) ]
   ! FLOAT           [ reduce using rule 110 (empty -> .) ]
   ! STRING          [ reduce using rule 110 (empty -> .) ]
@@ -6657,6 +6675,7 @@ state 142
     (56) expression -> expression . MODULO expression
     (57) expression -> expression . POWER expression
 
+  ! shift/reduce conflict for ) resolved as shift
     )               shift and go to state 114
     SUP             shift and go to state 150
     INF             shift and go to state 151
@@ -8672,6 +8691,9 @@ state 195
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for MOJOD resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -8694,6 +8716,8 @@ state 195
     MOJOD           shift and go to state 22
     KTEB            shift and go to state 25
     (               shift and go to state 26
+    MINUS           shift and go to state 28
+    PLUS            shift and go to state 27
     INT             shift and go to state 29
     FLOAT           shift and go to state 30
     STRING          shift and go to state 31
@@ -8707,21 +8731,19 @@ state 195
     DIR             shift and go to state 43
     QRA             shift and go to state 44
     }               reduce using rule 110 (empty -> .)
-    MINUS           reduce using rule 110 (empty -> .)
-    PLUS            reduce using rule 110 (empty -> .)
     TA3RIF          shift and go to state 45
     RED             shift and go to state 46
     [               shift and go to state 47
     TOL             shift and go to state 48
 
-  ! MINUS           [ shift and go to state 28 ]
-  ! PLUS            [ shift and go to state 27 ]
   ! KHREJ           [ reduce using rule 110 (empty -> .) ]
   ! KMEL            [ reduce using rule 110 (empty -> .) ]
   ! ID              [ reduce using rule 110 (empty -> .) ]
   ! MOJOD           [ reduce using rule 110 (empty -> .) ]
   ! KTEB            [ reduce using rule 110 (empty -> .) ]
   ! (               [ reduce using rule 110 (empty -> .) ]
+  ! MINUS           [ reduce using rule 110 (empty -> .) ]
+  ! PLUS            [ reduce using rule 110 (empty -> .) ]
   ! INT             [ reduce using rule 110 (empty -> .) ]
   ! FLOAT           [ reduce using rule 110 (empty -> .) ]
   ! STRING          [ reduce using rule 110 (empty -> .) ]
@@ -8884,6 +8906,9 @@ state 198
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for MOJOD resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -8906,6 +8931,8 @@ state 198
     MOJOD           shift and go to state 22
     KTEB            shift and go to state 25
     (               shift and go to state 26
+    MINUS           shift and go to state 28
+    PLUS            shift and go to state 27
     INT             shift and go to state 29
     FLOAT           shift and go to state 30
     STRING          shift and go to state 31
@@ -8919,21 +8946,19 @@ state 198
     DIR             shift and go to state 43
     QRA             shift and go to state 44
     }               reduce using rule 110 (empty -> .)
-    MINUS           reduce using rule 110 (empty -> .)
-    PLUS            reduce using rule 110 (empty -> .)
     TA3RIF          shift and go to state 45
     RED             shift and go to state 46
     [               shift and go to state 47
     TOL             shift and go to state 48
 
-  ! MINUS           [ shift and go to state 28 ]
-  ! PLUS            [ shift and go to state 27 ]
   ! KHREJ           [ reduce using rule 110 (empty -> .) ]
   ! KMEL            [ reduce using rule 110 (empty -> .) ]
   ! ID              [ reduce using rule 110 (empty -> .) ]
   ! MOJOD           [ reduce using rule 110 (empty -> .) ]
   ! KTEB            [ reduce using rule 110 (empty -> .) ]
   ! (               [ reduce using rule 110 (empty -> .) ]
+  ! MINUS           [ reduce using rule 110 (empty -> .) ]
+  ! PLUS            [ reduce using rule 110 (empty -> .) ]
   ! INT             [ reduce using rule 110 (empty -> .) ]
   ! FLOAT           [ reduce using rule 110 (empty -> .) ]
   ! STRING          [ reduce using rule 110 (empty -> .) ]
@@ -9091,6 +9116,9 @@ state 202
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for MOJOD resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -9113,6 +9141,8 @@ state 202
     MOJOD           shift and go to state 22
     KTEB            shift and go to state 25
     (               shift and go to state 26
+    MINUS           shift and go to state 28
+    PLUS            shift and go to state 27
     INT             shift and go to state 29
     FLOAT           shift and go to state 30
     STRING          shift and go to state 31
@@ -9126,21 +9156,19 @@ state 202
     DIR             shift and go to state 43
     QRA             shift and go to state 44
     }               reduce using rule 110 (empty -> .)
-    MINUS           reduce using rule 110 (empty -> .)
-    PLUS            reduce using rule 110 (empty -> .)
     TA3RIF          shift and go to state 45
     RED             shift and go to state 46
     [               shift and go to state 47
     TOL             shift and go to state 48
 
-  ! MINUS           [ shift and go to state 28 ]
-  ! PLUS            [ shift and go to state 27 ]
   ! KHREJ           [ reduce using rule 110 (empty -> .) ]
   ! KMEL            [ reduce using rule 110 (empty -> .) ]
   ! ID              [ reduce using rule 110 (empty -> .) ]
   ! MOJOD           [ reduce using rule 110 (empty -> .) ]
   ! KTEB            [ reduce using rule 110 (empty -> .) ]
   ! (               [ reduce using rule 110 (empty -> .) ]
+  ! MINUS           [ reduce using rule 110 (empty -> .) ]
+  ! PLUS            [ reduce using rule 110 (empty -> .) ]
   ! INT             [ reduce using rule 110 (empty -> .) ]
   ! FLOAT           [ reduce using rule 110 (empty -> .) ]
   ! STRING          [ reduce using rule 110 (empty -> .) ]
@@ -9777,6 +9805,9 @@ state 214
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for MOJOD resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -9799,6 +9830,8 @@ state 214
     MOJOD           shift and go to state 22
     KTEB            shift and go to state 25
     (               shift and go to state 26
+    MINUS           shift and go to state 28
+    PLUS            shift and go to state 27
     INT             shift and go to state 29
     FLOAT           shift and go to state 30
     STRING          shift and go to state 31
@@ -9812,21 +9845,19 @@ state 214
     DIR             shift and go to state 43
     QRA             shift and go to state 44
     }               reduce using rule 110 (empty -> .)
-    MINUS           reduce using rule 110 (empty -> .)
-    PLUS            reduce using rule 110 (empty -> .)
     TA3RIF          shift and go to state 45
     RED             shift and go to state 46
     [               shift and go to state 47
     TOL             shift and go to state 48
 
-  ! MINUS           [ shift and go to state 28 ]
-  ! PLUS            [ shift and go to state 27 ]
   ! KHREJ           [ reduce using rule 110 (empty -> .) ]
   ! KMEL            [ reduce using rule 110 (empty -> .) ]
   ! ID              [ reduce using rule 110 (empty -> .) ]
   ! MOJOD           [ reduce using rule 110 (empty -> .) ]
   ! KTEB            [ reduce using rule 110 (empty -> .) ]
   ! (               [ reduce using rule 110 (empty -> .) ]
+  ! MINUS           [ reduce using rule 110 (empty -> .) ]
+  ! PLUS            [ reduce using rule 110 (empty -> .) ]
   ! INT             [ reduce using rule 110 (empty -> .) ]
   ! FLOAT           [ reduce using rule 110 (empty -> .) ]
   ! STRING          [ reduce using rule 110 (empty -> .) ]
@@ -9962,6 +9993,9 @@ state 215
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for MOJOD resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -9985,6 +10019,8 @@ state 215
     MOJOD           shift and go to state 22
     KTEB            shift and go to state 25
     (               shift and go to state 26
+    MINUS           shift and go to state 28
+    PLUS            shift and go to state 27
     INT             shift and go to state 29
     FLOAT           shift and go to state 30
     STRING          shift and go to state 31
@@ -9997,15 +10033,11 @@ state 215
     MA7ED           shift and go to state 42
     DIR             shift and go to state 43
     QRA             shift and go to state 44
-    MINUS           reduce using rule 110 (empty -> .)
-    PLUS            reduce using rule 110 (empty -> .)
     TA3RIF          shift and go to state 45
     RED             shift and go to state 46
     [               shift and go to state 47
     TOL             shift and go to state 48
 
-  ! MINUS           [ shift and go to state 28 ]
-  ! PLUS            [ shift and go to state 27 ]
   ! }               [ reduce using rule 110 (empty -> .) ]
   ! KHREJ           [ reduce using rule 110 (empty -> .) ]
   ! KMEL            [ reduce using rule 110 (empty -> .) ]
@@ -10013,6 +10045,8 @@ state 215
   ! MOJOD           [ reduce using rule 110 (empty -> .) ]
   ! KTEB            [ reduce using rule 110 (empty -> .) ]
   ! (               [ reduce using rule 110 (empty -> .) ]
+  ! MINUS           [ reduce using rule 110 (empty -> .) ]
+  ! PLUS            [ reduce using rule 110 (empty -> .) ]
   ! INT             [ reduce using rule 110 (empty -> .) ]
   ! FLOAT           [ reduce using rule 110 (empty -> .) ]
   ! STRING          [ reduce using rule 110 (empty -> .) ]
@@ -10170,6 +10204,9 @@ state 218
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for MOJOD resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -10193,6 +10230,8 @@ state 218
     MOJOD           shift and go to state 22
     KTEB            shift and go to state 25
     (               shift and go to state 26
+    MINUS           shift and go to state 28
+    PLUS            shift and go to state 27
     INT             shift and go to state 29
     FLOAT           shift and go to state 30
     STRING          shift and go to state 31
@@ -10205,15 +10244,11 @@ state 218
     MA7ED           shift and go to state 42
     DIR             shift and go to state 43
     QRA             shift and go to state 44
-    MINUS           reduce using rule 110 (empty -> .)
-    PLUS            reduce using rule 110 (empty -> .)
     TA3RIF          shift and go to state 45
     RED             shift and go to state 46
     [               shift and go to state 47
     TOL             shift and go to state 48
 
-  ! MINUS           [ shift and go to state 28 ]
-  ! PLUS            [ shift and go to state 27 ]
   ! }               [ reduce using rule 110 (empty -> .) ]
   ! KHREJ           [ reduce using rule 110 (empty -> .) ]
   ! KMEL            [ reduce using rule 110 (empty -> .) ]
@@ -10221,6 +10256,8 @@ state 218
   ! MOJOD           [ reduce using rule 110 (empty -> .) ]
   ! KTEB            [ reduce using rule 110 (empty -> .) ]
   ! (               [ reduce using rule 110 (empty -> .) ]
+  ! MINUS           [ reduce using rule 110 (empty -> .) ]
+  ! PLUS            [ reduce using rule 110 (empty -> .) ]
   ! INT             [ reduce using rule 110 (empty -> .) ]
   ! FLOAT           [ reduce using rule 110 (empty -> .) ]
   ! STRING          [ reduce using rule 110 (empty -> .) ]
@@ -10435,6 +10472,9 @@ state 220
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for MOJOD resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -10457,6 +10497,8 @@ state 220
     MOJOD           shift and go to state 22
     KTEB            shift and go to state 25
     (               shift and go to state 26
+    MINUS           shift and go to state 28
+    PLUS            shift and go to state 27
     INT             shift and go to state 29
     FLOAT           shift and go to state 30
     STRING          shift and go to state 31
@@ -10470,21 +10512,19 @@ state 220
     DIR             shift and go to state 43
     QRA             shift and go to state 44
     }               reduce using rule 110 (empty -> .)
-    MINUS           reduce using rule 110 (empty -> .)
-    PLUS            reduce using rule 110 (empty -> .)
     TA3RIF          shift and go to state 45
     RED             shift and go to state 46
     [               shift and go to state 47
     TOL             shift and go to state 48
 
-  ! MINUS           [ shift and go to state 28 ]
-  ! PLUS            [ shift and go to state 27 ]
   ! KHREJ           [ reduce using rule 110 (empty -> .) ]
   ! KMEL            [ reduce using rule 110 (empty -> .) ]
   ! ID              [ reduce using rule 110 (empty -> .) ]
   ! MOJOD           [ reduce using rule 110 (empty -> .) ]
   ! KTEB            [ reduce using rule 110 (empty -> .) ]
   ! (               [ reduce using rule 110 (empty -> .) ]
+  ! MINUS           [ reduce using rule 110 (empty -> .) ]
+  ! PLUS            [ reduce using rule 110 (empty -> .) ]
   ! INT             [ reduce using rule 110 (empty -> .) ]
   ! FLOAT           [ reduce using rule 110 (empty -> .) ]
   ! STRING          [ reduce using rule 110 (empty -> .) ]
@@ -10627,6 +10667,9 @@ state 222
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for MOJOD resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -10650,6 +10693,8 @@ state 222
     MOJOD           shift and go to state 22
     KTEB            shift and go to state 25
     (               shift and go to state 26
+    MINUS           shift and go to state 28
+    PLUS            shift and go to state 27
     INT             shift and go to state 29
     FLOAT           shift and go to state 30
     STRING          shift and go to state 31
@@ -10662,15 +10707,11 @@ state 222
     MA7ED           shift and go to state 42
     DIR             shift and go to state 43
     QRA             shift and go to state 44
-    MINUS           reduce using rule 110 (empty -> .)
-    PLUS            reduce using rule 110 (empty -> .)
     TA3RIF          shift and go to state 45
     RED             shift and go to state 46
     [               shift and go to state 47
     TOL             shift and go to state 48
 
-  ! MINUS           [ shift and go to state 28 ]
-  ! PLUS            [ shift and go to state 27 ]
   ! }               [ reduce using rule 110 (empty -> .) ]
   ! KHREJ           [ reduce using rule 110 (empty -> .) ]
   ! KMEL            [ reduce using rule 110 (empty -> .) ]
@@ -10678,6 +10719,8 @@ state 222
   ! MOJOD           [ reduce using rule 110 (empty -> .) ]
   ! KTEB            [ reduce using rule 110 (empty -> .) ]
   ! (               [ reduce using rule 110 (empty -> .) ]
+  ! MINUS           [ reduce using rule 110 (empty -> .) ]
+  ! PLUS            [ reduce using rule 110 (empty -> .) ]
   ! INT             [ reduce using rule 110 (empty -> .) ]
   ! FLOAT           [ reduce using rule 110 (empty -> .) ]
   ! STRING          [ reduce using rule 110 (empty -> .) ]
@@ -11075,6 +11118,9 @@ state 230
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for MOJOD resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -11098,6 +11144,8 @@ state 230
     MOJOD           shift and go to state 22
     KTEB            shift and go to state 25
     (               shift and go to state 26
+    MINUS           shift and go to state 28
+    PLUS            shift and go to state 27
     INT             shift and go to state 29
     FLOAT           shift and go to state 30
     STRING          shift and go to state 31
@@ -11110,15 +11158,11 @@ state 230
     MA7ED           shift and go to state 42
     DIR             shift and go to state 43
     QRA             shift and go to state 44
-    MINUS           reduce using rule 110 (empty -> .)
-    PLUS            reduce using rule 110 (empty -> .)
     TA3RIF          shift and go to state 45
     RED             shift and go to state 46
     [               shift and go to state 47
     TOL             shift and go to state 48
 
-  ! MINUS           [ shift and go to state 28 ]
-  ! PLUS            [ shift and go to state 27 ]
   ! }               [ reduce using rule 110 (empty -> .) ]
   ! KHREJ           [ reduce using rule 110 (empty -> .) ]
   ! KMEL            [ reduce using rule 110 (empty -> .) ]
@@ -11126,6 +11170,8 @@ state 230
   ! MOJOD           [ reduce using rule 110 (empty -> .) ]
   ! KTEB            [ reduce using rule 110 (empty -> .) ]
   ! (               [ reduce using rule 110 (empty -> .) ]
+  ! MINUS           [ reduce using rule 110 (empty -> .) ]
+  ! PLUS            [ reduce using rule 110 (empty -> .) ]
   ! INT             [ reduce using rule 110 (empty -> .) ]
   ! FLOAT           [ reduce using rule 110 (empty -> .) ]
   ! STRING          [ reduce using rule 110 (empty -> .) ]
@@ -11375,6 +11421,9 @@ state 239
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for MOJOD resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -11398,6 +11447,8 @@ state 239
     MOJOD           shift and go to state 22
     KTEB            shift and go to state 25
     (               shift and go to state 26
+    MINUS           shift and go to state 28
+    PLUS            shift and go to state 27
     INT             shift and go to state 29
     FLOAT           shift and go to state 30
     STRING          shift and go to state 31
@@ -11410,15 +11461,11 @@ state 239
     MA7ED           shift and go to state 42
     DIR             shift and go to state 43
     QRA             shift and go to state 44
-    MINUS           reduce using rule 110 (empty -> .)
-    PLUS            reduce using rule 110 (empty -> .)
     TA3RIF          shift and go to state 45
     RED             shift and go to state 46
     [               shift and go to state 47
     TOL             shift and go to state 48
 
-  ! MINUS           [ shift and go to state 28 ]
-  ! PLUS            [ shift and go to state 27 ]
   ! }               [ reduce using rule 110 (empty -> .) ]
   ! KHREJ           [ reduce using rule 110 (empty -> .) ]
   ! KMEL            [ reduce using rule 110 (empty -> .) ]
@@ -11426,6 +11473,8 @@ state 239
   ! MOJOD           [ reduce using rule 110 (empty -> .) ]
   ! KTEB            [ reduce using rule 110 (empty -> .) ]
   ! (               [ reduce using rule 110 (empty -> .) ]
+  ! MINUS           [ reduce using rule 110 (empty -> .) ]
+  ! PLUS            [ reduce using rule 110 (empty -> .) ]
   ! INT             [ reduce using rule 110 (empty -> .) ]
   ! FLOAT           [ reduce using rule 110 (empty -> .) ]
   ! STRING          [ reduce using rule 110 (empty -> .) ]
@@ -11850,6 +11899,9 @@ state 255
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for MOJOD resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -11872,6 +11924,8 @@ state 255
     MOJOD           shift and go to state 22
     KTEB            shift and go to state 25
     (               shift and go to state 26
+    MINUS           shift and go to state 28
+    PLUS            shift and go to state 27
     INT             shift and go to state 29
     FLOAT           shift and go to state 30
     STRING          shift and go to state 31
@@ -11885,21 +11939,19 @@ state 255
     DIR             shift and go to state 43
     QRA             shift and go to state 44
     }               reduce using rule 110 (empty -> .)
-    MINUS           reduce using rule 110 (empty -> .)
-    PLUS            reduce using rule 110 (empty -> .)
     TA3RIF          shift and go to state 45
     RED             shift and go to state 46
     [               shift and go to state 47
     TOL             shift and go to state 48
 
-  ! MINUS           [ shift and go to state 28 ]
-  ! PLUS            [ shift and go to state 27 ]
   ! KHREJ           [ reduce using rule 110 (empty -> .) ]
   ! KMEL            [ reduce using rule 110 (empty -> .) ]
   ! ID              [ reduce using rule 110 (empty -> .) ]
   ! MOJOD           [ reduce using rule 110 (empty -> .) ]
   ! KTEB            [ reduce using rule 110 (empty -> .) ]
   ! (               [ reduce using rule 110 (empty -> .) ]
+  ! MINUS           [ reduce using rule 110 (empty -> .) ]
+  ! PLUS            [ reduce using rule 110 (empty -> .) ]
   ! INT             [ reduce using rule 110 (empty -> .) ]
   ! FLOAT           [ reduce using rule 110 (empty -> .) ]
   ! STRING          [ reduce using rule 110 (empty -> .) ]
@@ -12034,6 +12086,9 @@ state 256
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for MOJOD resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -12056,6 +12111,8 @@ state 256
     MOJOD           shift and go to state 22
     KTEB            shift and go to state 25
     (               shift and go to state 26
+    MINUS           shift and go to state 28
+    PLUS            shift and go to state 27
     INT             shift and go to state 29
     FLOAT           shift and go to state 30
     STRING          shift and go to state 31
@@ -12069,21 +12126,19 @@ state 256
     DIR             shift and go to state 43
     QRA             shift and go to state 44
     }               reduce using rule 110 (empty -> .)
-    MINUS           reduce using rule 110 (empty -> .)
-    PLUS            reduce using rule 110 (empty -> .)
     TA3RIF          shift and go to state 45
     RED             shift and go to state 46
     [               shift and go to state 47
     TOL             shift and go to state 48
 
-  ! MINUS           [ shift and go to state 28 ]
-  ! PLUS            [ shift and go to state 27 ]
   ! KHREJ           [ reduce using rule 110 (empty -> .) ]
   ! KMEL            [ reduce using rule 110 (empty -> .) ]
   ! ID              [ reduce using rule 110 (empty -> .) ]
   ! MOJOD           [ reduce using rule 110 (empty -> .) ]
   ! KTEB            [ reduce using rule 110 (empty -> .) ]
   ! (               [ reduce using rule 110 (empty -> .) ]
+  ! MINUS           [ reduce using rule 110 (empty -> .) ]
+  ! PLUS            [ reduce using rule 110 (empty -> .) ]
   ! INT             [ reduce using rule 110 (empty -> .) ]
   ! FLOAT           [ reduce using rule 110 (empty -> .) ]
   ! STRING          [ reduce using rule 110 (empty -> .) ]
@@ -12218,6 +12273,9 @@ state 257
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for MOJOD resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -12240,6 +12298,8 @@ state 257
     MOJOD           shift and go to state 22
     KTEB            shift and go to state 25
     (               shift and go to state 26
+    MINUS           shift and go to state 28
+    PLUS            shift and go to state 27
     INT             shift and go to state 29
     FLOAT           shift and go to state 30
     STRING          shift and go to state 31
@@ -12253,21 +12313,19 @@ state 257
     DIR             shift and go to state 43
     QRA             shift and go to state 44
     }               reduce using rule 110 (empty -> .)
-    MINUS           reduce using rule 110 (empty -> .)
-    PLUS            reduce using rule 110 (empty -> .)
     TA3RIF          shift and go to state 45
     RED             shift and go to state 46
     [               shift and go to state 47
     TOL             shift and go to state 48
 
-  ! MINUS           [ shift and go to state 28 ]
-  ! PLUS            [ shift and go to state 27 ]
   ! KHREJ           [ reduce using rule 110 (empty -> .) ]
   ! KMEL            [ reduce using rule 110 (empty -> .) ]
   ! ID              [ reduce using rule 110 (empty -> .) ]
   ! MOJOD           [ reduce using rule 110 (empty -> .) ]
   ! KTEB            [ reduce using rule 110 (empty -> .) ]
   ! (               [ reduce using rule 110 (empty -> .) ]
+  ! MINUS           [ reduce using rule 110 (empty -> .) ]
+  ! PLUS            [ reduce using rule 110 (empty -> .) ]
   ! INT             [ reduce using rule 110 (empty -> .) ]
   ! FLOAT           [ reduce using rule 110 (empty -> .) ]
   ! STRING          [ reduce using rule 110 (empty -> .) ]
@@ -12402,6 +12460,9 @@ state 258
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for MOJOD resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -12424,6 +12485,8 @@ state 258
     MOJOD           shift and go to state 22
     KTEB            shift and go to state 25
     (               shift and go to state 26
+    MINUS           shift and go to state 28
+    PLUS            shift and go to state 27
     INT             shift and go to state 29
     FLOAT           shift and go to state 30
     STRING          shift and go to state 31
@@ -12437,21 +12500,19 @@ state 258
     DIR             shift and go to state 43
     QRA             shift and go to state 44
     }               reduce using rule 110 (empty -> .)
-    MINUS           reduce using rule 110 (empty -> .)
-    PLUS            reduce using rule 110 (empty -> .)
     TA3RIF          shift and go to state 45
     RED             shift and go to state 46
     [               shift and go to state 47
     TOL             shift and go to state 48
 
-  ! MINUS           [ shift and go to state 28 ]
-  ! PLUS            [ shift and go to state 27 ]
   ! KHREJ           [ reduce using rule 110 (empty -> .) ]
   ! KMEL            [ reduce using rule 110 (empty -> .) ]
   ! ID              [ reduce using rule 110 (empty -> .) ]
   ! MOJOD           [ reduce using rule 110 (empty -> .) ]
   ! KTEB            [ reduce using rule 110 (empty -> .) ]
   ! (               [ reduce using rule 110 (empty -> .) ]
+  ! MINUS           [ reduce using rule 110 (empty -> .) ]
+  ! PLUS            [ reduce using rule 110 (empty -> .) ]
   ! INT             [ reduce using rule 110 (empty -> .) ]
   ! FLOAT           [ reduce using rule 110 (empty -> .) ]
   ! STRING          [ reduce using rule 110 (empty -> .) ]
@@ -12586,6 +12647,9 @@ state 259
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for MOJOD resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -12608,6 +12672,8 @@ state 259
     MOJOD           shift and go to state 22
     KTEB            shift and go to state 25
     (               shift and go to state 26
+    MINUS           shift and go to state 28
+    PLUS            shift and go to state 27
     INT             shift and go to state 29
     FLOAT           shift and go to state 30
     STRING          shift and go to state 31
@@ -12621,21 +12687,19 @@ state 259
     DIR             shift and go to state 43
     QRA             shift and go to state 44
     }               reduce using rule 110 (empty -> .)
-    MINUS           reduce using rule 110 (empty -> .)
-    PLUS            reduce using rule 110 (empty -> .)
     TA3RIF          shift and go to state 45
     RED             shift and go to state 46
     [               shift and go to state 47
     TOL             shift and go to state 48
 
-  ! MINUS           [ shift and go to state 28 ]
-  ! PLUS            [ shift and go to state 27 ]
   ! KHREJ           [ reduce using rule 110 (empty -> .) ]
   ! KMEL            [ reduce using rule 110 (empty -> .) ]
   ! ID              [ reduce using rule 110 (empty -> .) ]
   ! MOJOD           [ reduce using rule 110 (empty -> .) ]
   ! KTEB            [ reduce using rule 110 (empty -> .) ]
   ! (               [ reduce using rule 110 (empty -> .) ]
+  ! MINUS           [ reduce using rule 110 (empty -> .) ]
+  ! PLUS            [ reduce using rule 110 (empty -> .) ]
   ! INT             [ reduce using rule 110 (empty -> .) ]
   ! FLOAT           [ reduce using rule 110 (empty -> .) ]
   ! STRING          [ reduce using rule 110 (empty -> .) ]
@@ -12770,6 +12834,9 @@ state 260
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for MOJOD resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -12792,6 +12859,8 @@ state 260
     MOJOD           shift and go to state 22
     KTEB            shift and go to state 25
     (               shift and go to state 26
+    MINUS           shift and go to state 28
+    PLUS            shift and go to state 27
     INT             shift and go to state 29
     FLOAT           shift and go to state 30
     STRING          shift and go to state 31
@@ -12805,21 +12874,19 @@ state 260
     DIR             shift and go to state 43
     QRA             shift and go to state 44
     }               reduce using rule 110 (empty -> .)
-    MINUS           reduce using rule 110 (empty -> .)
-    PLUS            reduce using rule 110 (empty -> .)
     TA3RIF          shift and go to state 45
     RED             shift and go to state 46
     [               shift and go to state 47
     TOL             shift and go to state 48
 
-  ! MINUS           [ shift and go to state 28 ]
-  ! PLUS            [ shift and go to state 27 ]
   ! KHREJ           [ reduce using rule 110 (empty -> .) ]
   ! KMEL            [ reduce using rule 110 (empty -> .) ]
   ! ID              [ reduce using rule 110 (empty -> .) ]
   ! MOJOD           [ reduce using rule 110 (empty -> .) ]
   ! KTEB            [ reduce using rule 110 (empty -> .) ]
   ! (               [ reduce using rule 110 (empty -> .) ]
+  ! MINUS           [ reduce using rule 110 (empty -> .) ]
+  ! PLUS            [ reduce using rule 110 (empty -> .) ]
   ! INT             [ reduce using rule 110 (empty -> .) ]
   ! FLOAT           [ reduce using rule 110 (empty -> .) ]
   ! STRING          [ reduce using rule 110 (empty -> .) ]
@@ -12954,6 +13021,9 @@ state 261
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for MOJOD resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -12977,6 +13047,8 @@ state 261
     MOJOD           shift and go to state 22
     KTEB            shift and go to state 25
     (               shift and go to state 26
+    MINUS           shift and go to state 28
+    PLUS            shift and go to state 27
     INT             shift and go to state 29
     FLOAT           shift and go to state 30
     STRING          shift and go to state 31
@@ -12989,15 +13061,11 @@ state 261
     MA7ED           shift and go to state 42
     DIR             shift and go to state 43
     QRA             shift and go to state 44
-    MINUS           reduce using rule 110 (empty -> .)
-    PLUS            reduce using rule 110 (empty -> .)
     TA3RIF          shift and go to state 45
     RED             shift and go to state 46
     [               shift and go to state 47
     TOL             shift and go to state 48
 
-  ! MINUS           [ shift and go to state 28 ]
-  ! PLUS            [ shift and go to state 27 ]
   ! }               [ reduce using rule 110 (empty -> .) ]
   ! KHREJ           [ reduce using rule 110 (empty -> .) ]
   ! KMEL            [ reduce using rule 110 (empty -> .) ]
@@ -13005,6 +13073,8 @@ state 261
   ! MOJOD           [ reduce using rule 110 (empty -> .) ]
   ! KTEB            [ reduce using rule 110 (empty -> .) ]
   ! (               [ reduce using rule 110 (empty -> .) ]
+  ! MINUS           [ reduce using rule 110 (empty -> .) ]
+  ! PLUS            [ reduce using rule 110 (empty -> .) ]
   ! INT             [ reduce using rule 110 (empty -> .) ]
   ! FLOAT           [ reduce using rule 110 (empty -> .) ]
   ! STRING          [ reduce using rule 110 (empty -> .) ]
@@ -13138,6 +13208,9 @@ state 262
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for MOJOD resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -13161,6 +13234,8 @@ state 262
     MOJOD           shift and go to state 22
     KTEB            shift and go to state 25
     (               shift and go to state 26
+    MINUS           shift and go to state 28
+    PLUS            shift and go to state 27
     INT             shift and go to state 29
     FLOAT           shift and go to state 30
     STRING          shift and go to state 31
@@ -13173,15 +13248,11 @@ state 262
     MA7ED           shift and go to state 42
     DIR             shift and go to state 43
     QRA             shift and go to state 44
-    MINUS           reduce using rule 110 (empty -> .)
-    PLUS            reduce using rule 110 (empty -> .)
     TA3RIF          shift and go to state 45
     RED             shift and go to state 46
     [               shift and go to state 47
     TOL             shift and go to state 48
 
-  ! MINUS           [ shift and go to state 28 ]
-  ! PLUS            [ shift and go to state 27 ]
   ! }               [ reduce using rule 110 (empty -> .) ]
   ! KHREJ           [ reduce using rule 110 (empty -> .) ]
   ! KMEL            [ reduce using rule 110 (empty -> .) ]
@@ -13189,6 +13260,8 @@ state 262
   ! MOJOD           [ reduce using rule 110 (empty -> .) ]
   ! KTEB            [ reduce using rule 110 (empty -> .) ]
   ! (               [ reduce using rule 110 (empty -> .) ]
+  ! MINUS           [ reduce using rule 110 (empty -> .) ]
+  ! PLUS            [ reduce using rule 110 (empty -> .) ]
   ! INT             [ reduce using rule 110 (empty -> .) ]
   ! FLOAT           [ reduce using rule 110 (empty -> .) ]
   ! STRING          [ reduce using rule 110 (empty -> .) ]
@@ -13322,6 +13395,9 @@ state 263
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for MOJOD resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -13345,6 +13421,8 @@ state 263
     MOJOD           shift and go to state 22
     KTEB            shift and go to state 25
     (               shift and go to state 26
+    MINUS           shift and go to state 28
+    PLUS            shift and go to state 27
     INT             shift and go to state 29
     FLOAT           shift and go to state 30
     STRING          shift and go to state 31
@@ -13357,15 +13435,11 @@ state 263
     MA7ED           shift and go to state 42
     DIR             shift and go to state 43
     QRA             shift and go to state 44
-    MINUS           reduce using rule 110 (empty -> .)
-    PLUS            reduce using rule 110 (empty -> .)
     TA3RIF          shift and go to state 45
     RED             shift and go to state 46
     [               shift and go to state 47
     TOL             shift and go to state 48
 
-  ! MINUS           [ shift and go to state 28 ]
-  ! PLUS            [ shift and go to state 27 ]
   ! }               [ reduce using rule 110 (empty -> .) ]
   ! KHREJ           [ reduce using rule 110 (empty -> .) ]
   ! KMEL            [ reduce using rule 110 (empty -> .) ]
@@ -13373,6 +13447,8 @@ state 263
   ! MOJOD           [ reduce using rule 110 (empty -> .) ]
   ! KTEB            [ reduce using rule 110 (empty -> .) ]
   ! (               [ reduce using rule 110 (empty -> .) ]
+  ! MINUS           [ reduce using rule 110 (empty -> .) ]
+  ! PLUS            [ reduce using rule 110 (empty -> .) ]
   ! INT             [ reduce using rule 110 (empty -> .) ]
   ! FLOAT           [ reduce using rule 110 (empty -> .) ]
   ! STRING          [ reduce using rule 110 (empty -> .) ]
@@ -13506,6 +13582,9 @@ state 264
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for MOJOD resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -13529,6 +13608,8 @@ state 264
     MOJOD           shift and go to state 22
     KTEB            shift and go to state 25
     (               shift and go to state 26
+    MINUS           shift and go to state 28
+    PLUS            shift and go to state 27
     INT             shift and go to state 29
     FLOAT           shift and go to state 30
     STRING          shift and go to state 31
@@ -13541,15 +13622,11 @@ state 264
     MA7ED           shift and go to state 42
     DIR             shift and go to state 43
     QRA             shift and go to state 44
-    MINUS           reduce using rule 110 (empty -> .)
-    PLUS            reduce using rule 110 (empty -> .)
     TA3RIF          shift and go to state 45
     RED             shift and go to state 46
     [               shift and go to state 47
     TOL             shift and go to state 48
 
-  ! MINUS           [ shift and go to state 28 ]
-  ! PLUS            [ shift and go to state 27 ]
   ! }               [ reduce using rule 110 (empty -> .) ]
   ! KHREJ           [ reduce using rule 110 (empty -> .) ]
   ! KMEL            [ reduce using rule 110 (empty -> .) ]
@@ -13557,6 +13634,8 @@ state 264
   ! MOJOD           [ reduce using rule 110 (empty -> .) ]
   ! KTEB            [ reduce using rule 110 (empty -> .) ]
   ! (               [ reduce using rule 110 (empty -> .) ]
+  ! MINUS           [ reduce using rule 110 (empty -> .) ]
+  ! PLUS            [ reduce using rule 110 (empty -> .) ]
   ! INT             [ reduce using rule 110 (empty -> .) ]
   ! FLOAT           [ reduce using rule 110 (empty -> .) ]
   ! STRING          [ reduce using rule 110 (empty -> .) ]
@@ -13690,6 +13769,9 @@ state 265
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for MOJOD resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -13713,6 +13795,8 @@ state 265
     MOJOD           shift and go to state 22
     KTEB            shift and go to state 25
     (               shift and go to state 26
+    MINUS           shift and go to state 28
+    PLUS            shift and go to state 27
     INT             shift and go to state 29
     FLOAT           shift and go to state 30
     STRING          shift and go to state 31
@@ -13725,15 +13809,11 @@ state 265
     MA7ED           shift and go to state 42
     DIR             shift and go to state 43
     QRA             shift and go to state 44
-    MINUS           reduce using rule 110 (empty -> .)
-    PLUS            reduce using rule 110 (empty -> .)
     TA3RIF          shift and go to state 45
     RED             shift and go to state 46
     [               shift and go to state 47
     TOL             shift and go to state 48
 
-  ! MINUS           [ shift and go to state 28 ]
-  ! PLUS            [ shift and go to state 27 ]
   ! }               [ reduce using rule 110 (empty -> .) ]
   ! KHREJ           [ reduce using rule 110 (empty -> .) ]
   ! KMEL            [ reduce using rule 110 (empty -> .) ]
@@ -13741,6 +13821,8 @@ state 265
   ! MOJOD           [ reduce using rule 110 (empty -> .) ]
   ! KTEB            [ reduce using rule 110 (empty -> .) ]
   ! (               [ reduce using rule 110 (empty -> .) ]
+  ! MINUS           [ reduce using rule 110 (empty -> .) ]
+  ! PLUS            [ reduce using rule 110 (empty -> .) ]
   ! INT             [ reduce using rule 110 (empty -> .) ]
   ! FLOAT           [ reduce using rule 110 (empty -> .) ]
   ! STRING          [ reduce using rule 110 (empty -> .) ]
@@ -13874,6 +13956,9 @@ state 266
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for MOJOD resolved as shift
   ! shift/reduce conflict for KTEB resolved as shift
+  ! shift/reduce conflict for ( resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
@@ -13897,6 +13982,8 @@ state 266
     MOJOD           shift and go to state 22
     KTEB            shift and go to state 25
     (               shift and go to state 26
+    MINUS           shift and go to state 28
+    PLUS            shift and go to state 27
     INT             shift and go to state 29
     FLOAT           shift and go to state 30
     STRING          shift and go to state 31
@@ -13909,15 +13996,11 @@ state 266
     MA7ED           shift and go to state 42
     DIR             shift and go to state 43
     QRA             shift and go to state 44
-    MINUS           reduce using rule 110 (empty -> .)
-    PLUS            reduce using rule 110 (empty -> .)
     TA3RIF          shift and go to state 45
     RED             shift and go to state 46
     [               shift and go to state 47
     TOL             shift and go to state 48
 
-  ! MINUS           [ shift and go to state 28 ]
-  ! PLUS            [ shift and go to state 27 ]
   ! }               [ reduce using rule 110 (empty -> .) ]
   ! KHREJ           [ reduce using rule 110 (empty -> .) ]
   ! KMEL            [ reduce using rule 110 (empty -> .) ]
@@ -13925,6 +14008,8 @@ state 266
   ! MOJOD           [ reduce using rule 110 (empty -> .) ]
   ! KTEB            [ reduce using rule 110 (empty -> .) ]
   ! (               [ reduce using rule 110 (empty -> .) ]
+  ! MINUS           [ reduce using rule 110 (empty -> .) ]
+  ! PLUS            [ reduce using rule 110 (empty -> .) ]
   ! INT             [ reduce using rule 110 (empty -> .) ]
   ! FLOAT           [ reduce using rule 110 (empty -> .) ]
   ! STRING          [ reduce using rule 110 (empty -> .) ]
@@ -14164,6 +14249,9 @@ WARNING: shift/reduce conflict for KMEL in state 0 resolved as shift
 WARNING: shift/reduce conflict for ID in state 0 resolved as shift
 WARNING: shift/reduce conflict for MOJOD in state 0 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 0 resolved as shift
+WARNING: shift/reduce conflict for ( in state 0 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 0 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 0 resolved as shift
 WARNING: shift/reduce conflict for INT in state 0 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 0 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 0 resolved as shift
@@ -14185,6 +14273,9 @@ WARNING: shift/reduce conflict for KMEL in state 2 resolved as shift
 WARNING: shift/reduce conflict for ID in state 2 resolved as shift
 WARNING: shift/reduce conflict for MOJOD in state 2 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 2 resolved as shift
+WARNING: shift/reduce conflict for ( in state 2 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 2 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 2 resolved as shift
 WARNING: shift/reduce conflict for INT in state 2 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 2 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 2 resolved as shift
@@ -14213,6 +14304,9 @@ WARNING: shift/reduce conflict for KMEL in state 74 resolved as shift
 WARNING: shift/reduce conflict for ID in state 74 resolved as shift
 WARNING: shift/reduce conflict for MOJOD in state 74 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 74 resolved as shift
+WARNING: shift/reduce conflict for ( in state 74 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 74 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 74 resolved as shift
 WARNING: shift/reduce conflict for INT in state 74 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 74 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 74 resolved as shift
@@ -14234,6 +14328,9 @@ WARNING: shift/reduce conflict for KMEL in state 78 resolved as shift
 WARNING: shift/reduce conflict for ID in state 78 resolved as shift
 WARNING: shift/reduce conflict for MOJOD in state 78 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 78 resolved as shift
+WARNING: shift/reduce conflict for ( in state 78 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 78 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 78 resolved as shift
 WARNING: shift/reduce conflict for INT in state 78 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 78 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 78 resolved as shift
@@ -14274,6 +14371,9 @@ WARNING: shift/reduce conflict for KMEL in state 115 resolved as shift
 WARNING: shift/reduce conflict for ID in state 115 resolved as shift
 WARNING: shift/reduce conflict for MOJOD in state 115 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 115 resolved as shift
+WARNING: shift/reduce conflict for ( in state 115 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 115 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 115 resolved as shift
 WARNING: shift/reduce conflict for INT in state 115 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 115 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 115 resolved as shift
@@ -14296,6 +14396,9 @@ WARNING: shift/reduce conflict for KMEL in state 121 resolved as shift
 WARNING: shift/reduce conflict for ID in state 121 resolved as shift
 WARNING: shift/reduce conflict for MOJOD in state 121 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 121 resolved as shift
+WARNING: shift/reduce conflict for ( in state 121 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 121 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 121 resolved as shift
 WARNING: shift/reduce conflict for INT in state 121 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 121 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 121 resolved as shift
@@ -14312,11 +14415,15 @@ WARNING: shift/reduce conflict for TA3RIF in state 121 resolved as shift
 WARNING: shift/reduce conflict for RED in state 121 resolved as shift
 WARNING: shift/reduce conflict for [ in state 121 resolved as shift
 WARNING: shift/reduce conflict for TOL in state 121 resolved as shift
+WARNING: shift/reduce conflict for ) in state 142 resolved as shift
 WARNING: shift/reduce conflict for KHREJ in state 195 resolved as shift
 WARNING: shift/reduce conflict for KMEL in state 195 resolved as shift
 WARNING: shift/reduce conflict for ID in state 195 resolved as shift
 WARNING: shift/reduce conflict for MOJOD in state 195 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 195 resolved as shift
+WARNING: shift/reduce conflict for ( in state 195 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 195 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 195 resolved as shift
 WARNING: shift/reduce conflict for INT in state 195 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 195 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 195 resolved as shift
@@ -14338,6 +14445,9 @@ WARNING: shift/reduce conflict for KMEL in state 198 resolved as shift
 WARNING: shift/reduce conflict for ID in state 198 resolved as shift
 WARNING: shift/reduce conflict for MOJOD in state 198 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 198 resolved as shift
+WARNING: shift/reduce conflict for ( in state 198 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 198 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 198 resolved as shift
 WARNING: shift/reduce conflict for INT in state 198 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 198 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 198 resolved as shift
@@ -14359,6 +14469,9 @@ WARNING: shift/reduce conflict for KMEL in state 202 resolved as shift
 WARNING: shift/reduce conflict for ID in state 202 resolved as shift
 WARNING: shift/reduce conflict for MOJOD in state 202 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 202 resolved as shift
+WARNING: shift/reduce conflict for ( in state 202 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 202 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 202 resolved as shift
 WARNING: shift/reduce conflict for INT in state 202 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 202 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 202 resolved as shift
@@ -14380,6 +14493,9 @@ WARNING: shift/reduce conflict for KMEL in state 214 resolved as shift
 WARNING: shift/reduce conflict for ID in state 214 resolved as shift
 WARNING: shift/reduce conflict for MOJOD in state 214 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 214 resolved as shift
+WARNING: shift/reduce conflict for ( in state 214 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 214 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 214 resolved as shift
 WARNING: shift/reduce conflict for INT in state 214 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 214 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 214 resolved as shift
@@ -14402,6 +14518,9 @@ WARNING: shift/reduce conflict for KMEL in state 215 resolved as shift
 WARNING: shift/reduce conflict for ID in state 215 resolved as shift
 WARNING: shift/reduce conflict for MOJOD in state 215 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 215 resolved as shift
+WARNING: shift/reduce conflict for ( in state 215 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 215 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 215 resolved as shift
 WARNING: shift/reduce conflict for INT in state 215 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 215 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 215 resolved as shift
@@ -14424,6 +14543,9 @@ WARNING: shift/reduce conflict for KMEL in state 218 resolved as shift
 WARNING: shift/reduce conflict for ID in state 218 resolved as shift
 WARNING: shift/reduce conflict for MOJOD in state 218 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 218 resolved as shift
+WARNING: shift/reduce conflict for ( in state 218 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 218 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 218 resolved as shift
 WARNING: shift/reduce conflict for INT in state 218 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 218 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 218 resolved as shift
@@ -14445,6 +14567,9 @@ WARNING: shift/reduce conflict for KMEL in state 220 resolved as shift
 WARNING: shift/reduce conflict for ID in state 220 resolved as shift
 WARNING: shift/reduce conflict for MOJOD in state 220 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 220 resolved as shift
+WARNING: shift/reduce conflict for ( in state 220 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 220 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 220 resolved as shift
 WARNING: shift/reduce conflict for INT in state 220 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 220 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 220 resolved as shift
@@ -14467,6 +14592,9 @@ WARNING: shift/reduce conflict for KMEL in state 222 resolved as shift
 WARNING: shift/reduce conflict for ID in state 222 resolved as shift
 WARNING: shift/reduce conflict for MOJOD in state 222 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 222 resolved as shift
+WARNING: shift/reduce conflict for ( in state 222 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 222 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 222 resolved as shift
 WARNING: shift/reduce conflict for INT in state 222 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 222 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 222 resolved as shift
@@ -14489,6 +14617,9 @@ WARNING: shift/reduce conflict for KMEL in state 230 resolved as shift
 WARNING: shift/reduce conflict for ID in state 230 resolved as shift
 WARNING: shift/reduce conflict for MOJOD in state 230 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 230 resolved as shift
+WARNING: shift/reduce conflict for ( in state 230 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 230 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 230 resolved as shift
 WARNING: shift/reduce conflict for INT in state 230 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 230 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 230 resolved as shift
@@ -14511,6 +14642,9 @@ WARNING: shift/reduce conflict for KMEL in state 239 resolved as shift
 WARNING: shift/reduce conflict for ID in state 239 resolved as shift
 WARNING: shift/reduce conflict for MOJOD in state 239 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 239 resolved as shift
+WARNING: shift/reduce conflict for ( in state 239 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 239 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 239 resolved as shift
 WARNING: shift/reduce conflict for INT in state 239 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 239 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 239 resolved as shift
@@ -14532,6 +14666,9 @@ WARNING: shift/reduce conflict for KMEL in state 255 resolved as shift
 WARNING: shift/reduce conflict for ID in state 255 resolved as shift
 WARNING: shift/reduce conflict for MOJOD in state 255 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 255 resolved as shift
+WARNING: shift/reduce conflict for ( in state 255 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 255 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 255 resolved as shift
 WARNING: shift/reduce conflict for INT in state 255 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 255 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 255 resolved as shift
@@ -14553,6 +14690,9 @@ WARNING: shift/reduce conflict for KMEL in state 256 resolved as shift
 WARNING: shift/reduce conflict for ID in state 256 resolved as shift
 WARNING: shift/reduce conflict for MOJOD in state 256 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 256 resolved as shift
+WARNING: shift/reduce conflict for ( in state 256 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 256 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 256 resolved as shift
 WARNING: shift/reduce conflict for INT in state 256 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 256 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 256 resolved as shift
@@ -14574,6 +14714,9 @@ WARNING: shift/reduce conflict for KMEL in state 257 resolved as shift
 WARNING: shift/reduce conflict for ID in state 257 resolved as shift
 WARNING: shift/reduce conflict for MOJOD in state 257 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 257 resolved as shift
+WARNING: shift/reduce conflict for ( in state 257 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 257 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 257 resolved as shift
 WARNING: shift/reduce conflict for INT in state 257 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 257 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 257 resolved as shift
@@ -14595,6 +14738,9 @@ WARNING: shift/reduce conflict for KMEL in state 258 resolved as shift
 WARNING: shift/reduce conflict for ID in state 258 resolved as shift
 WARNING: shift/reduce conflict for MOJOD in state 258 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 258 resolved as shift
+WARNING: shift/reduce conflict for ( in state 258 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 258 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 258 resolved as shift
 WARNING: shift/reduce conflict for INT in state 258 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 258 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 258 resolved as shift
@@ -14616,6 +14762,9 @@ WARNING: shift/reduce conflict for KMEL in state 259 resolved as shift
 WARNING: shift/reduce conflict for ID in state 259 resolved as shift
 WARNING: shift/reduce conflict for MOJOD in state 259 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 259 resolved as shift
+WARNING: shift/reduce conflict for ( in state 259 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 259 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 259 resolved as shift
 WARNING: shift/reduce conflict for INT in state 259 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 259 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 259 resolved as shift
@@ -14637,6 +14786,9 @@ WARNING: shift/reduce conflict for KMEL in state 260 resolved as shift
 WARNING: shift/reduce conflict for ID in state 260 resolved as shift
 WARNING: shift/reduce conflict for MOJOD in state 260 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 260 resolved as shift
+WARNING: shift/reduce conflict for ( in state 260 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 260 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 260 resolved as shift
 WARNING: shift/reduce conflict for INT in state 260 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 260 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 260 resolved as shift
@@ -14659,6 +14811,9 @@ WARNING: shift/reduce conflict for KMEL in state 261 resolved as shift
 WARNING: shift/reduce conflict for ID in state 261 resolved as shift
 WARNING: shift/reduce conflict for MOJOD in state 261 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 261 resolved as shift
+WARNING: shift/reduce conflict for ( in state 261 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 261 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 261 resolved as shift
 WARNING: shift/reduce conflict for INT in state 261 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 261 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 261 resolved as shift
@@ -14681,6 +14836,9 @@ WARNING: shift/reduce conflict for KMEL in state 262 resolved as shift
 WARNING: shift/reduce conflict for ID in state 262 resolved as shift
 WARNING: shift/reduce conflict for MOJOD in state 262 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 262 resolved as shift
+WARNING: shift/reduce conflict for ( in state 262 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 262 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 262 resolved as shift
 WARNING: shift/reduce conflict for INT in state 262 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 262 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 262 resolved as shift
@@ -14703,6 +14861,9 @@ WARNING: shift/reduce conflict for KMEL in state 263 resolved as shift
 WARNING: shift/reduce conflict for ID in state 263 resolved as shift
 WARNING: shift/reduce conflict for MOJOD in state 263 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 263 resolved as shift
+WARNING: shift/reduce conflict for ( in state 263 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 263 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 263 resolved as shift
 WARNING: shift/reduce conflict for INT in state 263 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 263 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 263 resolved as shift
@@ -14725,6 +14886,9 @@ WARNING: shift/reduce conflict for KMEL in state 264 resolved as shift
 WARNING: shift/reduce conflict for ID in state 264 resolved as shift
 WARNING: shift/reduce conflict for MOJOD in state 264 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 264 resolved as shift
+WARNING: shift/reduce conflict for ( in state 264 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 264 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 264 resolved as shift
 WARNING: shift/reduce conflict for INT in state 264 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 264 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 264 resolved as shift
@@ -14747,6 +14911,9 @@ WARNING: shift/reduce conflict for KMEL in state 265 resolved as shift
 WARNING: shift/reduce conflict for ID in state 265 resolved as shift
 WARNING: shift/reduce conflict for MOJOD in state 265 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 265 resolved as shift
+WARNING: shift/reduce conflict for ( in state 265 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 265 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 265 resolved as shift
 WARNING: shift/reduce conflict for INT in state 265 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 265 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 265 resolved as shift
@@ -14769,6 +14936,9 @@ WARNING: shift/reduce conflict for KMEL in state 266 resolved as shift
 WARNING: shift/reduce conflict for ID in state 266 resolved as shift
 WARNING: shift/reduce conflict for MOJOD in state 266 resolved as shift
 WARNING: shift/reduce conflict for KTEB in state 266 resolved as shift
+WARNING: shift/reduce conflict for ( in state 266 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 266 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 266 resolved as shift
 WARNING: shift/reduce conflict for INT in state 266 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 266 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 266 resolved as shift
