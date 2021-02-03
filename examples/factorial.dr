@@ -1,5 +1,5 @@
 ta3rif factorial(x){
-    ila(x == 1){
+    ila(x == 0){
         red(1)
     }
     wla{
@@ -7,5 +7,5 @@ ta3rif factorial(x){
     }
 }
 
-num = 5
+num = 0
 kteb("The factorial is",factorial(num))
