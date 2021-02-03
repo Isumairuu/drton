@@ -1,14 +1,11 @@
-a=[1,2,3,4]
-
-a.zid(5) # pushes an element to the end of the list
-# Output: [1,2,3,4,5]
-a.n9s() # pops the last element of the list
-# Output: [1,2,3,4]
-a.n9s(2) # pops the element at the indicated index
-# Output: [1,2,4]
-a.dkhel(2,3) # insert an element at the given index dkhel(index,element)
-# Output: [1,2,3,4]
-a.kber([5,6,7,8]) # pushes a list at the end of the given list
-# Output: [1, 2, 3, 4, 5, 6, 7, 8]
-a.khwi() # deletes all elements of the given list
-# Output: []
+str="string"
+jereb{
+    lkola (a=0;a<tol(str);a++){
+    }
+}
+masd9ch{
+    kteb('There is a problem!')
+}
+akhiran{
+    kteb('default case')
+}
