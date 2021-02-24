@@ -51,7 +51,7 @@ Keyword | Python
     - function calls
     - exceptions
 * Operators:
-    - artihmetic : `+ - * / % ^`
+    - arithmetic : `+ - * / % ^`
     - comparison : `> >= < <= == !=`
     - logical : `and or not`
     - assignement : `=`
