@@ -232,7 +232,12 @@ def run(p):
                     ids[p[2][1]] = run(p[2][2])
                     locals[0].append(p[1])
                 else:
-                    ids[p[1]] = run(p[2])
+                    var = run(p[2])
+                    if type(var) is list:
+                        # this is so we can assigne array to another without the seconde changing if the first does, since they wont be binded
+                        ids[p[1]] = var[:]
+                    else:
+                        ids[p[1]] = var
                     exists = False
                     for i in locals:
                         if p[1] in i:
@@ -287,23 +292,17 @@ def run(p):
             try:
                 if p[2] == 'zid':
                     ids[p[1]].append(run(p[3]))
-                    print(ids[p[1]])
                 elif p[2] == 'kber':
                     ids[p[1]].extend(run(p[3]))
-                    print(ids[p[1]])
                 elif p[2] == 'khwi':
                     ids[p[1]].clear()
-                    print(ids[p[1]])
                 elif p[2] == 'dkhel':
                     ids[p[1]].insert(run(p[3]), run(p[4]))
-                    print(ids[p[1]])
                 elif p[2] == 'n9s':
                     if len(p) == 3:
                         ids[p[1]].pop()
-                        print(ids[p[1]])
                     else:
                         ids[p[1]].pop(run(p[3]))
-                        print(ids[p[1]])
             except TypeError:
                 print("'"+p[2]+"' Kat khdm ghir m3a tableau")
                 exitDarija()
@@ -387,7 +386,7 @@ def run(p):
             return(run(p[1]))
         elif p[0] == "ta3rif":
             if p[1] in functions:
-                print("La fonction '", p[1], "' a été déja définie")
+                print("had lfonction '", p[1], "' déja kayna")
                 exitDarija()
             if(len(p) == 4):
                 function_arguments[p[1]] = p[2]
@@ -398,17 +397,17 @@ def run(p):
                 functions[p[1]] = p[2]
         elif p[0] == "appel_func":
             if p[1] not in functions:
-                print("La fonction '", p[1], "' n'existe pas")
+                print("Lfonction '", p[1], "' makaynach")
                 exitDarija()
             if (p[1] in function_arguments and len(p) == 2):
-                print("La fonction '",
-                      p[1], "' doit être appelée avec des arguments")
+                print("Lfonction '",
+                      p[1], "' khassha des arguments")
                 exitDarija()
             elif len(p) == 3:
                 k = 0
                 if(len(p[2]) != len(function_arguments[p[1]])):
                     print(
-                        "nombre d'arguments incorrects pour la fonction '", p[1], "'")
+                        "l3adad dles arguments dyal la fonction '", p[1], "' machi howa hadak")
                     exitDarija()
                 for i in function_arguments[p[1]]:
                     ids[i] = run(p[2][k])
@@ -418,9 +417,17 @@ def run(p):
             returnValue = None
             for i in functions[p[1]]:
                 if i[0] == "red":
-                    return run(i[1])
+                    toReturn = run(i[1])  # before deleting local variable
+                    for j in locals[len(locals)-1]:
+                        ids.pop(j)
+                    locals.pop()
+                    return toReturn
                 run(i)
                 if didReturn:  # this should be after run, because if 'red' is the last instruction, we wont re-entre the loop to check for didReturn
+                    for j in locals[len(locals)-1]:
+                        ids.pop(j)
+                    locals.pop()
+                    didReturn = False  # if this isn't here, if we call function inside a loop, we will get out of the loop, it will case a break from loop
                     return returnValue
                     break
             for j in locals[len(locals)-1]:

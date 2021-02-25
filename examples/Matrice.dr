@@ -1,0 +1,89 @@
+kteb("   |*--------------------------*|")
+kteb("   |   Calculateur de matrices  |")
+kteb("   |*--------------------------*|")
+
+ta3rif qraMatrice(){
+    l1 = qra("Matrice, nombre de colonnes : ")
+    l2 = qra("Matrice, nombre de ligne : ")
+    A = []
+    ligne = []
+    lkola(i = 0; i< l1; i++){
+        ligne.khwi()
+        lkola(j=0; j< l2 ; j++){
+            n = qra("M1["+i+"]["+j+"]")
+            ligne.zid(n)
+        }
+        A.zid(ligne)
+    }
+    red(A)
+}
+
+ta3rif jme3Matrice(m1,m2){
+    ila( ( tol(m1) == tol(m2) ) wa ( tol(m1[0]) == tol(m2[0]) ) ){
+        resultat = []
+        ligne = []
+        lkola(i=0;i<tol(m1);i++){
+            ligne.khwi()
+            lkola(j=0;j<tol(m1[0]);j++){
+                ligne.zid(m1[i][j] + m2[i][j])
+            }
+            resultat.zid(ligne)
+        }
+        red(resultat)
+    }
+    wla{
+        red(0)
+    }
+}
+
+ta3rif n9essMatrice(m1,m2){
+    ila( ( tol(m1) == tol(m2) ) wa ( tol(m1[0]) == tol(m2[0]) ) ){
+        resultat = []
+        ligne = []
+        lkola(i=0;i<tol(m1);i++){
+            ligne.khwi()
+            lkola(j=0;j<tol(m1[0]);j++){
+                ligne.zid(m1[i][j] - m2[i][j])
+            }
+            resultat.zid(ligne)
+        }
+        red(resultat)
+    }
+    wla{
+        red(0)
+    }
+}
+
+ta3rif ktebMatrice(m){
+    ila(m == 0){
+        kteb("operation impossible")
+    }wla{
+        lkola(i=0;i<tol(m);i++){
+            kteb(m[i])
+        }
+    }
+}
+
+mat1 = qraMatrice()
+mat2 = qraMatrice()
+
+ok = khate2
+ma7ed(l3akss(ok)){
+    kteb("Operation a executer sur : ")
+    kteb("1- +")
+    kteb("2- -")
+    mojod op = qra()
+    ila(op == 1 aw op == 2 aw op == 3 aw op ==4){
+        ok = s7i7
+    }
+    wla{
+        kteb("Operation invalide")
+    }
+}
+kteb("--------Resultat: ---------")
+ila(op == 1){
+    ktebMatrice(jme3Matrice(mat1,mat2))
+}
+ila (op == 2){
+    ktebMatrice(n9essMatrice(mat1,mat2))
+}

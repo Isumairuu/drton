@@ -1,0 +1,24 @@
+ta3rif qte3(str,char){  # substring, takes a string and a character, returnsº the rest of the string after finding the character.
+    lkola(i=0; i<tol(str); i++){
+        ila(str[i] == char){
+            red(str[i+1:])
+        }
+    }
+    red(-1)
+}
+ta3rif l9a(str,char){  # returns index of first occurance found in str
+    lkola(i=0; i<tol(str); i++){
+        ila(str[i] == char){
+            red(i)
+        }
+    }
+    red(-1)
+}
+
+
+kteb('find "a" in "Salaaam')
+kteb('indice: ',l9a("Salaaam","a"))
+kteb('find 9 in [5,1,2,9,"hi",88]')
+kteb('indice: ', l9a([5,1,2,9,"hi",88],9))
+kteb("Substring 'hellooo' from the first 'l'")
+kteb(qte3("hellooo","l"))

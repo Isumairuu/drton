@@ -1,3 +1,6 @@
+kteb("   |*---------------------------*|")
+kteb("   |   Calculateur de Factoriel  |")
+kteb("   |*---------------------------*|")
 ta3rif factorial(x){
     ila(x == 0){
         red(1)
@@ -7,5 +10,6 @@ ta3rif factorial(x){
     }
 }
 
-num = 0
-kteb("The factorial is",factorial(num))
+num = qra("Entrez un nombre : ")
+fac = factorial(num)
+kteb("le factoriel de "+ num+" est: " + fac)
