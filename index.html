@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="bootstrap.css">
+    <script src="https://kit.fontawesome.com/f36a65bf41.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Drton</title>
+
+    <style>
+        body {
+            background-color: #eee;
+            font-family: Nunito, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        }
+        
+        #suivant {
+            position: relative;
+            left: 1095px;
+            color: white;
+        }
+        
+        nav {
+            margin-bottom: 20px;
+        }
+        
+        #aftertop {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        #after1,
+        #after2 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .sp {
+            margin: 5px 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 3px;
+        }
+        
+        #bb {
+            height: 500px;
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .rl {
+            position: relative;
+            top: 5px;
+            font-size: 16px;
+        }
+        
+        .bloc {
+            display: inline-block;
+        }
+        
+        #board {
+            height: 300px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+        
+        .ss {
+            font-weight: lighter;
+        }
+        
+        .ss2 {
+            opacity: 0.9;
+            font-weight: lighter;
+        }
+        
+        .toolbar {
+            padding: 0 20px;
+        }
+        /* Google Font */
+        /* latin */
+        
+        @font-face {
+            font-family: 'Google Sans';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Google Sans Regular'), local(GoogleSans-Regular);
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD
+        }
+        /* latin */
+        
+        @font-face {
+            font-family: 'Google Sans';
+            font-style: normal;
+            font-weight: 500;
+            src: local('Google Sans Medium'), local('GoogleSans-Medium');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+        
+        body {
+            font-family: Google Sans, sans-serif;
+            height: 100vh;
+        }
+        
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: Google Sans, sans-serif;
+            font-weight: 400;
+            margin: 0 0 20px 0;
+            padding: 0;
+            color: #0e1b4d;
+        }
+        /* width */
+        
+         ::-webkit-scrollbar {
+            width: 10px;
+        }
+        /* Track */
+        
+         ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        /* Handle */
+        
+         ::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+        /* Handle on hover */
+        
+         ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+</head>
+
+<body style=" background-color: #02203C;">
+    <nav style=" background-color: #001528;" class="navbar navbar-expand-lg shadow">
+
+        <h1 class="navbar-brand text-white"><span id="algo"><i class="fas fa-project-diagram"></i> DRTON </span></h1>
+        <button style="background-color: white; border : 1px solid white; border-radius: 50%; color: #001528;" class="btn shadow btn-circle my-2  " id="suivant"> <i class="fab fa-github"></i> </button>
+
+    </nav>
+    <div class="container" id="after1">
+
+        <h3 style="font-style: bold; color: white;" class=" ss"> First Darija Compiler ! </h3>
+
+    </div>
+    <div class="container" id="after2">
+        <h6 style="font-style: italic; color: white;" class=" ss2">Completly Built in Python using PLY Library.</h6>
+    </div>
+
+    <div id="dv" style=" height: 40px; border : 1px solid white; opacity: 0;" contenteditable="true"></div>
+
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div id="cd" style=" height: 400px; background-color: #001528; overflow-y: scroll; color: white;" class="col-7 shadow"></div>
+
+
+
+        </div>
+    </div> <br>
+    <div class="container">
+        <div class="row justify-content-center">
+            <button id="copyTextBtn" style="background-color: #535DC5; width:120px; color: white;" class="btn btn-sm shadow"> Copy Code</button>
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <div class="row justify-content-center">
+            <p style="font-size: 12px;  color: rgba(255,255,255,0.5);">Copyright&copy; DRTON - ENSA Kenitra 2021</p>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+
+
+
+
+
+
+    <script>
+        copyTextBtn = document.querySelector('#copyTextBtn');
+        copyTextBtn.addEventListener('click', function(event) {
+            var elm = document.getElementById("cd");
+            var selection = window.getSelection();
+            var range = document.createRange();
+            range.selectNodeContents(elm);
+            selection.removeAllRanges();
+            selection.addRange(range);
+            document.execCommand("Copy");
+            swal("The code has been copied to clipboard !");
+        });
+
+        let keyW1 = ["kteb", "qra", "khrej", "kmel", "red"]
+
+        let keyW2 = ["ila", "wla", "dir", "ma7ed", "lkola", "jereb", "masd9ch", "ta3rif", "akhiran"]
+
+        let keyW3 = ["wa", "aw", "l3akss", "khate2", "s7i7", "mojod", "walo"]
+
+        let keyW4 = ["tol", "zid", "kber", "n9s", "dkhel", "khwi"]
+
+
+        let keywordColors = {
+            "kteb": "blue",
+            "ila": "red",
+            "wla": "yellow"
+        };
+
+
+
+        var flag = false;
+        var goToLine = false;
+
+        $('#dv').keyup(function(e) {
+            if (e.keyCode == 13) {
+                // Cancel the default action, if needed
+                //event.preventDefault();
+                console.log("DDDDDDDD");
+                $("#cd").append('<br>');
+                $("#dv").append("<br>");
+            }
+
+        })
+
+
+        $('#dv').bind('DOMSubtreeModified', function(event) {
+
+            //console.log(event.keyCode);
+
+
+            let code = $("#dv").html();
+            // console.log(code[code.length - 1])
+
+            let modified = code;
+
+            let i = 0;
+
+            for (i = 0; i < keyW1.length; i++) {
+
+                modified = modified.replaceAll(keyW1[i], '<span style="color : #D22366 ;">' + keyW1[i] + '</span>');
+            }
+
+            for (i = 0; i < keyW2.length; i++) {
+
+                modified = modified.replaceAll(keyW2[i], '<span style="color : yellow ;">' + keyW2[i] + '</span>');
+            }
+
+            for (i = 0; i < keyW3.length; i++) {
+
+                modified = modified.replaceAll(keyW3[i], '<span style="color : #535DC5 ;">' + keyW3[i] + '</span>');
+            }
+
+            for (i = 0; i < keyW4.length; i++) {
+
+                modified = modified.replaceAll(keyW4[i], '<span style="color : #92CA2D ;">' + keyW4[i] + '</span>');
+            }
+
+
+            /*  modified = code.replaceAll("red", '<span style="color : blue ;">red</span>')
+              modified = code.replaceAll("kteb", '<span style="color : blue ;">kteb</span>')
+              modified = code.replaceAll("qra", '<span style="color : blue ;">qra</span>')
+              modified = code.replaceAll("kmel", '<span style="color : blue ;">kmel</span>')
+              modified = code.replaceAll("khrej", '<span style="color : blue ;">khrej</span>') */
+
+            $("#cd").html(modified);
+            $("#cd").append('|');
+
+
+
+
+
+        });
+    </script>
+
+</body>
+
+
+
+
+
+
+|
+
+</html>
